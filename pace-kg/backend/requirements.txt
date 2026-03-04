@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+celery[redis]
+redis
+neo4j
+pymupdf4llm
+sentence-transformers
+spacy
+langchain
+langchain-groq
+mistune
+pydantic-settings
+python-multipart
+networkx
