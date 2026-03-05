@@ -22,6 +22,32 @@ from collections import Counter
 from pipeline.step1_marker.parser import SlideMarkdown
 
 # ---------------------------------------------------------------------------
+# Inline markdown stripping
+# ---------------------------------------------------------------------------
+_INLINE_MD = re.compile(
+    r"(\*\*|__)(.*?)\1"          # **bold** or __bold__
+    r"|(\*|_)(.*?)\3"            # *italic* or _italic_
+    r"|`([^`]+)`"                # `inline code`
+    r"|~~(.*?)~~"                # ~~strikethrough~~
+    r"|\[([^\]]+)\]\([^)]+\)",  # [link text](url)
+    re.DOTALL,
+)
+
+
+def _strip_inline(text: str) -> str:
+    """Remove inline markdown syntax, keeping only the visible text content."""
+    # Repeatedly apply until stable (handles nested markers)
+    prev = None
+    while prev != text:
+        prev = text
+        text = _INLINE_MD.sub(
+            lambda m: next(g for g in m.groups() if g is not None and g not in ("**", "__", "*", "_")),
+            text,
+        )
+    return text.strip()
+
+
+# ---------------------------------------------------------------------------
 # Noise patterns (case-insensitive, matched against full stripped text block)
 # ---------------------------------------------------------------------------
 NOISE_PATTERNS: list[re.Pattern[str]] = [
@@ -79,31 +105,42 @@ def _parse_buckets(raw_markdown: str) -> dict[str, list[str]]:
             continue
 
         if stripped.startswith(("#",)):
-            # Heading: strip all leading # and whitespace
-            text = re.sub(r"^#+\s*", "", stripped)
+            # Heading: strip all leading # and whitespace, then inline markdown
+            text = _strip_inline(re.sub(r"^#+\s*", "", stripped))
             if text:
                 buckets["headings"].append(text)
 
-        elif stripped.startswith(("-", "*")):
-            text = re.sub(r"^[-*]\s*", "", stripped)
-            if text:
-                buckets["bullets"].append(text)
+        elif stripped.startswith(("-", "*")) and not stripped.startswith(("**", "*a", "*b", "*c")):
+            # Bullet: avoid accidentally treating bold lines as bullets
+            # A true bullet must be '- text' or '* text' (with space after marker)
+            m = re.match(r"^[-*]\s+(.+)", stripped)
+            if m:
+                text = _strip_inline(m.group(1))
+                if text:
+                    buckets["bullets"].append(text)
+            else:
+                # Treat as body text (e.g. standalone '**bold**' line)
+                text = _strip_inline(stripped)
+                if text:
+                    buckets["body_text"].append(text)
 
         elif stripped.startswith("|") and stripped.endswith("|"):
             # Table row — split on | and strip each cell
-            cells = [c.strip() for c in stripped.split("|") if c.strip()]
+            cells = [_strip_inline(c.strip()) for c in stripped.split("|") if c.strip()]
             # Skip separator rows like |---|---|
             if all(re.fullmatch(r"[-:]+", c) for c in cells):
                 continue
-            buckets["table_cells"].extend(cells)
+            buckets["table_cells"].extend(c for c in cells if c)
 
         elif stripped.startswith(">"):
-            text = re.sub(r"^>\s*", "", stripped)
+            text = _strip_inline(re.sub(r"^>\s*", "", stripped))
             if text:
                 buckets["captions"].append(text)
 
         else:
-            buckets["body_text"].append(stripped)
+            text = _strip_inline(stripped)
+            if text:
+                buckets["body_text"].append(text)
 
     return buckets
 
@@ -169,6 +206,70 @@ def _assemble(sc: SlideContent) -> None:
 # ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
+def load_preprocessed_json(json_path: str, doc_id: str) -> list[SlideContent]:
+    """Load a Marker-preprocessed JSON (from Colab or external pipeline) as SlideContent objects.
+
+    Step 2 has already been performed externally; this skips all 4 stages and
+    maps the JSON fields directly to SlideContent. The cross-slide filter is
+    NOT re-applied (assumed done upstream).
+
+    Handles:
+    - '{N}' page-number placeholders in body_text → stripped out.
+    - Extra fields ('discarded', 'ocr_applied') → ignored.
+    - clean_text is rebuilt from buckets if needed to match our format.
+
+    Args:
+        json_path: Path to the preprocessed JSON file.
+        doc_id:    Document identifier to assign (overrides stored doc_id).
+
+    Returns:
+        List of SlideContent in page order, ready for Step 3.
+    """
+    import json
+    import logging as _log
+    _logger = _log.getLogger(__name__)
+
+    _PAGE_REF     = re.compile(r"^\{\d+\}$")              # matches '{1}', '{12}'
+    _BULLET_LEAD  = re.compile(r"^[\s◮•▶▪■►▸*\-–—]+")    # leading bullet markers
+
+    def _strip_bullet(text: str) -> str:
+        """Remove leading bullet-marker characters (◮, •, ▶, -, etc.)."""
+        return _BULLET_LEAD.sub("", text).strip()
+
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    contents: list[SlideContent] = []
+    for item in data:
+        # Strip '{N}' placeholders from body_text
+        body = [t for t in item.get("body_text", []) if not _PAGE_REF.match(t.strip())]
+
+        # Strip leading bullet-marker characters (◮, •, ▶, etc.) from bullets
+        bullets = [_strip_bullet(b) for b in item.get("bullets", []) if _strip_bullet(b)]
+
+        sc = SlideContent(
+            slide_id=item["slide_id"],
+            page_number=item["page_number"],
+            doc_id=doc_id,
+            headings=item.get("headings", []),
+            bullets=bullets,
+            table_cells=item.get("table_cells", []),
+            captions=item.get("captions", []),
+            body_text=body,
+            heading_phrases=item.get("heading_phrases", []),
+        )
+
+        # Rebuild clean_text using our assembly format
+        # (ignore the stored clean_text — rebuild to drop {N} refs and match our pipeline)
+        all_parts = sc.headings + sc.body_text + sc.bullets + sc.table_cells + sc.captions
+        sc.clean_text = " ".join(all_parts)
+
+        contents.append(sc)
+
+    _logger.info("Loaded %d pre-processed slides from %s", len(contents), json_path)
+    return contents
+
+
 def preprocess_slides(slides: list[SlideMarkdown]) -> list[SlideContent]:
     """Run all 4 preprocessing stages on the full slide list.
 

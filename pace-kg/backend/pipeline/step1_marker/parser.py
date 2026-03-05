@@ -7,11 +7,18 @@ Key behaviour:
 - Each page chunk is a dict with 'text' (markdown) and 'metadata' (includes 'page' 0-indexed).
 - Caches results keyed by sha256(pdf_bytes) so identical PDFs are never re-parsed.
 - slide_id is zero-padded: slide_001, slide_002, …
+- Images / vector graphics are extracted as PNG files into the cache folder
+  and referenced via ![img](...) markdown tags.
+- force_text=True ensures text behind image backgrounds is still captured.
+- Excessive blank lines (3+) are collapsed to a single blank line.
 
 Memory footprint: ~50 MB (no ML models required). Runs on 8GB machines.
-Text embedded inside images is NOT extracted. For image-heavy PDFs, see
-pace-kg/COLAB_MARKER_GUIDE.md — run Marker on Google Colab, download the JSON,
-then use load_parsed_json() here instead of parse_pdf().
+Text inside rasterised images (screenshots, photos of diagrams) is NOT
+extracted without Tesseract OCR.  For image-heavy PDFs, either:
+  1. Install Tesseract (sudo dnf install tesseract) — pymupdf will use it
+     automatically if present on PATH.
+  2. Use the Colab+Marker deep-learning pipeline (see COLAB_MARKER_GUIDE.md)
+     to pre-generate a JSON, then call load_parsed_json() instead of parse_pdf().
 
 Do NOT clean or modify text here — that is Step 2.
 """
@@ -20,6 +27,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -99,9 +107,14 @@ def parse_pdf(file_path: str | Path, doc_id: str) -> list[SlideMarkdown]:
 
     Memory usage: ~50 MB (no ML models). Speed: <2s for typical lecture PDFs.
 
-    Note: Text embedded inside images is NOT extracted. For image-heavy PDFs,
-    use the Colab+Marker workflow (see pace-kg/COLAB_MARKER_GUIDE.md) to generate
-    a cached JSON, then call load_parsed_json() instead.
+    Features:
+    - Images/graphics extracted as PNGs into _cache/ and linked in markdown.
+    - force_text=True captures text behind image backgrounds.
+    - Consecutive blank lines (3+) are collapsed to keep output clean.
+
+    For image-heavy PDFs where text is baked into raster images, use the
+    Colab+Marker workflow (see COLAB_MARKER_GUIDE.md) to generate a cached
+    JSON, then call load_parsed_json() instead.
     """
     file_path = Path(file_path)
     pdf_bytes = file_path.read_bytes()
@@ -124,13 +137,26 @@ def parse_pdf(file_path: str | Path, doc_id: str) -> list[SlideMarkdown]:
             "pymupdf4llm is not installed. Run: pip install pymupdf4llm"
         ) from exc
 
+    # Ensure image output directory exists
+    _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
     # page_chunks=True → list of dicts, one per page:
     # [{"text": "<markdown>", "metadata": {"page": 0, "file_path": "...", ...}}, ...]
-    page_chunks: list[dict] = pymupdf4llm.to_markdown(str(file_path), page_chunks=True)
+    page_chunks: list[dict] = pymupdf4llm.to_markdown(
+        str(file_path),
+        page_chunks=True,
+        write_images=True,              # extract images/graphics as PNG files
+        image_path=str(_CACHE_DIR),     # store extracted images alongside cache
+        force_text=True,                # capture text behind image backgrounds
+    )
 
     slides: list[SlideMarkdown] = []
     for chunk in page_chunks:
         page_md = chunk.get("text", "").strip()
+
+        # Collapse 3+ consecutive newlines into exactly one blank line
+        page_md = re.sub(r"\n{3,}", "\n\n", page_md)
+
         # 'page' in metadata is 0-indexed
         page_num = chunk.get("metadata", {}).get("page", len(slides)) + 1
         if not page_md:

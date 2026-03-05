@@ -12,7 +12,7 @@ PDF = "/home/kirus/Documents/Projects/Edu-KG/main.pdf"
 DOC_ID = "test-doc-001"
 
 print(f"\n{'='*60}")
-print("STEP 1 — Marker PDF Parsing")
+print("STEP 1 — pymupdf4llm PDF Parsing")
 print('='*60)
 slides_md = parse_pdf(PDF, DOC_ID)
 print(f"✓ Parsed {len(slides_md)} slides\n")

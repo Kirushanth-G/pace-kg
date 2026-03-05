@@ -1,0 +1,28 @@
+[
+  {
+    "slide_id": "slide_002",
+    "page_number": 2,
+    "doc_id": "test-doc-001",
+    "headings": [],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "body_text": [
+      "PACE-KG: Optimized EduKG Construction Pipeline",
+      "Pedagogically-Aware, Citation-Evidenced Knowledge Graph",
+      "![](/home/kirus/Documents/Projects/Edu-KG/pace-kg/backend/pipeline/step1marker/cache/main.pdf-0-0.png)",
+      "![](/home/kirus/Documents/Projects/Edu-KG/pace-kg/backend/pipeline/step1marker/cache/main.pdf-0-1.png)",
+      "Legend"
+    ],
+    "heading_phrases": [],
+    "clean_text": "PACE-KG: Optimized EduKG Construction Pipeline Pedagogically-Aware, Citation-Evidenced Knowledge Graph ![](/home/kirus/Documents/Projects/Edu-KG/pace-kg/backend/pipeline/step1marker/cache/main.pdf-0-0.png) ![](/home/kirus/Documents/Projects/Edu-KG/pace-kg/backend/pipeline/step1marker/cache/main.pdf-0-1.png) Legend",
+    "stats": {
+      "n_headings": 0,
+      "n_bullets": 0,
+      "n_table_cells": 0,
+      "n_captions": 0,
+      "n_body": 5,
+      "clean_text_len": 315
+    }
+  }
+]

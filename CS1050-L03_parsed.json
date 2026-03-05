@@ -1,0 +1,134 @@
+[
+  {
+    "slide_id": "slide_001",
+    "page_number": 1,
+    "raw_markdown": "> OCR: Java Collection\n> OCR: CS1040 Program Construction\n> OCR: Prof Chandana Gamage\n> OCR: Department of Computer Science & Engineering\n> OCR: University of Moratuwa\n> OCR: May 24, 2022\n> OCR: 1/21",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_002",
+    "page_number": 2,
+    "raw_markdown": "# Java Collection CS1040 Program Construction\n\nProf Chandana Gamage Department of Computer Science & Engineering University of Moratuwa\n\nMay 24, 2022\n\n{1}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "raw_markdown": "# Collections\n\n- ◮ Composite data structures are essential for programmers to store and manipulate related data together\n  - ◮ The most common composite data structures is the array\n  - ◮ While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation\n- ◮ In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity\n  - ◮ In Java, such a group of objects manipulated as a single entity is called a collection\n  - ◮ Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection\n- ◮ Quiz: are you able to differentiate between Java, JVM and JDK?\n\n![](_page_1_Picture_8.jpeg)\n\n{2}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "raw_markdown": "#### Collections vs ADTs\n\n- ► There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)\n- Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table\n- ► Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour\n  - insert(position, value) and remove(position) for List\n  - push(value) and pop() for Stack\n  - insert(value) and remove() for Queue\n  - search(key) and insert(key,value) for Tree\n  - lookup(key) and update(key,value) for Table\n- While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage\n- ▶ Different ADTs performing the same task (for example, storing a value) had different method calls\n\n{3}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "raw_markdown": "#### Java pre- and post- Collections\n\n- ◮ Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner\n- ◮ Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)\n  - ◮ These classes did not provide a common interface\n  - ◮ For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections\n- ◮ In the Java Collections Framework, there are 2 main root interface classes:\n  - 1. Collection interface (java.util.Collection)\n  - 2. Map interface (java.util.Map)\n\n{4}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_006",
+    "page_number": 6,
+    "raw_markdown": "# Java Collection Hierarchy\n\n![](_page_4_Figure_1.jpeg)\n\n{5}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_007",
+    "page_number": 7,
+    "raw_markdown": "# Java Map Hierarchy\n\n![](_page_5_Figure_1.jpeg)\n\n{6}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_008",
+    "page_number": 8,
+    "raw_markdown": "# Advantages of the Collection Framework\n\n- ◮ Consistent API: The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)\n  - ◮ All the implementation classes have some common set of methods\n- ◮ Reduced programming effort: Due to the use of a common set of conceptually abstract methods, programmers can effectively use the OOP concepts of Abstraction and Encapsulation\n- ◮ Increased program performance: Availability of high-performance implementations of essential data structures and algorithms improves both memory use and run-time efficiency\n\n{7}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_009",
+    "page_number": 9,
+    "raw_markdown": "### Performance Charateristics of Collection Framework\n\n- ◮ Each type of Java Collection has a different level of functionality and memory overhead\n- ◮ Using the wrong type of collection in a program will result in a significant additional memory overhead\n\n![](_page_7_Figure_3.jpeg)\n\n{8}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_010",
+    "page_number": 10,
+    "raw_markdown": "# HashMap Class\n\n- ◮ HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs\n- ◮ The Key and Value can be different types of objects and the Key is the index for accessing a Value from the collection\n- ◮ There are 4 methods to create an instance of a HashMap object\n  - 1. Default constructor, HashMap() creates an instance with an initial capacity of 16 and load factor of 0.75\n  - 2. Constructor HashMap(int initialCapacity) creates an instance with the specified initial capacity and load factor of 0.75\n  - 3. Constructor HashMap(int initialCapacity, float loadFactor) creates an instance with the specified initial capacity and load factor\n  - 4. Constructor HashMap(Map map) creates an instance with the same mappings as the specified map\n\n{9}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_011",
+    "page_number": 11,
+    "raw_markdown": "# Initial Capacity and Load Factor\n\n- ◮ Performance of HashMap depends on these 2 parameters\n  - 1. The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity\n  - 2. The fraction of buckets used after which the capacity is increased is the load factor\n- ◮ The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12\n- ◮ Rehashing is the process of doubling the capacity of the HashMap after it reaches its threshold\n- ◮ Quiz: what is the default sequence of rehashing sizes for HashMap?\n\n{10}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_012",
+    "page_number": 12,
+    "raw_markdown": "# HashMap Implementation 1/2\n\n- ◮ JVM implements HashMap as an array of HashMap\\$Entry objects with each object having 4 fields:\n  - 1. int hash value computed using a hash function\n  - 2. Object key\n  - 3. Object value\n  - 4. Object next reference to the next HashMap\\$Entry object as the HashMap is implemented as a linked list\n- ◮ HashMap object overhead = 48 bytes, Array object overhead = 16 bytes, and array entries overhead = 4 bytes x 16 = 64 bytes\n- ◮ Size of an empty HashMap using default parameters is 128 bytes\n- ◮ Quiz: what is the composition of an empty HashMap?\n- ◮ HashMap\\$Entry object overhead = 36 bytes\n\n{11}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_013",
+    "page_number": 13,
+    "raw_markdown": "#### HashMap Implementation 2/2\n\n![](_page_11_Figure_1.jpeg)\n\n{12}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_014",
+    "page_number": 14,
+    "raw_markdown": "# HashMap Example Code\n\n```\nimport java.util.HashMap;\nimport java.util.Map;\nclass HashMapTest {\n public static void main(String [] args) {\n  int hashcode;\n  String key;\n  double value;\n  int index, capacity = 16;\n  HashMap<String, Double> map = new HashMap<>(); // initialize a HashMap\n  // add entries, next we can retrieve them\n  for (Map.Entry<String, Double> e : map.entrySet()) { // enumerate\n   key = e.getKey();\n   value = e.getValue();\n   hashcode = e.hashCode();\n   index = hashcode & (capacity-1);\n   System.out.println(\"Key: \"+key+\" Value: \"+value\n    +\" HashCode: \"+hashcode+\" Index: \"+index);\n  }\n }\n}\n```\n\n{13}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_015",
+    "page_number": 15,
+    "raw_markdown": "# LinkedList Class\n\n- ◮ LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses\n- ◮ LinkedList behaviour is that of a dynamic array that grows (or contracts) in size as items are added or removed\n- ◮ The linked list is implemented as a doubly linked list data structure allowing for efficient insertion and removal of items from the list\n- ◮ There are 2 methods to create an instance of a LinkedList object\n  - 1. Default constructor LinkedList() creates an empty linked list\n  - 2. Constructor LinkedList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the linked list is determined by the iterator of the collection col\n\n{14}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_016",
+    "page_number": 16,
+    "raw_markdown": "### LinkedList Implementation 1/2\n\n- ◮ JVM implements LinkedList as a linked list of LinkedList\\$Entry objects with each object having 3 fields:\n  - 1. Object previous\n  - 2. Object next\n  - 3. Object entry\n- ◮ LinkedList object overhead = 24 bytes\n- ◮ Default capacity of a LinkedList object is 1 entry\n- ◮ Size of an empty LinkedList using default parameters is 48 bytes\n- ◮ LinkedList\\$Entry object overhead = 24 bytes\n\n{15}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_017",
+    "page_number": 17,
+    "raw_markdown": "# LinkedList Implementation 2/2\n\n![](_page_15_Figure_1.jpeg)\n\n{16}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_018",
+    "page_number": 18,
+    "raw_markdown": "# ArrayList Class\n\n- ◮ ArrayList class is an implementation of a dynamic array data structure where the size of the array automatically changes when items are dynamically added (or removed)\n- ◮ Unlike normal arrays, ArrayList can not be used for primitive types such as int or char but need wrapper classes such as Integer or Character\n- ◮ In an example implementation of ArrayList:\n  - ◮ An initial structure could be created with a default number of storage slots and allocating memory from the heap\n  - ◮ If the structure runs out of space when attempting to insert a new item, a bigger-sized structure is created by allocating new memory from the heap with current memory contents copied to the newly allocated space\n  - ◮ The older data structure can now be deleted and the memory returned to the heap\n\n{17}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_019",
+    "page_number": 19,
+    "raw_markdown": "# ArrayList Implementation 1/2\n\n- ◮ There are 3 methods to create an instance of a ArrayList object\n  - 1. Default constructor ArrayList() creates an empty array list\n  - 2. Constructor ArrayList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the array list is determined by the iterator of the collection col\n  - 3. Constructor ArrayList(int capacity) creates an instance with the specified initial capacity\n- ◮ JVM implements ArrayList as an array of objects with each objects\n- ◮ ArrayList object overhead = 32 bytes\n- ◮ Default capacity of a ArrayList object is 10 entries\n- ◮ Size of an empty ArrayList using default parameters is 88 bytes\n- ◮ ArrayList\\$Entry object overhead = 24 bytes\n\n![](_page_17_Picture_10.jpeg)\n\n{18}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_020",
+    "page_number": 20,
+    "raw_markdown": "# ArrayList Implementation 2/2\n\n![](_page_18_Figure_1.jpeg)\n\n{19}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_021",
+    "page_number": 21,
+    "raw_markdown": "# Overhead Comparison of Collection Implementations\n\n| Collection | Default  | Empty | Overhead |        |      |\n|------------|----------|-------|----------|--------|------|\n|            | Capacity | Size  | 10       | 1,000  | 10K  |\n| HashSet    | 16       | 144   |          |        | 360K |\n| HashMap    | 16       | 128   | 424      | 38,096 | 360K |\n| Hashtable  | 11       | 104   |          |        | 360K |\n| LinkedList | 1        | 48    | 264      | 24,024 | 240K |\n| ArrayList  | 10       | 88    | 88       | 4,048  | 40K  |\n\n{20}",
+    "doc_id": "CS1050-L03"
+  },
+  {
+    "slide_id": "slide_022",
+    "page_number": 22,
+    "raw_markdown": "# Summary\n\n- ◮ Hash-based collections have a much larger overhead\n- ◮ Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion\n  - ◮ Search time is constant for hash-based collections most of the time\n  - ◮ Search time is linear for array collections\n- ◮ Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage\n- ◮ Collections expand by reallocation, which is a computationally expensive operation\n- ◮ Collections nearly always does not automatically shrink when items are removed as it imposes a heavy performance penalty",
+    "doc_id": "CS1050-L03"
+  }
+]

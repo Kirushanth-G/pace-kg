@@ -1,0 +1,227 @@
+[
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Collections"
+    ],
+    "clean_text": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?",
+    "keyphrases": [
+      {
+        "phrase": "collections composite data structures",
+        "score": 0.6818,
+        "source_type": "body",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "collection java language environment",
+        "score": 0.6372,
+        "source_type": "body",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "composite data structures",
+        "score": 0.5887,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "most common composite data structures",
+        "score": 0.5859,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "composite data structure",
+        "score": 0.5622,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "collections framework",
+        "score": 0.5276,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "type collection quiz",
+        "score": 0.4724,
+        "source_type": "body",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "basic data type",
+        "score": 0.4149,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "jdk",
+        "score": 0.3599,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "most programming languages",
+        "score": 0.3346,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      },
+      {
+        "phrase": "individual objects",
+        "score": 0.306,
+        "source_type": "bullet",
+        "appears_in": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity In Java, such a group of objects manipulated as a single entity is called a collection Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection Quiz: are you able to differentiate between Java, JVM and JDK?"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Collections vs ADTs"
+    ],
+    "clean_text": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage Different ADTs performing the same task (for example, storing a value) had different method calls",
+    "keyphrases": [
+      {
+        "phrase": "abstract data types (adt) main",
+        "score": 0.6347,
+        "source_type": "body",
+        "appears_in": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table"
+      },
+      {
+        "phrase": "adts",
+        "score": 0.6084,
+        "source_type": "heading",
+        "appears_in": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table"
+      },
+      {
+        "phrase": "collections",
+        "score": 0.6057,
+        "source_type": "heading",
+        "appears_in": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table"
+      },
+      {
+        "phrase": "different adts",
+        "score": 0.4765,
+        "source_type": "bullet",
+        "appears_in": "Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage Different ADTs performing the same task (for example, storing a value) had different method calls"
+      },
+      {
+        "phrase": "familiar composite data structures",
+        "score": 0.4509,
+        "source_type": "bullet",
+        "appears_in": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table"
+      },
+      {
+        "phrase": "these collections",
+        "score": 0.3511,
+        "source_type": "bullet",
+        "appears_in": "Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage Different ADTs performing the same task (for example, storing a value) had different method calls"
+      },
+      {
+        "phrase": "these adts",
+        "score": 0.3478,
+        "source_type": "bullet",
+        "appears_in": "Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage Different ADTs performing the same task (for example, storing a value) had different method calls"
+      },
+      {
+        "phrase": "specific adt",
+        "score": 0.3473,
+        "source_type": "bullet",
+        "appears_in": "Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage Different ADTs performing the same task (for example, storing a value) had different method calls"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Java pre- and post- Collections"
+    ],
+    "clean_text": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes) These classes did not provide a common interface For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+    "keyphrases": [
+      {
+        "phrase": "java collections framework",
+        "score": 0.7516,
+        "source_type": "bullet",
+        "appears_in": "These classes did not provide a common interface For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections In the Java Collections Framework, there are 2 main root interface classes: 1."
+      },
+      {
+        "phrase": "pre- and post- collections object-oriented program designs",
+        "score": 0.7259,
+        "source_type": "body",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      },
+      {
+        "phrase": "collection",
+        "score": 0.6729,
+        "source_type": "heading",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      },
+      {
+        "phrase": "collection interface",
+        "score": 0.648,
+        "source_type": "bullet",
+        "appears_in": "Collection interface (java.util.Collection) 2. Map interface (java.util.Map)"
+      },
+      {
+        "phrase": "respective collections",
+        "score": 0.4864,
+        "source_type": "bullet",
+        "appears_in": "These classes did not provide a common interface For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections In the Java Collections Framework, there are 2 main root interface classes: 1."
+      },
+      {
+        "phrase": "java.util.map",
+        "score": 0.4365,
+        "source_type": "bullet",
+        "appears_in": "Collection interface (java.util.Collection) 2. Map interface (java.util.Map)"
+      },
+      {
+        "phrase": "java.util",
+        "score": 0.4245,
+        "source_type": "bullet",
+        "appears_in": "Collection interface (java.util.Collection) 2. Map interface (java.util.Map)"
+      },
+      {
+        "phrase": "hashtables",
+        "score": 0.3925,
+        "source_type": "bullet",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      },
+      {
+        "phrase": "common interface",
+        "score": 0.3765,
+        "source_type": "bullet",
+        "appears_in": "These classes did not provide a common interface For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections In the Java Collections Framework, there are 2 main root interface classes: 1."
+      },
+      {
+        "phrase": "utility classes",
+        "score": 0.3581,
+        "source_type": "bullet",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      },
+      {
+        "phrase": "2. map interface",
+        "score": 0.3498,
+        "source_type": "bullet",
+        "appears_in": "Collection interface (java.util.Collection) 2. Map interface (java.util.Map)"
+      },
+      {
+        "phrase": "jdk",
+        "score": 0.3333,
+        "source_type": "bullet",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      },
+      {
+        "phrase": "classes",
+        "score": 0.3014,
+        "source_type": "bullet",
+        "appears_in": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)"
+      }
+    ]
+  }
+]

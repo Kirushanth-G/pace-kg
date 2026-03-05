@@ -1,0 +1,606 @@
+[
+  {
+    "slide_id": "slide_001",
+    "page_number": 1,
+    "doc_id": "CS1050-L03",
+    "headings": [],
+    "body_text": [
+      "Java Collection",
+      "CS1040 Program Construction",
+      "Prof Chandana Gamage",
+      "Department of Computer Science & Engineering",
+      "University of Moratuwa"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "May 24, 2022",
+      "1/21"
+    ],
+    "clean_text": "Java Collection CS1040 Program Construction Prof Chandana Gamage Department of Computer Science & Engineering University of Moratuwa",
+    "heading_phrases": [],
+    "ocr_applied": true
+  },
+  {
+    "slide_id": "slide_002",
+    "page_number": 2,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Java Collection CS1040 Program Construction"
+    ],
+    "body_text": [
+      "Prof Chandana Gamage Department of Computer Science & Engineering University of Moratuwa",
+      "May 24, 2022",
+      "{1}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Java Collection CS1040 Program Construction Prof Chandana Gamage Department of Computer Science & Engineering University of Moratuwa May 24, 2022 {1}",
+    "heading_phrases": [
+      "Java Collection CS1040 Program Construction"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Collections"
+    ],
+    "body_text": [
+      "{2}"
+    ],
+    "bullets": [
+      "◮ Composite data structures are essential for programmers to store and manipulate related data together",
+      "◮ The most common composite data structures is the array",
+      "◮ While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation",
+      "◮ In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity",
+      "◮ In Java, such a group of objects manipulated as a single entity is called a collection",
+      "◮ Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "◮ Quiz: are you able to differentiate between Java, JVM and JDK?"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_1_Picture_8.jpeg)"
+    ],
+    "clean_text": "Collections {2} ◮ Composite data structures are essential for programmers to store and manipulate related data together ◮ The most common composite data structures is the array ◮ While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation ◮ In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity ◮ In Java, such a group of objects manipulated as a single entity is called a collection ◮ Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection ◮ Quiz: are you able to differentiate between Java, JVM and JDK?",
+    "heading_phrases": [
+      "Collections"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Collections vs ADTs"
+    ],
+    "body_text": [
+      "{3}"
+    ],
+    "bullets": [
+      "► There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+      "► Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour",
+      "insert(position, value) and remove(position) for List",
+      "push(value) and pop() for Stack",
+      "insert(value) and remove() for Queue",
+      "search(key) and insert(key,value) for Tree",
+      "lookup(key) and update(key,value) for Table",
+      "While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage",
+      "▶ Different ADTs performing the same task (for example, storing a value) had different method calls"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Collections vs ADTs {3} ► There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table ► Each of these ADTs have unique interfaces (methods) that clearly identify the specific ADT through its behaviour insert(position, value) and remove(position) for List push(value) and pop() for Stack insert(value) and remove() for Queue search(key) and insert(key,value) for Tree lookup(key) and update(key,value) for Table While ADTs are useful, not having a common interface for manipulating these collections was a disadvantage ▶ Different ADTs performing the same task (for example, storing a value) had different method calls",
+    "heading_phrases": [
+      "Collections vs ADTs"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Java pre- and post- Collections"
+    ],
+    "body_text": [
+      "{4}"
+    ],
+    "bullets": [
+      "◮ Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+      "◮ Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+      "◮ These classes did not provide a common interface",
+      "◮ For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections",
+      "◮ In the Java Collections Framework, there are 2 main root interface classes:",
+      "1. Collection interface (java.util.Collection)",
+      "2. Map interface (java.util.Map)"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Java pre- and post- Collections {4} ◮ Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner ◮ Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes) ◮ These classes did not provide a common interface ◮ For example, Vector had addElement(value) method while Hashtable had put(key,value) method to insert a value to respective collections ◮ In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+    "heading_phrases": [
+      "Java pre- and post- Collections"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_006",
+    "page_number": 6,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Java Collection Hierarchy"
+    ],
+    "body_text": [
+      "{5}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_4_Figure_1.jpeg)"
+    ],
+    "clean_text": "Java Collection Hierarchy {5}",
+    "heading_phrases": [
+      "Java Collection Hierarchy"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_007",
+    "page_number": 7,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Java Map Hierarchy"
+    ],
+    "body_text": [
+      "{6}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_5_Figure_1.jpeg)"
+    ],
+    "clean_text": "Java Map Hierarchy {6}",
+    "heading_phrases": [
+      "Java Map Hierarchy"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_008",
+    "page_number": 8,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Advantages of the Collection Framework"
+    ],
+    "body_text": [
+      "{7}"
+    ],
+    "bullets": [
+      "◮ Consistent API: The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+      "◮ All the implementation classes have some common set of methods",
+      "◮ Reduced programming effort: Due to the use of a common set of conceptually abstract methods, programmers can effectively use the OOP concepts of Abstraction and Encapsulation",
+      "◮ Increased program performance: Availability of high-performance implementations of essential data structures and algorithms improves both memory use and run-time efficiency"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Advantages of the Collection Framework {7} ◮ Consistent API: The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc) ◮ All the implementation classes have some common set of methods ◮ Reduced programming effort: Due to the use of a common set of conceptually abstract methods, programmers can effectively use the OOP concepts of Abstraction and Encapsulation ◮ Increased program performance: Availability of high-performance implementations of essential data structures and algorithms improves both memory use and run-time efficiency",
+    "heading_phrases": [
+      "Advantages of the Collection Framework"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_009",
+    "page_number": 9,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Performance Charateristics of Collection Framework"
+    ],
+    "body_text": [
+      "{8}"
+    ],
+    "bullets": [
+      "◮ Each type of Java Collection has a different level of functionality and memory overhead",
+      "◮ Using the wrong type of collection in a program will result in a significant additional memory overhead"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_7_Figure_3.jpeg)"
+    ],
+    "clean_text": "Performance Charateristics of Collection Framework {8} ◮ Each type of Java Collection has a different level of functionality and memory overhead ◮ Using the wrong type of collection in a program will result in a significant additional memory overhead",
+    "heading_phrases": [
+      "Performance Charateristics of Collection Framework"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_010",
+    "page_number": 10,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "HashMap Class"
+    ],
+    "body_text": [
+      "{9}"
+    ],
+    "bullets": [
+      "◮ HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+      "◮ The Key and Value can be different types of objects and the Key is the index for accessing a Value from the collection",
+      "◮ There are 4 methods to create an instance of a HashMap object",
+      "1. Default constructor, HashMap() creates an instance with an initial capacity of 16 and load factor of 0.75",
+      "2. Constructor HashMap(int initialCapacity) creates an instance with the specified initial capacity and load factor of 0.75",
+      "3. Constructor HashMap(int initialCapacity, float loadFactor) creates an instance with the specified initial capacity and load factor",
+      "4. Constructor HashMap(Map map) creates an instance with the same mappings as the specified map"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "HashMap Class {9} ◮ HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs ◮ The Key and Value can be different types of objects and the Key is the index for accessing a Value from the collection ◮ There are 4 methods to create an instance of a HashMap object 1. Default constructor, HashMap() creates an instance with an initial capacity of 16 and load factor of 0.75 2. Constructor HashMap(int initialCapacity) creates an instance with the specified initial capacity and load factor of 0.75 3. Constructor HashMap(int initialCapacity, float loadFactor) creates an instance with the specified initial capacity and load factor 4. Constructor HashMap(Map map) creates an instance with the same mappings as the specified map",
+    "heading_phrases": [
+      "HashMap Class"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_011",
+    "page_number": 11,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Initial Capacity and Load Factor"
+    ],
+    "body_text": [
+      "{10}"
+    ],
+    "bullets": [
+      "◮ Performance of HashMap depends on these 2 parameters",
+      "1. The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity",
+      "2. The fraction of buckets used after which the capacity is increased is the load factor",
+      "◮ The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "◮ Rehashing is the process of doubling the capacity of the HashMap after it reaches its threshold",
+      "◮ Quiz: what is the default sequence of rehashing sizes for HashMap?"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Initial Capacity and Load Factor {10} ◮ Performance of HashMap depends on these 2 parameters 1. The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity 2. The fraction of buckets used after which the capacity is increased is the load factor ◮ The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12 ◮ Rehashing is the process of doubling the capacity of the HashMap after it reaches its threshold ◮ Quiz: what is the default sequence of rehashing sizes for HashMap?",
+    "heading_phrases": [
+      "Initial Capacity and Load Factor"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_012",
+    "page_number": 12,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "HashMap Implementation 1/2"
+    ],
+    "body_text": [
+      "{11}"
+    ],
+    "bullets": [
+      "◮ JVM implements HashMap as an array of HashMap\\$Entry objects with each object having 4 fields:",
+      "1. int hash value computed using a hash function",
+      "2. Object key",
+      "3. Object value",
+      "4. Object next reference to the next HashMap\\$Entry object as the HashMap is implemented as a linked list",
+      "◮ HashMap object overhead = 48 bytes, Array object overhead = 16 bytes, and array entries overhead = 4 bytes x 16 = 64 bytes",
+      "◮ Size of an empty HashMap using default parameters is 128 bytes",
+      "◮ Quiz: what is the composition of an empty HashMap?",
+      "◮ HashMap\\$Entry object overhead = 36 bytes"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "HashMap Implementation 1/2 {11} ◮ JVM implements HashMap as an array of HashMap\\$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap\\$Entry object as the HashMap is implemented as a linked list ◮ HashMap object overhead = 48 bytes, Array object overhead = 16 bytes, and array entries overhead = 4 bytes x 16 = 64 bytes ◮ Size of an empty HashMap using default parameters is 128 bytes ◮ Quiz: what is the composition of an empty HashMap? ◮ HashMap\\$Entry object overhead = 36 bytes",
+    "heading_phrases": [
+      "HashMap Implementation 1/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_013",
+    "page_number": 13,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "HashMap Implementation 2/2"
+    ],
+    "body_text": [
+      "{12}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_11_Figure_1.jpeg)"
+    ],
+    "clean_text": "HashMap Implementation 2/2 {12}",
+    "heading_phrases": [
+      "HashMap Implementation 2/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_014",
+    "page_number": 14,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "HashMap Example Code"
+    ],
+    "body_text": [
+      "```",
+      "import java.util.HashMap;",
+      "import java.util.Map;",
+      "class HashMapTest {",
+      "public static void main(String [] args) {",
+      "int hashcode;",
+      "String key;",
+      "double value;",
+      "int index, capacity = 16;",
+      "HashMap<String, Double> map = new HashMap<>(); // initialize a HashMap",
+      "// add entries, next we can retrieve them",
+      "for (Map.Entry<String, Double> e : map.entrySet()) { // enumerate",
+      "key = e.getKey();",
+      "value = e.getValue();",
+      "hashcode = e.hashCode();",
+      "index = hashcode & (capacity-1);",
+      "System.out.println(\"Key: \"+key+\" Value: \"+value",
+      "+\" HashCode: \"+hashcode+\" Index: \"+index);",
+      "}",
+      "}",
+      "}",
+      "```",
+      "{13}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "HashMap Example Code ``` import java.util.HashMap; import java.util.Map; class HashMapTest { public static void main(String [] args) { int hashcode; String key; double value; int index, capacity = 16; HashMap<String, Double> map = new HashMap<>(); // initialize a HashMap // add entries, next we can retrieve them for (Map.Entry<String, Double> e : map.entrySet()) { // enumerate key = e.getKey(); value = e.getValue(); hashcode = e.hashCode(); index = hashcode & (capacity-1); System.out.println(\"Key: \"+key+\" Value: \"+value +\" HashCode: \"+hashcode+\" Index: \"+index); } } } ``` {13}",
+    "heading_phrases": [
+      "HashMap Example Code"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_015",
+    "page_number": 15,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "LinkedList Class"
+    ],
+    "body_text": [
+      "{14}"
+    ],
+    "bullets": [
+      "◮ LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+      "◮ LinkedList behaviour is that of a dynamic array that grows (or contracts) in size as items are added or removed",
+      "◮ The linked list is implemented as a doubly linked list data structure allowing for efficient insertion and removal of items from the list",
+      "◮ There are 2 methods to create an instance of a LinkedList object",
+      "1. Default constructor LinkedList() creates an empty linked list",
+      "2. Constructor LinkedList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the linked list is determined by the iterator of the collection col"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "LinkedList Class {14} ◮ LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses ◮ LinkedList behaviour is that of a dynamic array that grows (or contracts) in size as items are added or removed ◮ The linked list is implemented as a doubly linked list data structure allowing for efficient insertion and removal of items from the list ◮ There are 2 methods to create an instance of a LinkedList object 1. Default constructor LinkedList() creates an empty linked list 2. Constructor LinkedList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the linked list is determined by the iterator of the collection col",
+    "heading_phrases": [
+      "LinkedList Class"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_016",
+    "page_number": 16,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "LinkedList Implementation 1/2"
+    ],
+    "body_text": [
+      "{15}"
+    ],
+    "bullets": [
+      "◮ JVM implements LinkedList as a linked list of LinkedList\\$Entry objects with each object having 3 fields:",
+      "1. Object previous",
+      "2. Object next",
+      "3. Object entry",
+      "◮ LinkedList object overhead = 24 bytes",
+      "◮ Default capacity of a LinkedList object is 1 entry",
+      "◮ Size of an empty LinkedList using default parameters is 48 bytes",
+      "◮ LinkedList\\$Entry object overhead = 24 bytes"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "LinkedList Implementation 1/2 {15} ◮ JVM implements LinkedList as a linked list of LinkedList\\$Entry objects with each object having 3 fields: 1. Object previous 2. Object next 3. Object entry ◮ LinkedList object overhead = 24 bytes ◮ Default capacity of a LinkedList object is 1 entry ◮ Size of an empty LinkedList using default parameters is 48 bytes ◮ LinkedList\\$Entry object overhead = 24 bytes",
+    "heading_phrases": [
+      "LinkedList Implementation 1/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_017",
+    "page_number": 17,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "LinkedList Implementation 2/2"
+    ],
+    "body_text": [
+      "{16}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_15_Figure_1.jpeg)"
+    ],
+    "clean_text": "LinkedList Implementation 2/2 {16}",
+    "heading_phrases": [
+      "LinkedList Implementation 2/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_018",
+    "page_number": 18,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "ArrayList Class"
+    ],
+    "body_text": [
+      "{17}"
+    ],
+    "bullets": [
+      "◮ ArrayList class is an implementation of a dynamic array data structure where the size of the array automatically changes when items are dynamically added (or removed)",
+      "◮ Unlike normal arrays, ArrayList can not be used for primitive types such as int or char but need wrapper classes such as Integer or Character",
+      "◮ In an example implementation of ArrayList:",
+      "◮ An initial structure could be created with a default number of storage slots and allocating memory from the heap",
+      "◮ If the structure runs out of space when attempting to insert a new item, a bigger-sized structure is created by allocating new memory from the heap with current memory contents copied to the newly allocated space",
+      "◮ The older data structure can now be deleted and the memory returned to the heap"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "ArrayList Class {17} ◮ ArrayList class is an implementation of a dynamic array data structure where the size of the array automatically changes when items are dynamically added (or removed) ◮ Unlike normal arrays, ArrayList can not be used for primitive types such as int or char but need wrapper classes such as Integer or Character ◮ In an example implementation of ArrayList: ◮ An initial structure could be created with a default number of storage slots and allocating memory from the heap ◮ If the structure runs out of space when attempting to insert a new item, a bigger-sized structure is created by allocating new memory from the heap with current memory contents copied to the newly allocated space ◮ The older data structure can now be deleted and the memory returned to the heap",
+    "heading_phrases": [
+      "ArrayList Class"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_019",
+    "page_number": 19,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "ArrayList Implementation 1/2"
+    ],
+    "body_text": [
+      "{18}"
+    ],
+    "bullets": [
+      "◮ There are 3 methods to create an instance of a ArrayList object",
+      "1. Default constructor ArrayList() creates an empty array list",
+      "2. Constructor ArrayList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the array list is determined by the iterator of the collection col",
+      "3. Constructor ArrayList(int capacity) creates an instance with the specified initial capacity",
+      "◮ JVM implements ArrayList as an array of objects with each objects",
+      "◮ ArrayList object overhead = 32 bytes",
+      "◮ Default capacity of a ArrayList object is 10 entries",
+      "◮ Size of an empty ArrayList using default parameters is 88 bytes",
+      "◮ ArrayList\\$Entry object overhead = 24 bytes"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_17_Picture_10.jpeg)"
+    ],
+    "clean_text": "ArrayList Implementation 1/2 {18} ◮ There are 3 methods to create an instance of a ArrayList object 1. Default constructor ArrayList() creates an empty array list 2. Constructor ArrayList(Collection col) creates an instance that contains all the elements of a specified collection col. The order of the items in the array list is determined by the iterator of the collection col 3. Constructor ArrayList(int capacity) creates an instance with the specified initial capacity ◮ JVM implements ArrayList as an array of objects with each objects ◮ ArrayList object overhead = 32 bytes ◮ Default capacity of a ArrayList object is 10 entries ◮ Size of an empty ArrayList using default parameters is 88 bytes ◮ ArrayList\\$Entry object overhead = 24 bytes",
+    "heading_phrases": [
+      "ArrayList Implementation 1/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_020",
+    "page_number": 20,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "ArrayList Implementation 2/2"
+    ],
+    "body_text": [
+      "{19}"
+    ],
+    "bullets": [],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [
+      "![](_page_18_Figure_1.jpeg)"
+    ],
+    "clean_text": "ArrayList Implementation 2/2 {19}",
+    "heading_phrases": [
+      "ArrayList Implementation 2/2"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_021",
+    "page_number": 21,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Overhead Comparison of Collection Implementations"
+    ],
+    "body_text": [
+      "{20}"
+    ],
+    "bullets": [],
+    "table_cells": [
+      "Collection",
+      "Default",
+      "Empty",
+      "Overhead",
+      "Capacity",
+      "Size",
+      "1,000",
+      "10K",
+      "HashSet",
+      "360K",
+      "HashMap",
+      "38,096",
+      "360K",
+      "Hashtable",
+      "360K",
+      "LinkedList",
+      "24,024",
+      "240K",
+      "ArrayList",
+      "4,048",
+      "40K"
+    ],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Overhead Comparison of Collection Implementations {20} Collection Default Empty Overhead Capacity Size 1,000 10K HashSet 360K HashMap 38,096 360K Hashtable 360K LinkedList 24,024 240K ArrayList 4,048 40K",
+    "heading_phrases": [
+      "Overhead Comparison of Collection Implementations"
+    ],
+    "ocr_applied": false
+  },
+  {
+    "slide_id": "slide_022",
+    "page_number": 22,
+    "doc_id": "CS1050-L03",
+    "headings": [
+      "Summary"
+    ],
+    "body_text": [],
+    "bullets": [
+      "◮ Hash-based collections have a much larger overhead",
+      "◮ Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion",
+      "◮ Search time is constant for hash-based collections most of the time",
+      "◮ Search time is linear for array collections",
+      "◮ Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+      "◮ Collections expand by reallocation, which is a computationally expensive operation",
+      "◮ Collections nearly always does not automatically shrink when items are removed as it imposes a heavy performance penalty"
+    ],
+    "table_cells": [],
+    "captions": [],
+    "discarded": [],
+    "clean_text": "Summary ◮ Hash-based collections have a much larger overhead ◮ Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion ◮ Search time is constant for hash-based collections most of the time ◮ Search time is linear for array collections ◮ Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage ◮ Collections expand by reallocation, which is a computationally expensive operation ◮ Collections nearly always does not automatically shrink when items are removed as it imposes a heavy performance penalty",
+    "heading_phrases": [
+      "Summary"
+    ],
+    "ocr_applied": false
+  }
+]
