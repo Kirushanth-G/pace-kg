@@ -12,3 +12,4 @@ mistune
 pydantic-settings
 python-multipart
 networkx
+gliner

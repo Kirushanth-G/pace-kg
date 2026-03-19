@@ -1,0 +1,51 @@
+{
+  "doc_id": "CS1050-L03",
+  "pipeline_version": "PACE-KG-v1",
+  "total_slides": 22,
+  "total_concepts": 19,
+  "total_edges": 12,
+  "extraction_edges": 12,
+  "expansion_edges": 0,
+  "srs_pool_size": 12,
+  "constraints": [
+    {
+      "name": "Slide concept coverage",
+      "passed": false,
+      "details": "11/22 slides have concepts",
+      "warnings": [
+        "slide_001",
+        "slide_006",
+        "slide_007",
+        "slide_010",
+        "slide_013"
+      ]
+    },
+    {
+      "name": "All concepts in Neo4j",
+      "passed": true,
+      "details": "19 local concepts, 19 in Neo4j",
+      "warnings": []
+    },
+    {
+      "name": "Evidence provenance preserved",
+      "passed": true,
+      "details": "12 extraction edges with evidence, 0 without",
+      "warnings": []
+    },
+    {
+      "name": "Cross-slide expansion edges",
+      "passed": true,
+      "details": "0 cross-slide edges tagged as material_level",
+      "warnings": []
+    }
+  ],
+  "all_constraints_passed": false,
+  "relation_distribution": {
+    "isPartOf": 4,
+    "isDefinedAs": 2,
+    "appliedIn": 2,
+    "causeOf": 2,
+    "isGeneralizationOf": 1,
+    "isPrerequisiteOf": 1
+  }
+}

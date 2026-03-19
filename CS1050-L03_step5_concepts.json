@@ -1,0 +1,237 @@
+[
+  {
+    "name": "java collection",
+    "aliases": [],
+    "slide_ids": [
+      "slide_002"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.7952,
+    "final_weight": 0.3456,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
+  },
+  {
+    "name": "jdk",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003",
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7449,
+    "final_weight": 0.4697,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "collections framework",
+    "aliases": [
+      "collection framework"
+    ],
+    "slide_ids": [
+      "slide_003",
+      "slide_008",
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6353,
+    "final_weight": 0.6417,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
+  },
+  {
+    "name": "java language environment",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6043,
+    "final_weight": 0.6414,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "adts",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.9054,
+    "final_weight": 0.4991,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "abstract data types",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4719,
+    "final_weight": 0.7915,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "java collections framework",
+    "aliases": [],
+    "slide_ids": [
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9484,
+    "final_weight": 0.6892,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
+  },
+  {
+    "name": "abstraction",
+    "aliases": [],
+    "slide_ids": [
+      "slide_008"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4188,
+    "final_weight": 0.1968,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "each type of java collection",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7316,
+    "final_weight": 0.368,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
+  },
+  {
+    "name": "rehashing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9352,
+    "final_weight": 0.4032,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "load factor",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.8822,
+    "final_weight": 0.5312,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "initial capacity",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.7315,
+    "final_weight": 0.2778,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "capacity",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.7175,
+    "final_weight": 0.5261,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "threshold",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7017,
+    "final_weight": 0.2795,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "object",
+    "aliases": [],
+    "slide_ids": [
+      "slide_012",
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6428,
+    "final_weight": 0.2135,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "jvm",
+    "aliases": [],
+    "slide_ids": [
+      "slide_012",
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5731,
+    "final_weight": 0.4314,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "hashmap",
+    "aliases": [],
+    "slide_ids": [
+      "slide_014"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.5577,
+    "final_weight": 0.3428,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "insertion and deletion",
+    "aliases": [],
+    "slide_ids": [
+      "slide_022"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4453,
+    "final_weight": 0.4442,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "search",
+    "aliases": [],
+    "slide_ids": [
+      "slide_022"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4102,
+    "final_weight": 0.3555,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  }
+]

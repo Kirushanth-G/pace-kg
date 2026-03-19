@@ -1,26 +1,23 @@
-"""Step 3 — Keyphrase Extraction (SIFRank-style with sentence-transformers).
+"""Step 3 — Keyphrase Extraction (GLiNER + SBERT).
 
-Implements the SIFRank algorithm spirit using:
-  - spaCy en_core_web_sm  : candidate extraction (noun chunks) + linguistic validation
-  - all-MiniLM-L6-v2      : phrase and document embeddings (80MB — 8GB friendly)
+This module mirrors the Colab pipeline (CLAUDE.md Step 3):
+- Uses GLiNER large-v2.1 for zero-shot entity/keyphrase extraction.
+- Uses SBERT (all-MiniLM-L6-v2) for de-duplication (semantic overlap).
 
-Algorithm (mirrors SIFRankSqueezeBERT from coursemapper-kg):
-  1. Extract candidate noun chunks from clean_text
-  2. Score by cosine similarity to document embedding  (SIFRank-style)
-  3. Apply CLAUDE.md adaptive filter pipeline (quality, linguistic, noun-chunk, source, heading boost)
-  4. Return List[Keyphrase] sorted by final score descending
+Note: GLiNER must be installed (added to requirements.txt) so this module
+works the same as the Colab/CLAUDE version.
 
-Reference implementation:
-  services/sifrank/KeyphraseService.extract_keyphrases()
-  → replaced StanfordCoreNLPTagger with spaCy (no Java / large JARs needed)
-  → replaced Flair TransformerWordEmbeddings with sentence-transformers MiniLM
+The goal is to extract educational concepts (keyphrases) from each slide without
+relying on external knowledge bases (closed-corpus).
 """
+
 from __future__ import annotations
 
 import logging
 import re
-from typing import List
+from typing import Any, Dict, List
 
+import gliner
 import spacy
 from sentence_transformers import util
 
@@ -32,8 +29,23 @@ from pipeline.step2_preprocessor.cleaner import SlideContent
 logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
-# spaCy singleton
+# GLiNER configuration (matches CLAUDE.md)
 # ---------------------------------------------------------------------------
+GLINER_MODEL = "urchade/gliner_large-v2.1"
+GLINER_LABELS = [
+    "Academic Concept",
+    "Theoretical Principle",
+    "Technical Term",
+    "Process or Method",
+    "System or Framework",
+    "Formula or Equation",
+]
+GLINER_THRESHOLD = 0.35
+KEYPHRASE_MAX = 25
+DEDUP_SIM_THRESHOLD = 0.85
+HEADING_BOOST = 0.15
+
+_gliner: gliner.GLiNER | None = None
 _nlp: spacy.language.Language | None = None
 
 
@@ -44,69 +56,55 @@ def _get_nlp() -> spacy.language.Language:
     return _nlp
 
 
-# ---------------------------------------------------------------------------
-# Candidate extraction
-# ---------------------------------------------------------------------------
-def _extract_candidates(clean_text: str) -> list[str]:
-    """Extract unique lowercase noun-chunk candidates from text via spaCy."""
-    nlp = _get_nlp()
-    doc = nlp(clean_text)
-    seen: set[str] = set()
-    candidates: list[str] = []
-    for chunk in doc.noun_chunks:
-        phrase = chunk.text.lower().strip()
-        # Remove leading determiners like "the", "a", "an"
-        phrase = re.sub(r"^(the|a|an)\s+", "", phrase).strip()
-        if len(phrase) >= 3 and phrase not in seen:
-            seen.add(phrase)
-            candidates.append(phrase)
-    return candidates
+def _get_gliner() -> gliner.GLiNER:
+    global _gliner
+    if _gliner is None:
+        _gliner = gliner.GLiNER.from_pretrained(GLINER_MODEL)
+    return _gliner
 
 
-# ---------------------------------------------------------------------------
-# SIFRank-style scoring
-# ---------------------------------------------------------------------------
-def _sifrank_scores(candidates: list[str], doc_text: str) -> dict[str, float]:
-    """Score each candidate by cosine similarity to the document embedding.
+def _normalize_phrase(phrase: str) -> str:
+    return str(phrase).strip().lower()
 
-    Batches all encodings in one call for efficiency.
-    Mirrors the SIFSentenceEmbeddings + cos_sim_distance logic.
-    """
-    if not candidates or not doc_text.strip():
+
+def _build_extract_text(slide: SlideContent) -> str:
+    """Build the text passed to GLiNER (headings first, code excluded)."""
+    parts: List[str] = []
+    parts.extend(slide.headings)
+    parts.extend(slide.bullets)
+    parts.extend(slide.table_cells)
+    parts.extend(slide.captions)
+    # As a fallback, include the cleaned slide text (which already includes everything)
+    parts.append(slide.clean_text)
+    return "\n".join([p for p in parts if p and p.strip()])
+
+
+def _extract_gliner_candidates(extract_text: str) -> Dict[str, float]:
+    """Extract candidate keyphrases using GLiNER and return best score per phrase."""
+    if not extract_text.strip():
         return {}
 
-    model = get_minilm()
-    all_texts = [doc_text] + candidates
-    embeddings = model.encode(all_texts, convert_to_tensor=True, show_progress_bar=False)
+    model = _get_gliner()
+    entities = model.predict_entities(
+        extract_text,
+        labels=GLINER_LABELS,
+        threshold=GLINER_THRESHOLD,
+        flat_ner=True,
+    )
 
-    doc_emb = embeddings[0]
-    cand_embs = embeddings[1:]
+    best_scores: Dict[str, float] = {}
+    for ent in entities:
+        phrase = _normalize_phrase(ent.get("text", ""))
+        if not phrase or len(phrase) < 3:
+            continue
+        score = float(ent.get("score", 0.0))
+        if score <= 0:
+            continue
+        # Keep highest score per phrase
+        if phrase not in best_scores or score > best_scores[phrase]:
+            best_scores[phrase] = score
 
-    scores: dict[str, float] = {}
-    for phrase, cand_emb in zip(candidates, cand_embs):
-        scores[phrase] = float(util.cos_sim(doc_emb.unsqueeze(0), cand_emb.unsqueeze(0)))
-
-    return scores
-
-
-# ---------------------------------------------------------------------------
-# Adaptive filter — Step 3 from CLAUDE.md
-# ---------------------------------------------------------------------------
-def _is_valid(phrase: str) -> bool:
-    """spaCy linguistic filter: must contain a noun, not be all-stop, len >= 3."""
-    nlp = _get_nlp()
-    doc = nlp(phrase)
-    has_noun = any(t.pos_ in ("NOUN", "PROPN") for t in doc)
-    all_stop = all(t.is_stop for t in doc)
-    return has_noun and not all_stop and len(phrase.strip()) >= 3
-
-
-def _in_noun_chunks(phrase: str, clean_text: str) -> bool:
-    """Noun-chunk cross-validation: phrase must appear as a spaCy noun chunk."""
-    nlp = _get_nlp()
-    doc = nlp(clean_text)
-    chunks = {re.sub(r"^(the|a|an)\s+", "", c.text.lower().strip()) for c in doc.noun_chunks}
-    return phrase.lower() in chunks
+    return best_scores
 
 
 def _assign_source_type(phrase: str, slide: SlideContent) -> str:
@@ -141,62 +139,54 @@ def _find_sentence(phrase: str, clean_text: str) -> str:
     return clean_text[:200]
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
+def _dedupe_phrases(phrases: Dict[str, float]) -> List[tuple[str, float]]:
+    """Deduplicate near-synonyms using SBERT cosine similarity."""
+    model = get_minilm()
+    sorted_phrases = sorted(phrases.items(), key=lambda x: x[1], reverse=True)
+
+    kept: List[tuple[str, float]] = []
+    kept_embs: List[Any] = []
+
+    for phrase, score in sorted_phrases:
+        emb = model.encode(phrase, convert_to_tensor=True, show_progress_bar=False)
+        duplicate = False
+        for ke in kept_embs:
+            if float(util.cos_sim(emb, ke)) >= DEDUP_SIM_THRESHOLD:
+                duplicate = True
+                break
+        if duplicate:
+            continue
+        kept.append((phrase, score))
+        kept_embs.append(emb)
+        if len(kept) >= KEYPHRASE_MAX:
+            break
+
+    return kept
+
+
 def extract_keyphrases(slide: SlideContent, config: Settings) -> List[Keyphrase]:
-    """Extract keyphrases from a single slide using SIFRank-style scoring.
-
-    Adaptive filter pipeline (in order):
-      1. Extract up to KEYPHRASE_MAX_CANDIDATES noun chunks via spaCy
-      2. Score by cosine similarity (doc embedding ↔ phrase embedding)
-      3. Drop score < KEYPHRASE_QUALITY_THRESHOLD
-      4. spaCy linguistic filter  (has_noun and not all_stop and len >= 3)
-      5. Noun-chunk cross-validation
-      6. Assign source_type + heading boost
-      7. Return sorted List[Keyphrase]
-
-    Args:
-        slide:   SlideContent from Step 2.
-        config:  Settings with threshold values.
-
-    Returns:
-        List[Keyphrase] sorted by final score descending.
-    """
+    """Extract keyphrases from a single slide using GLiNER + SBERT."""
     if not slide.clean_text.strip():
         logger.debug("Skipping empty slide %s", slide.slide_id)
         return []
 
-    # ---- 1. Raw candidates from noun chunks ----------------------------
-    candidates = _extract_candidates(slide.clean_text)
-    if not candidates:
-        logger.debug("No noun chunks found in %s", slide.slide_id)
+    # Skip title slides (page 1) or very short slides
+    if slide.page_number == 1 and len(slide.clean_text.split()) < 40:
+        return []
+    if len(slide.clean_text.split()) < 8:
         return []
 
-    # ---- 2. SIFRank-style scoring -------------------------------------
-    scores = _sifrank_scores(candidates, slide.clean_text)
+    extract_text = _build_extract_text(slide)
+    scores = _extract_gliner_candidates(extract_text)
+    if not scores:
+        return []
 
-    # Take top-MAX_CANDIDATES before further filtering (efficiency)
-    top_candidates = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    top_candidates = top_candidates[: config.keyphrase_max_candidates]
+    deduped = _dedupe_phrases(scores)
 
-    # ---- 3. Quality threshold ----------------------------------------
-    top_candidates = [(p, s) for p, s in top_candidates if s >= config.keyphrase_quality_threshold]
-
-    # ---- 4. Linguistic filter + 5. Noun-chunk cross-validation --------
-    validated: list[tuple[str, float]] = []
-    for phrase, score in top_candidates:
-        if not _is_valid(phrase):
-            continue
-        if not _in_noun_chunks(phrase, slide.clean_text):
-            continue
-        validated.append((phrase, score))
-
-    # ---- 6. Source type + heading boost + appears_in ------------------
     keyphrases: list[Keyphrase] = []
-    for phrase, score in validated:
+    for phrase, score in deduped:
         source_type = _assign_source_type(phrase, slide)
-        final_score = min(score + 0.20, 1.0) if source_type == "heading" else score
+        final_score = min(score + HEADING_BOOST, 1.0) if source_type == "heading" else score
         appears_in = _find_sentence(phrase, slide.clean_text)
 
         keyphrases.append(
@@ -210,12 +200,6 @@ def extract_keyphrases(slide: SlideContent, config: Settings) -> List[Keyphrase]
             )
         )
 
-    # Sort by final score descending
-    keyphrases.sort(key=lambda k: k.score, reverse=True)
-    logger.info(
-        "[%s] Extracted %d keyphrases (from %d candidates)",
-        slide.slide_id, len(keyphrases), len(candidates),
-    )
     return keyphrases
 
 

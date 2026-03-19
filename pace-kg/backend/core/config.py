@@ -22,7 +22,10 @@ class Settings(BaseSettings):
     expansion_similarity_threshold: float = 0.65
     expansion_max_related: int = 10
     triple_confidence_threshold: float = 0.70
-    evidence_similarity_threshold: float = 0.75
+    # Evidence similarity threshold is intentionally lower (0.65) to match the
+    # Colab pipeline fix (CLAUDE.md Step 4) where a stricter default caused
+    # too many triples to be rejected.
+    evidence_similarity_threshold: float = 0.65
     conflict_merge_threshold: float = 0.92
 
     # Storage

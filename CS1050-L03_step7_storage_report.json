@@ -1,0 +1,120 @@
+{
+  "doc_id": "CS1050-L03",
+  "total_slides": 22,
+  "slides_stored": [
+    {
+      "slide_id": "slide_001",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_002",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_003",
+      "extraction_edges": 3,
+      "expansion_edges": 1
+    },
+    {
+      "slide_id": "slide_004",
+      "extraction_edges": 2,
+      "expansion_edges": 1
+    },
+    {
+      "slide_id": "slide_005",
+      "extraction_edges": 1,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_006",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_007",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_008",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_009",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_010",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_011",
+      "extraction_edges": 4,
+      "expansion_edges": 1
+    },
+    {
+      "slide_id": "slide_012",
+      "extraction_edges": 1,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_013",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_014",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_015",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_016",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_017",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_018",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_019",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_020",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_021",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_022",
+      "extraction_edges": 1,
+      "expansion_edges": 0
+    }
+  ],
+  "total_concepts_stored": 19,
+  "total_extraction_edges": 12,
+  "total_expansion_edges": 3,
+  "errors": []
+}

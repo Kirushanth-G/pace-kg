@@ -13,1075 +13,498 @@ constructs Educational Knowledge Graphs (EduKGs) from PDF lecture slides.
 It is an optimized redesign of the pipeline by Ain et al. (2025):
 > arXiv:2509.05392 — "An Optimized Pipeline for Automatic Educational Knowledge Graph Construction"
 
-PACE-KG keeps the proven architecture and surgically replaces the two weakest components.
+### Current Implementation Status
 
-### What is kept from the original
-- SIFRankSqueezeBERT for keyphrase extraction (Step 3)
-- SBERT all-mpnet-base-v2 for embeddings (Step 5)
-- Redis + Celery worker queue architecture
-- Neo4j as graph database
+The pipeline is implemented as a single self-contained Colab notebook: **`pace_kg.py`**.
+The scope for now is: **upload a PDF → run the full 8-step pipeline → store KG in Neo4j AuraDB**.
+
+There is no web app, no FastAPI server, no Celery worker, and no frontend yet.
+All of those come later. Do not build them unless explicitly asked.
+
+### What is kept from the original paper
+- SIFRankSqueezeBERT-style keyphrase extraction (Step 3, now replaced by GLiNER)
+- SBERT all-mpnet-base-v2 for embeddings (Steps 4, 5, 6)
+- Neo4j as graph database (Step 7)
 - Incremental slide-by-slide storage (available to learners per slide)
 
-### What is replaced / new
-- PDFMiner → pymupdf4llm (lightweight, 8GB-friendly parser)  [Step 1]
-- NEW: Markdown Preprocessor            [Step 2]
-- DBpedia Spotlight → LLM Triple Extraction [Step 4 — CORE NOVEL CONTRIBUTION]
-- Wikipedia-dependent weighting → 3-Signal internal weighting [Step 5]
-- Wikipedia dump + SPARQL → Closed-Corpus Expansion [Step 6 — NOVEL]
+### What is replaced / novel in this implementation
+| Original | PACE-KG replacement | Step |
+|---|---|---|
+| PDFMiner | **Marker** (deep-learning PDF parser) with Tesseract OCR fallback | 1 |
+| — | **Markdown Preprocessor** (new) | 2 |
+| SIFRankSqueezeBERT | **GLiNER large-v2.1** (zero-shot NER for keyphrases) | 3 |
+| DBpedia Spotlight | **LLM Triple Extraction** via Groq/Llama-3 | 4 — CORE NOVEL |
+| Wikipedia-dependent weighting | **3-Signal internal SBERT weighting** | 5 |
+| Wikipedia dump + SPARQL | **Closed-Corpus Expansion** | 6 — NOVEL |
 
 ---
 
-## 2. Repository Structure
+## 2. Current File Structure
 
 ```
 pace-kg/
-├── CLAUDE.md
-├── README.md
-├── docker-compose.yml
-├── .env.example
-│
-├── backend/
-│   ├── main.py                          # FastAPI app entry point
-│   ├── requirements.txt
-│   ├── Dockerfile
-│   │
-│   ├── api/
-│   │   ├── routes/
-│   │   │   ├── upload.py                # POST /api/upload
-│   │   │   ├── status.py                # GET  /api/status/{job_id}
-│   │   │   ├── graph.py                 # GET  /api/graph/{doc_id}
-│   │   │   ├── concept.py               # GET  /api/concept/{concept_id}
-│   │   │   ├── learningpath.py          # GET  /api/learningpath/{doc_id}
-│   │   │   ├── quiz.py                  # POST /api/quiz/{doc_id}
-│   │   │   └── export.py                # GET  /api/export/{doc_id}
-│   │   └── models/
-│   │       ├── concept.py               # Pydantic: Concept, WeightedConcept
-│   │       ├── triple.py                # Pydantic: Triple, ExpansionEdge
-│   │       └── job.py                   # Pydantic: JobStatus
-│   │
-│   ├── pipeline/
-│   │   ├── orchestrator.py              # Runs all 8 steps in order
-│   │   ├── step1_marker/
-│   │   │   └── parser.py                # PDF → structured markdown per slide
-│   │   ├── step2_preprocessor/
-│   │   │   └── cleaner.py               # Markdown → clean typed text
-│   │   ├── step3_keyphrase/
-│   │   │   └── extractor.py             # SIFRankSqueezeBERT + adaptive filter
-│   │   ├── step4_llm_extraction/
-│   │   │   ├── extractor.py             # LLM triple extraction
-│   │   │   ├── validator.py             # 3-layer hallucination prevention
-│   │   │   └── prompts.py               # All LLM prompt templates
-│   │   ├── step5_weighting/
-│   │   │   └── weighter.py              # 3-signal SBERT weighting + pruning
-│   │   ├── step6_expansion/
-│   │   │   ├── expander.py              # Closed-corpus concept expansion
-│   │   │   └── vocabulary.py            # Document vocabulary builder
-│   │   ├── step7_storage/
-│   │   │   ├── neo4j_client.py          # Neo4j connection + queries
-│   │   │   ├── slide_kg.py              # Store Slide-EduKG per slide
-│   │   │   └── conflict_resolver.py     # Semantic deduplication
-│   │   └── step8_aggregation/
-│   │       └── merger.py                # Merge Slide-EduKGs → LM-EduKG
-│   │
-│   ├── workers/
-│   │   ├── celery_app.py                # Celery + Redis config
-│   │   └── tasks.py                     # Celery task definitions
-│   │
-│   └── core/
-│       ├── config.py                    # Settings via pydantic-settings
-│       ├── embeddings.py                # SBERT singleton (load ONCE)
-│       └── llm_client.py               # LLM client singleton
-│
-└── frontend/
-    ├── package.json
-    ├── Dockerfile
-    └── src/
-        ├── App.jsx
-        ├── api/client.js                # All API calls
-        ├── components/
-        │   ├── Upload/
-        │   │   ├── UploadView.jsx        # Drag-drop + progress
-        │   │   └── ProgressTracker.jsx
-        │   ├── Graph/
-        │   │   ├── GraphView.jsx         # Cytoscape.js canvas
-        │   │   ├── GraphControls.jsx     # Filter/search panel
-        │   │   └── ConceptPanel.jsx      # Click-to-detail side panel
-        │   ├── LearningPath/
-        │   │   └── LearningPathView.jsx
-        │   ├── Quiz/
-        │   │   └── QuizView.jsx
-        │   └── Dashboard/
-        │       └── InstructorDashboard.jsx
-        └── store/
-            └── graphStore.js            # Zustand global state
+├── CLAUDE.md          ← this file
+├── pace_kg.py         ← THE entire pipeline (Colab notebook exported as .py)
+└── (all output JSONs written to Colab runtime / Google Drive)
 ```
+
+All pipeline logic lives inside `pace_kg.py`. It is structured as sequential cells
+matching the 8 pipeline steps. Each step saves a JSON output file and optionally
+downloads it to the user's browser.
 
 ---
 
-## 3. Technology Stack
+## 3. Runtime Environment
 
-### Backend Python packages (requirements.txt)
-```
-fastapi
-uvicorn[standard]
-celery[redis]
-redis
-neo4j
-pymupdf4llm
-sentence-transformers
-spacy
-langchain
-langchain-groq
-mistune
-pydantic-settings
-python-multipart
-```
+The pipeline runs on **Google Colab** (free T4 GPU recommended for Marker + GLiNER).
 
-After install: `python -m spacy download en_core_web_sm`
-
-### Frontend packages (package.json)
-```
-react, react-dom
-cytoscape
-cytoscape-dagre
-pdfjs-dist
-zustand
-axios
-tailwindcss
-```
-
----
-
-## 4. Environment Variables (.env)
-
+### Dependencies installed at runtime (in pace_kg.py Cell 0)
 ```bash
-# LLM
-GROQ_API_KEY=gsk_...        # get free key at console.groq.com
-LLM_PRIMARY=llama-3.3-70b-versatile      # best quality, still free
-LLM_FALLBACK=llama-3.1-8b-instant        # faster, use if rate limited
-
-# Neo4j
-NEO4J_URI=bolt://localhost:7687
-NEO4J_USER=neo4j
-NEO4J_PASSWORD=your_password
-
-# Redis
-REDIS_URL=redis://localhost:6379/0
-
-# Pipeline thresholds
-KEYPHRASE_MAX_CANDIDATES=30
-KEYPHRASE_QUALITY_THRESHOLD=0.3
-WEIGHT_PRUNING_THRESHOLD=0.192
-EXPANSION_SIMILARITY_THRESHOLD=0.65
-EXPANSION_MAX_RELATED=10
-TRIPLE_CONFIDENCE_THRESHOLD=0.70
-EVIDENCE_SIMILARITY_THRESHOLD=0.75
-CONFLICT_MERGE_THRESHOLD=0.92
-
-# Storage
-UPLOAD_DIR=./uploads
-MAX_UPLOAD_SIZE_MB=50
+pip install marker-pdf -q
+pip install pytesseract pillow pymupdf -q
+apt-get install -y tesseract-ocr -q
+pip install sentence-transformers spacy -q
+python -m spacy download en_core_web_sm -q
+pip install gliner -q
+pip install langchain langchain-groq -q
+pip install neo4j -q
 ```
 
----
-
-## 5. Data Models
-
-Define these in `api/models/` and reuse across all pipeline steps.
-
-```python
-# api/models/triple.py
-from dataclasses import dataclass, field
-from typing import Literal, List
-
-RelationType = Literal[
-    "isPrerequisiteOf",
-    "isDefinedAs",
-    "isExampleOf",
-    "contrastedWith",
-    "appliedIn",
-    "isPartOf",
-    "causeOf",
-    "isGeneralizationOf",
-]
-
-@dataclass
-class Triple:
-    subject: str        # lowercase, stripped
-    relation: str       # one of RelationType
-    object: str         # lowercase, stripped
-    evidence: str       # exact sentence from PDF — NEVER paraphrased
-    confidence: float   # 0.0 to 1.0
-    slide_id: str
-    doc_id: str
-    source: str = "extraction"
-
-@dataclass
-class ExpansionEdge:
-    subject: str
-    object: str
-    relation: str = "relatedConcept"
-    source: str = "expansion"
-    confidence: float = 0.0
-    slide_id: str = ""
-    doc_id: str = ""
-
-# api/models/concept.py
-@dataclass
-class Keyphrase:
-    phrase: str          # lowercase, stripped
-    score: float
-    source_type: str     # heading | body | bullet | table | caption
-    slide_id: str
-    doc_id: str
-    appears_in: str      # sentence containing this phrase
-
-@dataclass
-class WeightedConcept:
-    name: str
-    final_weight: float
-    slide_id: str
-    doc_id: str
-    source_type: str
-    keyphrase_score: float
-    triples: List[Triple] = field(default_factory=list)
-
-# api/models/job.py
-@dataclass
-class JobStatus:
-    job_id: str
-    doc_id: str
-    status: str          # queued | parsing | preprocessing | processing | expanding | aggregating | complete | failed
-    slides_total: int = 0
-    slides_completed: int = 0
-    current_step: str = ""
-    error: str = ""
-```
+### External services required
+| Service | Purpose | How to get |
+|---|---|---|
+| Groq API | LLM calls in Steps 4 and 6 | Free at console.groq.com |
+| Neo4j AuraDB | Graph storage in Steps 7 and 8 | Free tier at neo4j.com/aura |
 
 ---
 
-## 6. Pipeline Implementation — Step by Step
+## 4. Pipeline Steps — What Each Step Does
 
 ---
 
-### STEP 1 — pymupdf4llm Parsing
-**File:** `pipeline/step1_marker/parser.py`
+### STEP 1 — Marker PDF Parsing
 
-**What it does:** PDF file → list of SlideMarkdown objects (one per page)
+**Input:** PDF file (uploaded via `google.colab.files.upload()`)
+**Output:** `{STEM}_step1_parsed.json` — list of `SlideMarkdown` objects
 
-**Key points:**
-- Use `pymupdf4llm.to_markdown(file_path, page_chunks=True)` — returns a list of dicts, one per page
-- Each chunk has `"text"` (markdown string) and `"metadata"` with `"page"` (0-indexed)
-- Cache output: compute `sha256(pdf_bytes)`, cache result as JSON keyed by hash
-- If cache hit: return cached result immediately, skip re-parsing
-- Assign slide_id as zero-padded: `slide_001`, `slide_002` etc.
-- **Memory footprint: ~50 MB — no ML models required. Runs on 8GB machines.**
-- Text embedded inside images is NOT extracted. For image-heavy PDFs, use the Colab+Marker workflow described in `pace-kg/COLAB_MARKER_GUIDE.md` to pre-generate a cached JSON, then call `load_parsed_json()` instead of `parse_pdf()`.
+**How it works:**
+- Runs Marker (deep-learning PDF parser) with `paginate_output=True` using a custom `PAGE_SEP` string
+- Splits full markdown output on `PAGE_SEP` to get per-page markdown
+- For pages where Marker returns no text (`_is_empty_page()`), falls back to Tesseract OCR at 3× zoom
+- OCR-recovered lines are prefixed `> OCR:` so Step 2 can re-classify them
+- Duplicate pages are detected by Jaccard similarity on word sets (threshold 0.50, window 2) and skipped
 
-**Output per slide:**
+**Key data model:**
 ```python
 @dataclass
 class SlideMarkdown:
-    slide_id: str
-    page_number: int
+    slide_id:     str   # e.g. "slide_003"
+    page_number:  int   # 1-indexed
     raw_markdown: str
-    doc_id: str
+    doc_id:       str   # = Path(PDF_PATH).stem
 ```
 
-**Do NOT clean text here** — that is Step 2.
+**Important fixes in current code:**
+- `_is_empty_page()` strips `{N}` slide-number tags before the length check (FIX S1-2)
+- Duplicate detection uses Jaccard on word sets, not string equality (FIX S1-1)
 
 ---
 
 ### STEP 2 — Markdown Preprocessor
-**File:** `pipeline/step2_preprocessor/cleaner.py`
 
-**What it does:** Raw markdown per slide → clean typed content tree
+**Input:** `slides_md` (list of SlideMarkdown from Step 1)
+**Output:** `{STEM}_step2_preprocessed.json` — list of `SlideContent` objects
 
-**Stage 1 — Structural parsing with mistune:**
-Parse markdown tags into typed buckets:
-- Lines starting with `#` or `##` → `headings` (strip `#` symbols)
-- Lines starting with `-` or `*` → `bullets` (strip bullet char)
-- Table rows `| cell | cell |` → `table_cells` (split on `|`, strip whitespace)
-- Lines starting with `>` → `captions` (strip `>`)
-- Everything else → `body_text`
+**Four stages:**
 
-**Stage 2 — Noise pattern removal:**
+1. **Structural parsing** — routes each line into typed buckets:
+   - `#`-prefixed lines → `headings` + `heading_phrases`
+   - `- * ¢ — >` prefixed lines → `bullets`
+   - `| cell |` lines → `table_cells`
+   - `> OCR:` blockquotes → re-classified by `_classify_ocr_line()`
+   - Other `>` blockquotes → `captions`
+   - Everything else → `body_text`
+   - Lines inside ` ``` ` fences → `code_lines` (prose bullet labels inside fences go to `bullets` — FIX S2-5)
+
+2. **Noise removal** — lines matching `_NOISE_PATTERNS` are discarded:
+   - Page numbers, bare digits, copyright notices, bibliography headers
+   - URLs, footnote references `[N]`, image markdown, quiz labels
+   - `{N}` slide-number tags, infrastructure/legend labels
+
+3. **Cross-slide repetition filter** — blocks appearing on >50% of slides are removed from all slides (catches recurring headers/footers). Requires ≥5 slides to run.
+
+4. **Assembly** — `clean_text = " ".join(headings + body_text + bullets + table_cells + captions)`
+
+**Key fixes in current code:**
+- Copyright pattern only matches actual copyright lines, not any text starting with C (FIX S2-1)
+- `_is_code_line()` excludes `<>` from code chars to avoid false positives on inequality lists (FIX S2-3)
+- Code line: func-call rule requires n≥3 AND word_count≤8 (FIX S2-2)
+- camelCase rule requires <2 commas (FIX S2-4)
+- New dot-access rule for short `identifier.property` expressions (FIX S2-6)
+- Prose bullet labels inside code fences go to bullets not code_lines (FIX S2-5)
+
+---
+
+### STEP 3 — Keyphrase Extraction (GLiNER)
+
+**Input:** `slide_contents` (list of SlideContent from Step 2)
+**Output:** `{STEM}_step3_keyphrases.json` — dict of `slide_id → List[Keyphrase]`
+
+**Models used:**
+- `urchade/gliner_large-v2.1` — zero-shot NER for academic/technical concepts
+- `all-MiniLM-L6-v2` — SBERT for near-duplicate deduplication
+
+**GLiNER entity labels** (generalized for any academic domain):
 ```python
-NOISE_PATTERNS = [
-    r"^\s*page\s+\d+\s*(of\s+\d+)?\s*$",
-    r"^\s*\d+\s*$",
-    r"^©.*",
-    r"^\s*(references|bibliography)\s*$",
-    r"https?://\S+",
-    r"^\s*\[\d+\]",
+GLINER_LABELS = [
+    "Academic Concept",
+    "Theoretical Principle",
+    "Technical Term",
+    "Process or Method",
+    "System or Framework",
+    "Formula or Equation",
 ]
 ```
-Discard any text block fully matching a pattern (case-insensitive).
 
-**Stage 3 — Cross-slide repetition filter (run AFTER all slides parsed):**
-This is a post-processing pass. Collect all text blocks from all slides.
-If any block appears in > 50% of slides → mark as noise, remove from all slides.
+**Extraction pipeline per slide:**
+1. Build `extract_text` = headings first + rest (code_lines excluded)
+2. Run `gliner.predict_entities()` with threshold 0.35
+3. Collapse duplicate spans — keep highest score per phrase
+4. Drop phrases shorter than 3 chars
+5. Assign `source_type` by checking which bucket contains the phrase (headings → bullets → table → caption → body)
+6. Apply heading boost: `score = min(score + 0.15, 1.0)` if source_type == "heading"
+7. Deduplicate near-synonyms via SBERT cosine ≥ 0.85
+8. Sort by score descending, cap at 25 per slide
 
-**Stage 4 — Assemble clean_text:**
+**Pedagogical filter:** Title slides (page 1, <40 words) and near-empty slides (<8 words) are skipped.
+
+**Key data model:**
 ```python
-clean_text = " ".join(headings + body_text + bullets + table_cells + captions)
+@dataclass
+class Keyphrase:
+    phrase:      str    # lowercase
+    score:       float
+    source_type: str    # heading | bullet | table | caption | body
+    slide_id:    str
+    doc_id:      str
+    appears_in:  str    # sentence containing the phrase
 ```
-
-**Important:** Store `heading_phrases` (just the heading strings) separately.
-These are used for the +0.20 score boost in Step 3.
 
 ---
 
-### STEP 3 — Keyphrase Extraction
-**File:** `pipeline/step3_keyphrase/extractor.py`
+### STEP 4 — LLM Triple Extraction ← CORE NOVEL CONTRIBUTION
 
-**What it does:** SlideContent → List[Keyphrase] using SIFRankSqueezeBERT
+**Input:** keyphrases per slide + SlideContent
+**Output:** `{STEM}_step4_triples.json` — list of `Triple` objects
 
-**Reference:** Use the SIFRank logic from `coursemapper-kg/app/algorithms/sifrank/`.
-The model used is `sentence-transformers/all-MiniLM-L6-v2` in their implementation.
+**LLM:** Groq `llama-3.3-70b-versatile` (primary), `llama-3.1-8b-instant` (fallback on HTTP 429)
+Both use `temperature=0` and `response_format: {type: json_object}`.
 
-**Adaptive filter pipeline (apply IN THIS ORDER):**
+**8 relation types with direction rules:**
 
-1. Extract up to `KEYPHRASE_MAX_CANDIDATES=30` from SIFRankSqueezeBERT
-2. Drop phrases with score < `KEYPHRASE_QUALITY_THRESHOLD=0.3`
-3. spaCy linguistic filter:
-   ```python
-   def is_valid(phrase):
-       doc = nlp(phrase)
-       has_noun = any(t.pos_ in ["NOUN", "PROPN"] for t in doc)
-       all_stop = all(t.is_stop for t in doc)
-       return has_noun and not all_stop and len(phrase.strip()) >= 3
-   ```
-4. Noun-chunk cross-validation:
-   ```python
-   def in_noun_chunks(phrase, clean_text):
-       doc = nlp(clean_text)
-       chunks = [c.text.lower() for c in doc.noun_chunks]
-       return phrase.lower() in chunks
-   ```
-5. Assign source_type by checking which bucket the phrase appears in
-   (check headings first, then bullets, tables, captions, body — in that order)
-6. Apply heading boost: if source_type == "heading", score = min(score + 0.20, 1.0)
+| Relation | Direction rule |
+|---|---|
+| `isPrerequisiteOf` | subject must be understood BEFORE object |
+| `isDefinedAs` | subject IS the concept; object is the definition |
+| `isExampleOf` | subject is a SPECIFIC INSTANCE of broader object |
+| `contrastedWith` | subject AND object explicitly compared |
+| `appliedIn` | subject concept IS USED IN / runs INSIDE object |
+| `isPartOf` | subject is a PHYSICAL/STRUCTURAL COMPONENT of object |
+| `causeOf` | subject DIRECTLY CAUSES object |
+| `isGeneralizationOf` | subject is BROADER CATEGORY containing object |
 
-**The appears_in field:**
-Find the sentence in clean_text that contains the phrase. Use spaCy sentence
-segmentation. If not found, use the full clean_text as fallback.
+**Diversity requirement (in prompt):**
+- `isPartOf` capped at 40% of triples in any response
+- Must produce `contrastedWith` when slide title contains "vs"/"comparison"/"advantages"
+- Slide title must NOT be used as triple object (heading rule)
 
----
+**3-layer validation (all three must pass):**
 
-### STEP 4 — LLM Triple Extraction
-**File:** `pipeline/step4_llm_extraction/`
+| Layer | Check |
+|---|---|
+| 1 — Anchor | subject AND object must be in the keyphrase set (lowercase); relation must be one of 8 types; subject ≠ object |
+| 2 — Evidence | SBERT cosine between evidence string and slide clean_text ≥ 0.65 (uses `all-mpnet-base-v2`) |
+| 3 — Confidence | LLM-reported confidence ≥ 0.70 |
 
-**What it does:** Keyphrases + SlideContent → List[Triple]
-
-This is the CORE NOVEL CONTRIBUTION. Read carefully.
-
-#### prompts.py — copy exactly
-
+**Key data model:**
 ```python
-SYSTEM_PROMPT = """You are a knowledge graph construction assistant for educational materials.
-
-STRICT RULES — violating any rule invalidates your entire response:
-1. ONLY use concepts from the KEYPHRASE LIST as subject and object. Nothing else.
-2. Every triple MUST include an EXACT sentence copied from the SLIDE TEXT as evidence.
-3. If no supporting sentence exists in the slide text, omit that triple entirely.
-4. Use ONLY these relation types:
-   isPrerequisiteOf   - A must be understood before B
-   isDefinedAs        - formal definition of A is given
-   isExampleOf        - A is a specific example of B
-   contrastedWith     - A and B are explicitly compared
-   appliedIn          - A is used/applied in context B
-   isPartOf           - A is a structural component of B
-   causeOf            - A causes or leads to B
-   isGeneralizationOf - A is a broader category including B
-5. Return ONLY a valid JSON array. No markdown, no explanation, no preamble.
-6. If no valid triples found, return: []"""
-
-USER_PROMPT = """KEYPHRASE LIST (subject and object MUST come from this list):
-{keyphrases}
-
-SLIDE TEXT:
-{slide_text}
-
-Extract all valid triples as JSON array. Each item:
-{{
-  "subject": "exact phrase from keyphrase list",
-  "relation": "one of the 8 relation types",
-  "object": "exact phrase from keyphrase list (different from subject)",
-  "evidence": "exact sentence copied from slide text above",
-  "confidence": 0.0 to 1.0
-}}"""
-```
-
-#### extractor.py
-
-```python
-from langchain_groq import ChatGroq
-from langchain.schema import SystemMessage, HumanMessage
-import json
-
-class TripleExtractor:
-    def __init__(self, config):
-        self.llm = ChatGroq(
-            model=config.LLM_PRIMARY,
-            temperature=0,
-            # Groq supports JSON mode on Llama 3.x models
-            model_kwargs={"response_format": {"type": "json_object"}}
-        )
-
-    def extract(self, keyphrases, slide_content):
-        kp_list = "\n".join(f"- {k.phrase}" for k in keyphrases)
-        messages = [
-            SystemMessage(content=SYSTEM_PROMPT),
-            HumanMessage(content=USER_PROMPT.format(
-                keyphrases=kp_list,
-                slide_text=slide_content.clean_text
-            ))
-        ]
-        try:
-            response = self.llm.invoke(messages)
-            raw = json.loads(response.content)
-            if isinstance(raw, list):
-                return raw
-            for v in raw.values():
-                if isinstance(v, list):
-                    return v
-        except Exception:
-            return []
-        return []
-```
-
-#### validator.py — THREE LAYERS, all required
-
-```python
-class TripleValidator:
-    VALID_RELATIONS = {
-        "isPrerequisiteOf", "isDefinedAs", "isExampleOf",
-        "contrastedWith", "appliedIn", "isPartOf",
-        "causeOf", "isGeneralizationOf"
-    }
-
-    def validate(self, raw, keyphrases, slide_text, slide_id, doc_id):
-        subject = str(raw.get("subject", "")).lower().strip()
-        obj     = str(raw.get("object",  "")).lower().strip()
-        relation= str(raw.get("relation","")).strip()
-        evidence= str(raw.get("evidence","")).strip()
-        conf    = float(raw.get("confidence", 0))
-
-        kp_lower = {k.phrase.lower() for k in keyphrases}
-
-        # Layer 1: Anchor constraint
-        if subject not in kp_lower: return None
-        if obj     not in kp_lower: return None
-        if subject == obj:           return None
-        if relation not in self.VALID_RELATIONS: return None
-
-        # Layer 2: Evidence verification
-        if not evidence: return None
-        ev_emb   = sbert.encode(evidence,   convert_to_tensor=True)
-        text_emb = sbert.encode(slide_text, convert_to_tensor=True)
-        if float(util.cos_sim(ev_emb, text_emb)) < config.EVIDENCE_SIMILARITY_THRESHOLD:
-            return None
-
-        # Layer 3: Confidence threshold
-        if conf < config.TRIPLE_CONFIDENCE_THRESHOLD: return None
-
-        return Triple(subject=subject, relation=relation, object=obj,
-                      evidence=evidence, confidence=conf,
-                      slide_id=slide_id, doc_id=doc_id)
+@dataclass
+class Triple:
+    subject:    str
+    relation:   str
+    object:     str
+    evidence:   str    # exact sentence from slide — never paraphrased
+    confidence: float
+    slide_id:   str
+    doc_id:     str
+    source:     str = "extraction"
 ```
 
 ---
 
 ### STEP 5 — Concept Weighting & Pruning
-**File:** `pipeline/step5_weighting/weighter.py`
 
-**What it does:** Triples + slide/doc text → WeightedConcept list with pruned low-weight items
+**Input:** `{STEM}_step3_keyphrases.json`, `{STEM}_step4_triples.json`, `{STEM}_step2_preprocessed.json`
+**Output:** `{STEM}_step5_concepts.json`, `{STEM}_step5_triples_pruned.json`
 
-**Exact weight formula:**
+**Weight formula:**
 ```
-final_weight = (0.5 x w_evidence) + (0.3 x w_slide) + (0.2 x w_doc)
+final_weight = (0.5 × w_evidence) + (0.3 × w_slide) + (0.2 × w_doc)
                + relation_role_boost + source_type_boost
-
-w_evidence = cosine_sim(SBERT(concept_name), SBERT(evidence_sentence))
-w_slide    = cosine_sim(SBERT(concept_name), SBERT(slide_text))
-w_doc      = cosine_sim(SBERT(concept_name), SBERT(full_doc_text))
 ```
+- `w_evidence` — SBERT cosine between concept phrase and its best evidence sentence from Step 4 triples
+- `w_slide` — SBERT cosine between concept phrase and all slides it appears on (concatenated)
+- `w_doc` — SBERT cosine between concept phrase and full document text
+- All three signals use `all-mpnet-base-v2`
 
 **Relation role boosts:**
 ```python
-RELATION_BOOST = {
-    ("object",  "isDefinedAs"):        +0.15,
-    ("object",  "isGeneralizationOf"): +0.10,
-    ("subject", "isPrerequisiteOf"):   +0.10,
-    ("subject", "causeOf"):            +0.05,
-    ("subject", "contrastedWith"):     +0.05,
-    ("object",  "contrastedWith"):     +0.05,
-    ("subject", "isExampleOf"):        -0.05,
+RELATION_ROLE_BOOSTS = {
+    ("isDefinedAs",        "object"):  +0.15,
+    ("isPrerequisiteOf",   "subject"): +0.10,
+    ("isGeneralizationOf", "object"):  +0.10,
+    ("contrastedWith",     "subject"): +0.05,
+    ("contrastedWith",     "object"):  +0.05,
+    ("causeOf",            "subject"): +0.05,
+    ("isExampleOf",        "subject"): -0.05,
 }
-# Sum all applicable boosts, cap at +0.20
 ```
 
-**Source type boosts:**
+**Source type boosts:** heading +0.10, bullet +0.05, table +0.05, body 0.00, caption -0.05
+
+**Pruning threshold:** `WEIGHT_THRESHOLD = 0.192` — concepts below this are dropped.
+
+**Semantic merge:** Concepts with SBERT cosine ≥ 0.92 are merged (lower-weight into higher-weight).
+Concepts with cosine ≥ 0.75 but < 0.92 are flagged `needs_review = True`.
+
+**Key data model:**
 ```python
-SOURCE_BOOST = {
-    "heading": +0.10,
-    "bullet":  +0.05,
-    "table":   +0.05,
-    "body":    +0.00,
-    "caption": -0.05,
-}
+@dataclass
+class ConceptNode:
+    name:            str
+    aliases:         List[str]
+    slide_ids:       List[str]
+    source_type:     str
+    keyphrase_score: float
+    final_weight:    float
+    doc_id:          str
+    needs_review:    bool = False
 ```
-
-**Pruning:**
-- Remove concepts with final_weight < WEIGHT_PRUNING_THRESHOLD (0.192)
-- When removing a concept, also remove ALL triples referencing it
-- A triple is removed if its subject OR object is pruned
 
 ---
 
 ### STEP 6 — Closed-Corpus Concept Expansion
-**File:** `pipeline/step6_expansion/`
 
-**CRITICAL:** This step runs AFTER all slides are processed, not per-slide.
-It needs the complete Document Vocabulary which only exists after full processing.
+**Input:** `{STEM}_step2_preprocessed.json`, `{STEM}_step3_keyphrases.json`, `{STEM}_step5_triples_pruned.json`
+**Output:** `{STEM}_step6_expansion.json` — list of `ExpansionEdge` objects
 
-**What it does:** For each surviving concept, find related concepts FROM THE DOCUMENT ONLY.
+**Key constraint: NO external knowledge.** Only concepts from the document itself are used.
 
-#### vocabulary.py — Build Document Vocabulary from 3 sources
+**Document vocabulary** is built from:
+- All keyphrases from Step 3
+- All triple subjects/objects from Step 5
+- spaCy noun chunks from all slide clean_text (articles stripped, e.g. "a list" → "list")
 
+**4-phase expansion per core concept:**
+1. **LLM selection** — ask LLM to select related concepts from a pool of up to 80 vocabulary items (pool excludes already-linked concepts)
+2. **SBERT gate** — keep only candidates with cosine ≥ 0.65 vs core concept
+3. **Slide-scope constraint** — keep only candidates that are: (a) on an adjacent slide (±1 index), OR (b) have SBERT cosine ≥ 0.70 vs full document
+4. **Deduplication** — skip self-loops, trivial article-prefix pairs (`"list"` ↔ `"a list"`), already-existing pairs
+
+**Edge relation type:** `relatedConcept` (source = "expansion")
+
+**Key data model:**
 ```python
-def build_vocabulary(all_concepts, all_triples, all_slide_contents, nlp):
-    vocab = set()
-    # Source 1: all surviving concept names
-    vocab.update(c.name for c in all_concepts)
-    # Source 2: all triple subjects and objects
-    for t in all_triples:
-        vocab.add(t.subject)
-        vocab.add(t.object)
-    # Source 3: noun chunks from full document text
-    full_text = " ".join(sc.clean_text for sc in all_slide_contents)
-    doc = nlp(full_text)
-    for chunk in doc.noun_chunks:
-        c = chunk.text.lower().strip()
-        if len(c) >= 3:
-            vocab.add(c)
-    return vocab
-```
-
-#### expander.py — Four phases
-
-```python
-EXPANSION_PROMPT = """Main concept: '{concept}'
-Slide context: '{context}'
-
-Candidate pool — SELECT FROM THIS LIST ONLY:
-{candidates}
-
-Which concepts from this list are most educationally related to '{concept}'?
-DO NOT suggest anything not in the list.
-Return max {max_n} as a JSON array of strings. Example: ["concept a", "concept b"]"""
-
-def expand_concept(mc, vocab, all_concepts, slide_content, slide_contents, doc_text, sbert, llm, config):
-
-    # Phase 1: candidate pool = vocabulary minus the concept itself
-    pool = vocab - {mc.name}
-
-    # Phase 2: LLM selects from closed pool
-    prompt = EXPANSION_PROMPT.format(
-        concept=mc.name,
-        context=slide_content.clean_text[:400],
-        candidates="\n".join(f"- {c}" for c in sorted(pool)),
-        max_n=config.EXPANSION_MAX_RELATED
-    )
-    try:
-        response = llm.invoke(prompt)
-        selected = json.loads(response.content)
-        if not isinstance(selected, list):
-            return []
-    except:
-        return []
-
-    # Phase 3: SBERT similarity gate
-    mc_emb = sbert.encode(mc.name, convert_to_tensor=True)
-    passed = []
-    for candidate in selected:
-        if candidate not in pool:
-            continue  # reject anything not in pool (safety)
-        cand_emb = sbert.encode(candidate, convert_to_tensor=True)
-        sim = float(util.cos_sim(mc_emb, cand_emb))
-        if sim >= config.EXPANSION_SIMILARITY_THRESHOLD:
-            passed.append((candidate, sim))
-
-    # Phase 4: Slide scope constraint
-    curr_idx = next((i for i,sc in enumerate(slide_contents)
-                     if sc.slide_id == slide_content.slide_id), 0)
-    adjacent_concepts = {
-        c.name for c in all_concepts
-        if any(abs(i - curr_idx) <= 1 and sc.slide_id == c.slide_id
-               for i, sc in enumerate(slide_contents))
-    }
-    high_weight_concepts = {c.name for c in all_concepts if c.final_weight > 0.7}
-    in_scope = adjacent_concepts | high_weight_concepts
-
-    return [
-        ExpansionEdge(subject=mc.name, object=cand, confidence=sim,
-                      slide_id=slide_content.slide_id, doc_id=slide_content.doc_id)
-        for cand, sim in passed if cand in in_scope
-    ]
+@dataclass
+class ExpansionEdge:
+    subject:    str
+    relation:   str    # always "relatedConcept"
+    object:     str
+    source:     str    # always "expansion"
+    confidence: float  # SBERT cosine sim
+    slide_id:   str
+    doc_id:     str
 ```
 
 ---
 
-### STEP 7 — Slide-EduKG Storage in Neo4j
-**File:** `pipeline/step7_storage/`
+### STEP 7 — Neo4j Slide-EduKG Storage
 
-**Store immediately after each slide is processed.** Do not wait for full document.
+**Input:** All Step 5 and Step 6 outputs
+**Output:** Graph stored in Neo4j AuraDB + `{STEM}_step7_storage_report.json`
 
-#### neo4j_client.py — Run these on startup
+**Node type:** `Concept`
+**Edge type:** `RELATION` (relation_type property distinguishes the 8 types + relatedConcept)
+**Also creates:** `LearningMaterial` node with `BELONGS_TO` edges from every concept
 
+**Connection config (hardcoded in pace_kg.py — change per run):**
+```python
+NEO4J_URI      = "neo4j+s://XXXXXXXX.databases.neo4j.io"
+NEO4J_USER     = "neo4j"
+NEO4J_PASSWORD = "your_auradb_password"
+```
+
+**Two-pass write strategy:**
+- Pass 1: store ALL concept nodes first (nodes must exist before edges reference them)
+- Pass 2: store edges slide-by-slide (extraction triples + expansion edges)
+- Pass 3: create LearningMaterial node + BELONGS_TO links
+
+**Key Cypher patterns:**
 ```cypher
-CREATE CONSTRAINT concept_unique IF NOT EXISTS
-  FOR (c:Concept) REQUIRE (c.name, c.doc_id) IS UNIQUE;
+-- Node upsert (always MERGE, never CREATE)
+MERGE (c:Concept {name: $name})
+SET c.aliases = $aliases, c.slide_ids = $slide_ids, ...
 
-CREATE INDEX concept_doc IF NOT EXISTS
-  FOR (c:Concept) ON (c.doc_id);
-
-CREATE INDEX concept_weight IF NOT EXISTS
-  FOR (c:Concept) ON (c.final_weight);
+-- Edge upsert
+MATCH (s:Concept {name: $subject}), (o:Concept {name: $object})
+MERGE (s)-[r:RELATION {relation_type: $relation_type, slide_id: $slide_id, doc_id: $doc_id}]->(o)
+SET r.evidence = $evidence, r.confidence = $confidence, r.source = $source
 ```
 
-#### slide_kg.py — Key Cypher queries
-
-```python
-# MERGE node — never CREATE — same concept appears in multiple slides
-MERGE_CONCEPT = """
-MERGE (c:Concept {name: $name, doc_id: $doc_id})
-ON CREATE SET
-    c.aliases = [],
-    c.slide_ids = [$slide_id],
-    c.source_type = $source_type,
-    c.keyphrase_score = $keyphrase_score,
-    c.final_weight = $final_weight
-ON MATCH SET
-    c.slide_ids = CASE
-        WHEN $slide_id IN c.slide_ids THEN c.slide_ids
-        ELSE c.slide_ids + [$slide_id] END,
-    c.final_weight = CASE
-        WHEN $final_weight > c.final_weight THEN $final_weight
-        ELSE c.final_weight END
-"""
-
-CREATE_EDGE = """
-MATCH (a:Concept {name: $subject, doc_id: $doc_id})
-MATCH (b:Concept {name: $object,  doc_id: $doc_id})
-MERGE (a)-[r:RELATION {relation_type: $relation_type, slide_id: $slide_id}]->(b)
-SET r.evidence = $evidence,
-    r.confidence = $confidence,
-    r.source = $source
-"""
-```
-
-**CRITICAL: Use batch writes.** Collect all nodes and edges for one slide,
-write in a single transaction. Never write one node/edge per transaction.
-
-#### conflict_resolver.py
-
-```python
-def find_merge_target(new_name, existing_names, sbert, threshold=0.92):
-    """Returns name to merge into, or None if concept is genuinely new."""
-    if not existing_names:
-        return None
-    new_emb = sbert.encode(new_name, convert_to_tensor=True)
-    ex_embs = sbert.encode(existing_names, convert_to_tensor=True)
-    sims = util.cos_sim(new_emb, ex_embs)[0]
-    idx = int(sims.argmax())
-    if float(sims[idx]) >= threshold:
-        return existing_names[idx]
-    return None
-```
+**Semantic conflict resolution at write time:**
+- Incoming concept name is checked against existing `concept_embs` dict
+- If cosine ≥ 0.92, the canonical name is used instead (merge)
 
 ---
 
 ### STEP 8 — LM-EduKG Aggregation
-**File:** `pipeline/step8_aggregation/merger.py`
 
-**What it does:** Creates the LearningMaterial node and enforces 4 merge constraints.
+**Input:** Neo4j graph + all intermediate JSONs
+**Output:** `{STEM}_step8_lm_edkg.json`, `{STEM}_step8_summary.json`
 
-Steps 1-7 already used MERGE queries, so most aggregation is done.
-This step finalises the graph and adds material-level metadata.
+**Verifies four merge constraints:**
+1. Every slide has ≥1 concept (checked via Neo4j query grouping by slide_id)
+2. All local concepts exist in Neo4j (set difference check)
+3. All extraction edges have non-empty evidence (Neo4j count query)
+4. Cross-slide expansion edges are tagged `material_level = true`
 
-```python
-CREATE_MATERIAL_NODE = """
-MERGE (m:LearningMaterial {doc_id: $doc_id})
-SET m.title = $title,
-    m.total_slides = $total_slides,
-    m.created_at = datetime()
-"""
-
-LINK_ALL_CONCEPTS = """
-MATCH (c:Concept {doc_id: $doc_id})
-MATCH (m:LearningMaterial {doc_id: $doc_id})
-MERGE (c)-[:BELONGS_TO]->(m)
-"""
-
-# After linking, compute and store material-level stats
-COMPUTE_STATS = """
-MATCH (m:LearningMaterial {doc_id: $doc_id})
-MATCH (c:Concept {doc_id: $doc_id})
-MATCH ()-[r:RELATION]->()
-  WHERE r.slide_id STARTS WITH $doc_id
-SET m.total_concepts = count(DISTINCT c),
-    m.total_relations = count(DISTINCT r)
-"""
-```
-
-**Four merge constraints (verify all pass):**
-1. Every slide has at least one concept stored ← check Neo4j
-2. All slide-level concepts exist at material level ← guaranteed by MERGE
-3. All evidence fields are non-null ← check before Step 7 write
-4. Cross-slide expansion edges exist ← check ExpansionEdge count > 0
+**Exports:**
+- Full graph (all concept nodes + all edges) as `lm_edkg["nodes"]` and `lm_edkg["edges"]`
+- `srs_pool` — extraction-only triples for SRS accuracy evaluation
 
 ---
 
-## 7. API Routes
+## 5. Data Flow Summary
 
-### POST /api/upload
-```python
-@router.post("/api/upload")
-async def upload(file: UploadFile):
-    # Validate: PDF only, size < MAX_UPLOAD_SIZE_MB
-    # Save: UPLOAD_DIR / {uuid}.pdf
-    # Enqueue: process_pdf.delay(job_id, file_path)
-    # Return: {job_id, status: "queued"}
 ```
-
-### GET /api/status/{job_id}
-```python
-# Return JobStatus from Redis
-# Frontend polls this every 2 seconds
-# Must update after EVERY slide, not just at end
-```
-
-### GET /api/graph/{doc_id}
-```python
-# Return Cytoscape-compatible JSON:
-{
-  "nodes": [{"data": {"id": "...", "label": "...", "weight": 0.9, "source_type": "heading"}}],
-  "edges": [{"data": {"id": "...", "source": "...", "target": "...",
-                      "relation": "isPrerequisiteOf", "evidence": "...", "confidence": 0.92}}]
-}
-```
-
-### GET /api/learningpath/{doc_id}
-```python
-# Query all isPrerequisiteOf edges
-# Topological sort using networkx
-# Return ordered list of concept names with prerequisite info
-```
-
-### POST /api/quiz/{doc_id}
-```python
-QUIZ_TEMPLATES = {
-    "isDefinedAs":        "What is {object}?",
-    "isPrerequisiteOf":   "What must you understand before learning {object}?",
-    "isExampleOf":        "{subject} is an example of what broader concept?",
-    "contrastedWith":     "What is the key difference between {subject} and {object}?",
-    "appliedIn":          "In what context is {subject} typically applied?",
-    "causeOf":            "What does {subject} lead to?",
-    "isGeneralizationOf": "{subject} is a generalization of what concept?",
-    "isPartOf":           "What is {subject} a component of?",
-}
-# Fill templates from Neo4j triples
-# Return [{question, relation_type, evidence, answer_hint}]
+PDF file
+  │
+  ▼ Step 1 (Marker + OCR fallback)
+{STEM}_step1_parsed.json         ← SlideMarkdown[]
+  │
+  ▼ Step 2 (Markdown Preprocessor)
+{STEM}_step2_preprocessed.json  ← SlideContent[]
+  │
+  ▼ Step 3 (GLiNER keyphrase extraction)
+{STEM}_step3_keyphrases.json    ← {slide_id: Keyphrase[]}
+  │
+  ▼ Step 4 (LLM triple extraction + 3-layer validation)
+{STEM}_step4_triples.json       ← Triple[]
+  │
+  ▼ Step 5 (SBERT weighting + pruning)
+{STEM}_step5_concepts.json      ← ConceptNode[]
+{STEM}_step5_triples_pruned.json
+  │
+  ▼ Step 6 (Closed-corpus expansion)
+{STEM}_step6_expansion.json     ← ExpansionEdge[]
+  │
+  ▼ Step 7 (Neo4j storage)
+[Neo4j AuraDB graph]
+{STEM}_step7_storage_report.json
+  │
+  ▼ Step 8 (LM-EduKG aggregation)
+{STEM}_step8_lm_edkg.json
+{STEM}_step8_summary.json
 ```
 
 ---
 
-## 8. Celery Worker
+## 6. Key Configuration Constants
 
-### workers/celery_app.py
+All thresholds are defined inline in `pace_kg.py`. When changing them, search for the constant name.
+
+| Constant | Value | Step | Purpose |
+|---|---|---|---|
+| `PAGE_SEP` | `\n\n<<<MARKER_PAGE_BREAK>>>\n\n` | 1 | Splits Marker output into pages |
+| `KEYPHRASE_MAX` | 25 | 3 | Max keyphrases per slide |
+| `GLINER_THRESHOLD` | 0.35 | 3 | GLiNER entity confidence floor |
+| `DEDUP_SIM_THRESHOLD` | 0.85 | 3 | SBERT cosine for keyphrase dedup |
+| `HEADING_BOOST` | 0.15 | 3 | Score bonus for heading-sourced keyphrases |
+| `TRIPLE_CONFIDENCE_THRESHOLD` | 0.70 | 4 | Min LLM confidence to keep a triple |
+| `EVIDENCE_SIMILARITY_THRESHOLD` | 0.65 | 4 | Min SBERT cosine for evidence check |
+| `WEIGHT_THRESHOLD` | 0.192 | 5 | Prune concepts below this weight |
+| `MERGE_SIM_THRESHOLD` | 0.92 | 5, 7 | Auto-merge near-duplicate concepts |
+| `REVIEW_SIM_THRESHOLD` | 0.75 | 5 | Flag concepts for human review |
+| `SBERT_SIM_THRESHOLD` | 0.65 | 6 | SBERT gate for expansion candidates |
+| `DOC_WEIGHT_THRESHOLD` | 0.70 | 6 | High-doc-relevance bypass for scope filter |
+| `MAX_CANDIDATES_PER_CONCEPT` | 10 | 6 | Max expansion edges per concept |
+
+---
+
+## 7. STEM Variable
+
+`STEM` is derived from the uploaded PDF filename:
 ```python
-from celery import Celery
-celery = Celery("pace_kg", broker=REDIS_URL, backend=REDIS_URL)
-celery.conf.task_serializer = "json"
-celery.conf.task_track_started = True
-celery.conf.task_acks_late = True        # re-queue on worker crash
-celery.conf.worker_prefetch_multiplier = 1
+STEM = Path(PDF_PATH).stem   # e.g. "lecture5" if file is "lecture5.pdf"
 ```
 
-### pipeline/orchestrator.py — CRITICAL ORDERING
-
-```python
-class PipelineOrchestrator:
-    def run(self, file_path, doc_id, job_id):
-
-        # Steps 1-2: parse and preprocess entire PDF first
-        self.update_status(job_id, "parsing")
-        slides_md = step1_parse(file_path, doc_id)
-
-        self.update_status(job_id, "preprocessing")
-        slide_contents = step2_preprocess(slides_md)
-        # Step 2 includes cross-slide repetition filter across ALL slides
-
-        doc_text = " ".join(sc.clean_text for sc in slide_contents)
-        all_weighted = []
-        all_triples = []
-
-        # Steps 3-7: process slide by slide
-        for slide in slide_contents:
-            keyphrases = step3_extract(slide)
-            raw_triples = step4_extract_triples(keyphrases, slide)
-            weighted = step5_weight_and_prune(raw_triples, slide, doc_text)
-            all_weighted.extend(weighted)
-            all_triples.extend(t for c in weighted for t in c.triples)
-            step7_store_slide(weighted, slide)          # store immediately
-            self.update_slide_progress(job_id, slide.slide_id)
-
-        # Step 6: AFTER all slides — needs full document vocabulary
-        self.update_status(job_id, "expanding")
-        expansion_edges = step6_expand(all_weighted, all_triples, slide_contents, doc_text)
-        step7_store_expansion_edges(expansion_edges, doc_id)
-
-        # Step 8: aggregate
-        self.update_status(job_id, "aggregating")
-        step8_aggregate(doc_id, len(slide_contents))
-
-        self.update_status(job_id, "complete")
-```
+All output files use `STEM` as prefix. In Steps 5-8, `STEM` is hardcoded (currently `"test3"`) and must be updated manually to match the uploaded PDF. This is a known limitation to fix.
 
 ---
 
-## 9. Frontend Key Patterns
+## 8. Rules for AI Assistants — Read Before Writing Any Code
 
-### Polling for real-time slide progress
-```javascript
-// UploadView.jsx
-useEffect(() => {
-  if (!jobId) return;
-  const interval = setInterval(async () => {
-    const { data } = await getStatus(jobId);
-    setProgress(data);
-    if (data.status === "complete") {
-      clearInterval(interval);
-      navigate(`/graph/${data.doc_id}`);
-    }
-    if (data.status === "failed") {
-      clearInterval(interval);
-      setError(data.error);
-    }
-  }, 2000);
-  return () => clearInterval(interval);
-}, [jobId]);
-```
+1. **This is a Colab notebook, not a web app.** Do not add FastAPI, Celery, Redis, or Docker unless explicitly asked. All code runs sequentially in Colab cells.
 
-### Cytoscape.js edge colors by relation type
-```javascript
-const RELATION_COLORS = {
-  isPrerequisiteOf:   "#E74C3C",   // red
-  isDefinedAs:        "#3498DB",   // blue
-  isExampleOf:        "#2ECC71",   // green
-  contrastedWith:     "#F39C12",   // orange
-  appliedIn:          "#9B59B6",   // purple
-  isPartOf:           "#1ABC9C",   // teal
-  causeOf:            "#E67E22",   // dark orange
-  isGeneralizationOf: "#34495E",   // dark grey
-  relatedConcept:     "#BDC3C7",   // light grey (expansion edges)
-};
+2. **NEVER instantiate SBERT inside a loop.** Models are loaded once at the top of each step cell. Adding a second load inside a loop adds 30+ seconds per slide.
 
-// Node size by weight
-"width":  "mapData(weight, 0, 1, 20, 70)",
-"height": "mapData(weight, 0, 1, 20, 70)",
-```
+3. **GLiNER replaced SIFRank.** The old CLAUDE.md mentioned SIFRankSqueezeBERT — that is no longer used. Step 3 uses `GLiNER.from_pretrained("urchade/gliner_large-v2.1")`.
 
-### Concept Detail Panel — what to show on node click
-```javascript
-// ConceptPanel.jsx
-// Fetch: GET /api/concept/{conceptId}?doc_id={docId}
-// Display:
-// - Concept name + aliases
-// - Weight + source_type badge
-// - All outgoing edges with relation type + evidence sentence
-// - All incoming edges with relation type + evidence sentence
-// - "Jump to Slide" button per evidence → scroll PDF.js to page_number
-// - "Appears in slides" list
-```
+4. **STEM must match across all steps.** Steps 5-8 read JSON files using the `STEM` variable. If the user uploaded a new PDF, `STEM` must be updated in Steps 5-8 cells.
+
+5. **Use MERGE, never CREATE in Neo4j.** Same concept appears across multiple slides. CREATE produces duplicates that break the graph.
+
+6. **All concept names are lowercase and stripped** before validation, storage, and comparison. Enforce at Step 4 input and Step 7 write time.
+
+7. **LLM temperature = 0 always.** Use `ChatGroq`. If call returns HTTP 429 (rate limit), automatically retry with the fallback model (`llama-3.1-8b-instant`). Free tier limit is ~30 requests/minute.
+
+8. **Never skip any of the 3 validation layers in Step 4.** All three must pass (anchor, evidence SBERT, confidence).
+
+9. **Evidence sentences are exact quotes.** The SBERT check in Layer 2 catches fabricated sentences. Never paraphrase evidence.
+
+10. **Step 6 runs AFTER all keyphrases and triples are collected.** The Document Vocabulary requires the full document to be processed first.
+
+11. **Do not use Wikipedia, DBpedia, or any external knowledge base** at any step. Closed-corpus constraint is a core research requirement.
+
+12. **The `needs_review` flag in Step 5** is informational only — flagged concepts are still kept in the graph. Only concepts below `WEIGHT_THRESHOLD` are pruned.
+
+13. **OCR fallback lines are prefixed `> OCR:`** in Step 1 output. Step 2's `_classify_ocr_line()` handles re-classification. Do not strip this prefix before Step 2 runs.
 
 ---
 
-## 10. Docker Compose
+## 9. Known Limitations / Things to Fix
 
-```yaml
-version: "3.9"
-services:
-  backend:
-    build: ./backend
-    ports: ["8000:8000"]
-    env_file: .env
-    depends_on: [redis, neo4j]
-    volumes: ["./uploads:/app/uploads"]
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-
-  worker:
-    build: ./backend
-    command: celery -A workers.celery_app worker --loglevel=info --concurrency=2
-    env_file: .env
-    depends_on: [redis, neo4j]
-    volumes: ["./uploads:/app/uploads"]
-
-  frontend:
-    build: ./frontend
-    ports: ["3000:3000"]
-    environment:
-      VITE_API_URL: http://localhost:8000
-
-  redis:
-    image: redis:7-alpine
-    ports: ["6379:6379"]
-
-  neo4j:
-    image: neo4j:5
-    ports: ["7474:7474", "7687:7687"]
-    environment:
-      NEO4J_AUTH: neo4j/your_password
-    volumes: ["neo4j_data:/data"]
-
-volumes:
-  neo4j_data:
-```
+- `STEM` is hardcoded in Steps 5-8 as `"test3"` — should be passed as a variable from the upload cell
+- Neo4j credentials are hardcoded in Steps 7-8 — should read from a Colab secret or env var
+- Step 7 `run_query` uses `session.execute_write` (single-item transactions) — batching would be faster
+- Groq API key is requested via `getpass` in Steps 4 and 6 separately — should be requested once and stored in `os.environ`
+- No progress bar in Steps 5-6 for long PDFs
 
 ---
 
-## 11. Core Singletons — Load Once, Reuse Everywhere
+## 10. Research Context
 
-### core/embeddings.py
-```python
-from sentence_transformers import SentenceTransformer
-_model = None
-
-def get_sbert():
-    global _model
-    if _model is None:
-        _model = SentenceTransformer("all-mpnet-base-v2")
-    return _model
-```
-
-### core/llm_client.py
-```python
-from langchain_groq import ChatGroq
-
-_primary_llm = None
-_fallback_llm = None
-
-def get_llm(config):
-    global _primary_llm
-    if _primary_llm is None:
-        _primary_llm = ChatGroq(
-            model=config.LLM_PRIMARY,      # llama-3.3-70b-versatile
-            temperature=0,
-            model_kwargs={"response_format": {"type": "json_object"}}
-        )
-    return _primary_llm
-
-def get_fallback_llm(config):
-    """Use this if Groq rate limits you (HTTP 429)."""
-    global _fallback_llm
-    if _fallback_llm is None:
-        _fallback_llm = ChatGroq(
-            model=config.LLM_FALLBACK,     # llama-3.1-8b-instant
-            temperature=0,
-            model_kwargs={"response_format": {"type": "json_object"}}
-        )
-    return _fallback_llm
-```
-
----
-
-## 12. Rules for AI Assistants — Read Before Writing Any Code
-
-1. **NEVER instantiate SBERT inside a loop or per-request.** Use `get_sbert()` singleton.
-   Loading SBERT per slide adds 30+ seconds per slide.
-
-2. **Step 6 runs AFTER all slides, not per-slide.** The Document Vocabulary only exists
-   after the full PDF is processed. See orchestrator.py ordering.
-
-3. **Use MERGE, never CREATE in Neo4j.** Same concept appears across multiple slides.
-   CREATE produces duplicates that break the graph.
-
-4. **Batch Neo4j writes.** One transaction per slide with all nodes + edges.
-   One write per node is too slow for production.
-
-5. **The 15-keyphrase cap is removed.** Use adaptive filter up to 30.
-   Never hardcode 15 anywhere.
-
-6. **All concept names are lowercase and stripped** before validation, storage, and
-   comparison. Enforce this at Step 4 input and Step 7 write time.
-
-7. **LLM temperature = 0 always.** Use ChatGroq, never ChatOpenAI or ChatOllama.
-   If a call returns HTTP 429 (rate limit), automatically retry with get_fallback_llm().
-   Free tier limit is 30 requests/minute — the pipeline fits within this comfortably.
-
-8. **Never skip any of the 3 validation layers in Step 4.** All three must pass.
-
-9. **The expansion LLM prompt must include the full candidate pool.** If the pool is
-   very large (>200 items), chunk into batches of 100 and union the results.
-
-10. **Evidence sentences are exact quotes.** Never paraphrase in the validator.
-    The SBERT check catches fabricated sentences.
-
-11. **Update job status after EVERY slide**, not just at start and end.
-    Frontend polls every 2 seconds — users expect slide-level progress.
-
-12. **Do not use Wikipedia, DBpedia, or any external knowledge base** at any step.
-    The closed-corpus constraint is a research requirement, not an optimization.
-
----
-
-## 13. Development Order
-
-```
-Week 1:  docker-compose up (Neo4j + Redis running)
-         core/config.py, core/embeddings.py, core/llm_client.py
-         Step 1: pymupdf4llm parser + caching (runs on 8GB, <2s per PDF)
-         Step 2: Markdown preprocessor
-         Test: parse a real 10-slide PDF end-to-end
-         Optional: for image-heavy PDFs follow COLAB_MARKER_GUIDE.md
-
-Week 2:  Step 3: Keyphrase extractor with adaptive filter
-         Step 4: LLM extractor + all 3 validator layers
-         Test: extract triples from 3 slides, inspect JSON output manually
-
-Week 3:  Step 5: Concept weighting + pruning
-         Step 6: Vocabulary builder + 4-phase expander
-         Test: check that no out-of-vocabulary concept appears in expansion output
-
-Week 4:  Step 7: Neo4j storage + conflict resolver
-         Step 8: Aggregation
-         Celery worker + orchestrator
-         Test: full pipeline on one PDF, inspect Neo4j browser
-
-Week 5:  FastAPI routes (upload, status, graph, concept)
-         Frontend: Upload view + status polling
-         Frontend: Graph view with Cytoscape.js
-
-Week 6:  Frontend: Concept panel + Learning path + Quiz
-         Instructor dashboard
-         End-to-end test with evaluation PDF from original paper
-         Performance benchmark: time per slide vs 2.3s baseline
-```
-
----
-
-## 14. Research Context
-
-This project is for academic publication comparing against:
+This project targets academic publication comparing against:
 - **Baseline:** Ain et al. (2025) optimized pipeline — accuracy 0.47
 - **Target:** PACE-KG accuracy > 0.47 using same SRS evaluation method
 
 Two research claims must be preserved in every implementation decision:
-1. **Evidence anchoring** — every triple must have a source sentence from the PDF
+1. **Evidence anchoring** — every extraction triple must have a source sentence from the PDF
 2. **Closed-corpus expansion** — no concept from outside the PDF enters the KG
 
 The evaluation PDF, expert annotators, and SRS sampling method must match
-the original paper exactly. Keep `evaluation/` code completely separate from
-`pipeline/` code.
+the original paper exactly. Evaluation code must be kept completely separate from
+pipeline code.
+
+The `srs_pool` field in `{STEM}_step8_lm_edkg.json` contains the extraction triples
+to use for SRS evaluation sampling.

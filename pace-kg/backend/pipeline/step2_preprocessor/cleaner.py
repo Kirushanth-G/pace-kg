@@ -53,16 +53,103 @@ def _strip_inline(text: str) -> str:
 NOISE_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"^\s*page\s+\d+\s*(of\s+\d+)?\s*$", re.IGNORECASE),
     re.compile(r"^\s*\d+\s*$"),
-    re.compile(r"^©.*", re.IGNORECASE),
+    re.compile(r"^(?:©|\(c\)|copyright\b)", re.IGNORECASE),
     re.compile(r"^\s*(references|bibliography)\s*$", re.IGNORECASE),
     re.compile(r"https?://\S+"),
     re.compile(r"^\s*\[\d+\]"),
+    re.compile(r"^!\[.*?\]\(.*?\)$"),
+    re.compile(r"^\s*quiz\s*:", re.IGNORECASE),
+    re.compile(r"^\s*\{\d+\}\s*$"),
+    re.compile(r"^(?:input|output|legend|infrastructure)\b", re.IGNORECASE),
 ]
 
 
 def _is_noise(text: str) -> bool:
     stripped = text.strip()
     return any(p.fullmatch(stripped) or p.match(stripped) for p in NOISE_PATTERNS)
+
+
+# ---------------------------------------------------------------------------
+# Code-line detector (Step 2)
+# ---------------------------------------------------------------------------
+# FIX S2-3: removed '<' and '>' from code_chars — they fire on inequality
+# lists and prose type-parameter examples, producing false positives.
+_CODE_CHARS = frozenset("{}();=[]")
+
+# Used by _is_prose_label (FIX S2-5)
+_BULLET_RE = re.compile(
+    r"^\s*[-*+]\s*(?:[\u2022\u25A0-\u25FF\u2700-\u27BF]\s*)?|"
+    r"^\s*[\u2022\u25A0-\u25FF\u2700-\u27BF]\s+"
+)
+
+
+def _is_code_line(text: str) -> bool:
+    """Heuristic: return True when a line looks like source code, not prose."""
+
+    t = text.strip()
+    if not t:
+        return False
+    if t.startswith("```"):
+        return True
+
+    n = sum(1 for c in t if c in _CODE_CHARS)
+    word_count = len(t.split())
+
+    # Primary signal: high density of code punctuation
+    if len(t) > 5 and n / len(t) > 0.08:
+        return True
+
+    # camelCase identifier  (FIX S2-4: exclude comma-separated token lists)
+    if re.search(r"\b[a-z]+[A-Z][a-zA-Z]+\b", t):
+        if word_count <= 5 and t.count(",") < 2:
+            return True
+
+    # snake_case identifier
+    if re.search(r"\b[a-z]+_[a-z]+\b", t):
+        return True
+
+    # Comparison / assignment operators in spacing context
+    if re.search(r"\s(==|!=|<=|>=|&&|\|\||:=|->|=>)\s", t):
+        return True
+
+    # Line terminators typical of C-family code
+    if t.endswith((";", "{", "}")):
+        return True
+
+    # Comment prefixes
+    if re.match(r"^\s*(//|#\s|--|/\*|\*\s)", t):
+        return True
+
+    # Method / function call  (FIX S2-2: n >= 3 AND word_count <= 8)
+    if re.search(r"\b\w{2,}\(", t) and n >= 3 and word_count <= 8:
+        return True
+
+    # Constructor declaration
+    if re.match(r"^(default\s+)?constructor\s+\w+\s*\(", t, re.IGNORECASE):
+        return True
+
+    # Python dunder method
+    if re.match(r"^__\w+__\s*\(", t):
+        return True
+
+    # FIX S2-6: dot-notation access on very short lines  (e.g. scores.length)
+    if re.search(r"\b[a-z]\w*\.[a-z]\w*\b", t) and word_count <= 3:
+        return True
+
+    return False
+
+
+def _is_prose_label(line: str) -> bool:
+    """Return True for lines in ``` fences that are actually prose bullets."""
+
+    s = line.strip()
+    is_bullet = bool(_BULLET_RE.match(s)) or s.startswith("•")
+    if not is_bullet:
+        return False
+    inner = _BULLET_RE.sub("", s).lstrip("•").strip()
+    if not inner:
+        return False
+    return sum(1 for c in inner if c in _CODE_CHARS) == 0
 
 
 # ---------------------------------------------------------------------------
@@ -80,10 +167,12 @@ class SlideContent:
     table_cells: list[str] = field(default_factory=list)
     captions: list[str] = field(default_factory=list)
     body_text: list[str] = field(default_factory=list)
+    code_lines: list[str] = field(default_factory=list)
 
     # Derived (set by Stage 4)
     heading_phrases: list[str] = field(default_factory=list)
     clean_text: str = ""
+    ocr_applied: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -97,11 +186,32 @@ def _parse_buckets(raw_markdown: str) -> dict[str, list[str]]:
         "table_cells": [],
         "captions": [],
         "body_text": [],
+        "code_lines": [],
     }
 
+    in_fence = False
     for line in raw_markdown.splitlines():
         stripped = line.strip()
         if not stripped:
+            continue
+
+        # Code fence handling: keep everything inside fences in code_lines.
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            buckets["code_lines"].append(stripped)
+            continue
+
+        if in_fence:
+            # Some slides use code fences but the contents are actually prose bullets.
+            if _is_prose_label(stripped):
+                buckets["bullets"].append(_strip_inline(stripped))
+            else:
+                buckets["code_lines"].append(stripped)
+            continue
+
+        # Route explicit code-like lines to code_lines so they don't pollute keyphrases.
+        if _is_code_line(stripped):
+            buckets["code_lines"].append(stripped)
             continue
 
         if stripped.startswith(("#",)):
@@ -256,7 +366,9 @@ def load_preprocessed_json(json_path: str, doc_id: str) -> list[SlideContent]:
             table_cells=item.get("table_cells", []),
             captions=item.get("captions", []),
             body_text=body,
+            code_lines=item.get("code_lines", []),
             heading_phrases=item.get("heading_phrases", []),
+            ocr_applied=bool(item.get("ocr_applied", False)),
         )
 
         # Rebuild clean_text using our assembly format

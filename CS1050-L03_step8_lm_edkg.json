@@ -1,0 +1,478 @@
+{
+  "doc_id": "CS1050-L03",
+  "pipeline": "PACE-KG-v1",
+  "total_slides": 22,
+  "total_concepts": 19,
+  "total_edges": 12,
+  "relation_distribution": {
+    "isPartOf": 4,
+    "isDefinedAs": 2,
+    "appliedIn": 2,
+    "causeOf": 2,
+    "isGeneralizationOf": 1,
+    "isPrerequisiteOf": 1
+  },
+  "nodes": [
+    {
+      "name": "abstract data types",
+      "aliases": [],
+      "slide_ids": [
+        "slide_004"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.4719,
+      "final_weight": 0.7915,
+      "needs_review": false
+    },
+    {
+      "name": "java collections framework",
+      "aliases": [],
+      "slide_ids": [
+        "slide_005"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.9484,
+      "final_weight": 0.6892,
+      "needs_review": true
+    },
+    {
+      "name": "collections framework",
+      "aliases": [
+        "collection framework"
+      ],
+      "slide_ids": [
+        "slide_003",
+        "slide_008",
+        "slide_009"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.6353,
+      "final_weight": 0.6417,
+      "needs_review": true
+    },
+    {
+      "name": "java language environment",
+      "aliases": [],
+      "slide_ids": [
+        "slide_003"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.6043,
+      "final_weight": 0.6414,
+      "needs_review": false
+    },
+    {
+      "name": "load factor",
+      "aliases": [],
+      "slide_ids": [
+        "slide_011"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.8822,
+      "final_weight": 0.5312,
+      "needs_review": false
+    },
+    {
+      "name": "capacity",
+      "aliases": [],
+      "slide_ids": [
+        "slide_011"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.7175,
+      "final_weight": 0.5261,
+      "needs_review": false
+    },
+    {
+      "name": "adts",
+      "aliases": [],
+      "slide_ids": [
+        "slide_004"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.9054,
+      "final_weight": 0.4991,
+      "needs_review": false
+    },
+    {
+      "name": "jdk",
+      "aliases": [],
+      "slide_ids": [
+        "slide_003",
+        "slide_005"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.7449,
+      "final_weight": 0.4697,
+      "needs_review": false
+    },
+    {
+      "name": "insertion and deletion",
+      "aliases": [],
+      "slide_ids": [
+        "slide_022"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.4453,
+      "final_weight": 0.4442,
+      "needs_review": false
+    },
+    {
+      "name": "jvm",
+      "aliases": [],
+      "slide_ids": [
+        "slide_012",
+        "slide_016"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.5731,
+      "final_weight": 0.4314,
+      "needs_review": false
+    },
+    {
+      "name": "rehashing",
+      "aliases": [],
+      "slide_ids": [
+        "slide_011"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.9352,
+      "final_weight": 0.4032,
+      "needs_review": false
+    },
+    {
+      "name": "each type of java collection",
+      "aliases": [],
+      "slide_ids": [
+        "slide_009"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.7316,
+      "final_weight": 0.368,
+      "needs_review": true
+    },
+    {
+      "name": "search",
+      "aliases": [],
+      "slide_ids": [
+        "slide_022"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.4102,
+      "final_weight": 0.3555,
+      "needs_review": false
+    },
+    {
+      "name": "java collection",
+      "aliases": [],
+      "slide_ids": [
+        "slide_002"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.7952,
+      "final_weight": 0.3456,
+      "needs_review": true
+    },
+    {
+      "name": "hashmap",
+      "aliases": [],
+      "slide_ids": [
+        "slide_014"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.5577,
+      "final_weight": 0.3428,
+      "needs_review": false
+    },
+    {
+      "name": "threshold",
+      "aliases": [],
+      "slide_ids": [
+        "slide_011"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.7017,
+      "final_weight": 0.2795,
+      "needs_review": false
+    },
+    {
+      "name": "initial capacity",
+      "aliases": [],
+      "slide_ids": [
+        "slide_011"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.7315,
+      "final_weight": 0.2778,
+      "needs_review": false
+    },
+    {
+      "name": "object",
+      "aliases": [],
+      "slide_ids": [
+        "slide_012",
+        "slide_016"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.6428,
+      "final_weight": 0.2135,
+      "needs_review": false
+    },
+    {
+      "name": "abstraction",
+      "aliases": [],
+      "slide_ids": [
+        "slide_008"
+      ],
+      "source_type": "bullet",
+      "keyphrase_score": 0.4188,
+      "final_weight": 0.1968,
+      "needs_review": false
+    }
+  ],
+  "edges": [
+    {
+      "subject": "jdk",
+      "relation": "isDefinedAs",
+      "object": "java language environment",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.9,
+      "source": "extraction",
+      "slide_id": "slide_003",
+      "material_level": null
+    },
+    {
+      "subject": "load factor",
+      "relation": "causeOf",
+      "object": "rehashing",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.9,
+      "source": "extraction",
+      "slide_id": "slide_011",
+      "material_level": null
+    },
+    {
+      "subject": "capacity",
+      "relation": "causeOf",
+      "object": "rehashing",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.9,
+      "source": "extraction",
+      "slide_id": "slide_011",
+      "material_level": null
+    },
+    {
+      "subject": "collections framework",
+      "relation": "appliedIn",
+      "object": "jdk",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_003",
+      "material_level": null
+    },
+    {
+      "subject": "collections framework",
+      "relation": "isPartOf",
+      "object": "java language environment",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_003",
+      "material_level": null
+    },
+    {
+      "subject": "adts",
+      "relation": "isDefinedAs",
+      "object": "abstract data types",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_004",
+      "material_level": null
+    },
+    {
+      "subject": "abstract data types",
+      "relation": "isGeneralizationOf",
+      "object": "adts",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_004",
+      "material_level": null
+    },
+    {
+      "subject": "java collections framework",
+      "relation": "isPartOf",
+      "object": "jdk",
+      "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_005",
+      "material_level": null
+    },
+    {
+      "subject": "object",
+      "relation": "appliedIn",
+      "object": "jvm",
+      "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_012",
+      "material_level": null
+    },
+    {
+      "subject": "search",
+      "relation": "isPrerequisiteOf",
+      "object": "insertion and deletion",
+      "evidence": "Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_022",
+      "material_level": null
+    },
+    {
+      "subject": "load factor",
+      "relation": "isPartOf",
+      "object": "threshold",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.7,
+      "source": "extraction",
+      "slide_id": "slide_011",
+      "material_level": null
+    },
+    {
+      "subject": "capacity",
+      "relation": "isPartOf",
+      "object": "threshold",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.7,
+      "source": "extraction",
+      "slide_id": "slide_011",
+      "material_level": null
+    }
+  ],
+  "srs_pool": [
+    {
+      "triple_id": "t00001",
+      "subject": "jdk",
+      "relation": "isDefinedAs",
+      "object": "java language environment",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.9,
+      "slide_id": "slide_003",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00002",
+      "subject": "load factor",
+      "relation": "causeOf",
+      "object": "rehashing",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.9,
+      "slide_id": "slide_011",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00003",
+      "subject": "capacity",
+      "relation": "causeOf",
+      "object": "rehashing",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.9,
+      "slide_id": "slide_011",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00004",
+      "subject": "collections framework",
+      "relation": "appliedIn",
+      "object": "jdk",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.8,
+      "slide_id": "slide_003",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00005",
+      "subject": "collections framework",
+      "relation": "isPartOf",
+      "object": "java language environment",
+      "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+      "confidence": 0.8,
+      "slide_id": "slide_003",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00006",
+      "subject": "adts",
+      "relation": "isDefinedAs",
+      "object": "abstract data types",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "slide_id": "slide_004",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00007",
+      "subject": "abstract data types",
+      "relation": "isGeneralizationOf",
+      "object": "adts",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "slide_id": "slide_004",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00008",
+      "subject": "java collections framework",
+      "relation": "isPartOf",
+      "object": "jdk",
+      "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+      "confidence": 0.8,
+      "slide_id": "slide_005",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00009",
+      "subject": "object",
+      "relation": "appliedIn",
+      "object": "jvm",
+      "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+      "confidence": 0.8,
+      "slide_id": "slide_012",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00010",
+      "subject": "search",
+      "relation": "isPrerequisiteOf",
+      "object": "insertion and deletion",
+      "evidence": "Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion",
+      "confidence": 0.8,
+      "slide_id": "slide_022",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00011",
+      "subject": "load factor",
+      "relation": "isPartOf",
+      "object": "threshold",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.7,
+      "slide_id": "slide_011",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00012",
+      "subject": "capacity",
+      "relation": "isPartOf",
+      "object": "threshold",
+      "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+      "confidence": 0.7,
+      "slide_id": "slide_011",
+      "source": "extraction"
+    }
+  ],
+  "srs_pool_size": 12
+}
