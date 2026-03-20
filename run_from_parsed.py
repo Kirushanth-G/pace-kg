@@ -104,33 +104,23 @@ def main(argv: list[str] | None = None) -> int:
 
     print("Running Step 3: keyphrase extraction (may download models on first run) ...")
     config = Settings()
-    results = []
+    results = {}
     for slide in contents:
         # Skip very low-content slides (e.g. title pages)
         if len(slide.clean_text.strip().split()) < 8:
-            results.append({
-                "slide_id": slide.slide_id,
-                "page_number": slide.page_number,
-                "doc_id": slide.doc_id,
-                "keyphrases": [],
-            })
+            results[slide.slide_id] = []
             continue
 
         kps = extract_keyphrases(slide, config)
-        results.append({
-            "slide_id": slide.slide_id,
-            "page_number": slide.page_number,
-            "doc_id": slide.doc_id,
-            "keyphrases": [
-                {
-                    "phrase": kp.phrase,
-                    "score": kp.score,
-                    "source_type": kp.source_type,
-                    "appears_in": kp.appears_in,
-                }
-                for kp in kps
-            ],
-        })
+        results[slide.slide_id] = [
+            {
+                "phrase": kp.phrase,
+                "score": kp.score,
+                "source_type": kp.source_type,
+                "appears_in": kp.appears_in,
+            }
+            for kp in kps
+        ]
 
     out_keyphrases = parsed_path.parent / f"{doc_id}_keyphrases.json"
     with open(out_keyphrases, "w", encoding="utf-8") as f:

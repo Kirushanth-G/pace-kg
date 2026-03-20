@@ -68,15 +68,20 @@ def _normalize_phrase(phrase: str) -> str:
 
 
 def _build_extract_text(slide: SlideContent) -> str:
-    """Build the text passed to GLiNER (headings first, code excluded)."""
-    parts: List[str] = []
-    parts.extend(slide.headings)
-    parts.extend(slide.bullets)
-    parts.extend(slide.table_cells)
-    parts.extend(slide.captions)
-    # As a fallback, include the cleaned slide text (which already includes everything)
-    parts.append(slide.clean_text)
-    return "\n".join([p for p in parts if p and p.strip()])
+    """Build the text passed to GLiNER (headings first, code excluded).
+
+    Mirrors the Colab pipeline exactly:
+      heading_text + ". " + rest_text
+    so GLiNER sees headings with higher positional weight, and no content
+    is duplicated (clean_text is NOT appended here).
+    """
+    heading_text = " ".join(slide.headings)
+    rest_text = " ".join(
+        slide.body_text + slide.bullets + slide.table_cells + slide.captions
+    )
+    if heading_text and rest_text:
+        return heading_text + ". " + rest_text
+    return heading_text or rest_text
 
 
 def _extract_gliner_candidates(extract_text: str) -> Dict[str, float]:

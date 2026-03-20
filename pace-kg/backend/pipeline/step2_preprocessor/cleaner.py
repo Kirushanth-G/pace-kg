@@ -53,6 +53,7 @@ def _strip_inline(text: str) -> str:
 NOISE_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"^\s*page\s+\d+\s*(of\s+\d+)?\s*$", re.IGNORECASE),
     re.compile(r"^\s*\d+\s*$"),
+    re.compile(r"^\s*\d+\s*/\s*\d+\s*$"),        # Beamer slide numbers: "2 / 21"
     re.compile(r"^(?:©|\(c\)|copyright\b)", re.IGNORECASE),
     re.compile(r"^\s*(references|bibliography)\s*$", re.IGNORECASE),
     re.compile(r"https?://\S+"),
@@ -234,6 +235,16 @@ def _parse_buckets(raw_markdown: str) -> dict[str, list[str]]:
                 if text:
                     buckets["body_text"].append(text)
 
+        elif _BULLET_RE.match(stripped):
+            # Beamer / Unicode geometric shape bullets (◮ ▶ • ▪ ■ etc.)
+            # Strip the leading marker character(s) then treat as a bullet.
+            text = _strip_inline(_BULLET_RE.sub("", stripped).lstrip("\u2022\u25A0-\u25FF\u2700-\u27BF").strip())
+            if text and not _is_noise(text):
+                if _is_code_line(text):
+                    buckets["code_lines"].append(text)
+                else:
+                    buckets["bullets"].append(text)
+
         elif stripped.startswith("|") and stripped.endswith("|"):
             # Table row — split on | and strip each cell
             cells = [_strip_inline(c.strip()) for c in stripped.split("|") if c.strip()]
@@ -408,6 +419,7 @@ def preprocess_slides(slides: list[SlideMarkdown]) -> list[SlideContent]:
             table_cells=buckets["table_cells"],
             captions=buckets["captions"],
             body_text=buckets["body_text"],
+            code_lines=buckets["code_lines"],
         )
         contents.append(sc)
 

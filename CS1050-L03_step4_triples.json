@@ -1,38 +1,8 @@
 [
   {
-    "subject": "collections framework",
-    "relation": "isPartOf",
-    "object": "java language environment",
-    "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
-    "confidence": 0.8,
-    "slide_id": "slide_003",
-    "doc_id": "CS1050-L03",
-    "source": "extraction"
-  },
-  {
-    "subject": "jdk",
-    "relation": "isDefinedAs",
-    "object": "java language environment",
-    "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
-    "confidence": 0.9,
-    "slide_id": "slide_003",
-    "doc_id": "CS1050-L03",
-    "source": "extraction"
-  },
-  {
-    "subject": "collections framework",
-    "relation": "appliedIn",
-    "object": "jdk",
-    "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
-    "confidence": 0.8,
-    "slide_id": "slide_003",
-    "doc_id": "CS1050-L03",
-    "source": "extraction"
-  },
-  {
     "subject": "adts",
-    "relation": "isDefinedAs",
-    "object": "abstract data types",
+    "relation": "isGeneralizationOf",
+    "object": "collections",
     "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
     "confidence": 0.8,
     "slide_id": "slide_004",
@@ -40,8 +10,18 @@
     "source": "extraction"
   },
   {
+    "subject": "collections",
+    "relation": "contrastedWith",
+    "object": "adts",
+    "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+    "confidence": 0.9,
+    "slide_id": "slide_004",
+    "doc_id": "CS1050-L03",
+    "source": "extraction"
+  },
+  {
     "subject": "abstract data types",
-    "relation": "isGeneralizationOf",
+    "relation": "isDefinedAs",
     "object": "adts",
     "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
     "confidence": 0.8,
@@ -60,10 +40,30 @@
     "source": "extraction"
   },
   {
+    "subject": "each type of java collection",
+    "relation": "isPartOf",
+    "object": "collection framework",
+    "evidence": "Each type of Java Collection has a different level of functionality and memory overhead",
+    "confidence": 0.8,
+    "slide_id": "slide_009",
+    "doc_id": "CS1050-L03",
+    "source": "extraction"
+  },
+  {
+    "subject": "collection framework",
+    "relation": "isGeneralizationOf",
+    "object": "each type of java collection",
+    "evidence": "Each type of Java Collection has a different level of functionality and memory overhead",
+    "confidence": 0.8,
+    "slide_id": "slide_009",
+    "doc_id": "CS1050-L03",
+    "source": "extraction"
+  },
+  {
     "subject": "capacity",
     "relation": "causeOf",
     "object": "rehashing",
-    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor",
     "confidence": 0.9,
     "slide_id": "slide_011",
     "doc_id": "CS1050-L03",
@@ -73,35 +73,15 @@
     "subject": "load factor",
     "relation": "causeOf",
     "object": "rehashing",
-    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
+    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor",
     "confidence": 0.9,
-    "slide_id": "slide_011",
-    "doc_id": "CS1050-L03",
-    "source": "extraction"
-  },
-  {
-    "subject": "capacity",
-    "relation": "isPartOf",
-    "object": "threshold",
-    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
-    "confidence": 0.7,
-    "slide_id": "slide_011",
-    "doc_id": "CS1050-L03",
-    "source": "extraction"
-  },
-  {
-    "subject": "load factor",
-    "relation": "isPartOf",
-    "object": "threshold",
-    "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor and has an initial default value of 12",
-    "confidence": 0.7,
     "slide_id": "slide_011",
     "doc_id": "CS1050-L03",
     "source": "extraction"
   },
   {
     "subject": "object",
-    "relation": "appliedIn",
+    "relation": "isPartOf",
     "object": "jvm",
     "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
     "confidence": 0.8,
@@ -110,12 +90,12 @@
     "source": "extraction"
   },
   {
-    "subject": "search",
-    "relation": "isPrerequisiteOf",
-    "object": "insertion and deletion",
-    "evidence": "Additional data stored in hash-based collections improve the performance of search for items and therefore insertion and deletion",
-    "confidence": 0.8,
-    "slide_id": "slide_022",
+    "subject": "jvm",
+    "relation": "appliedIn",
+    "object": "object",
+    "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+    "confidence": 0.7,
+    "slide_id": "slide_012",
     "doc_id": "CS1050-L03",
     "source": "extraction"
   }

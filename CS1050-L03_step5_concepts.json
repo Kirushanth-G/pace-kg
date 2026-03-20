@@ -1,17 +1,5 @@
 [
   {
-    "name": "java collection",
-    "aliases": [],
-    "slide_ids": [
-      "slide_002"
-    ],
-    "source_type": "heading",
-    "keyphrase_score": 0.7952,
-    "final_weight": 0.3456,
-    "doc_id": "CS1050-L03",
-    "needs_review": true
-  },
-  {
     "name": "jdk",
     "aliases": [],
     "slide_ids": [
@@ -19,26 +7,10 @@
       "slide_005"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.7449,
-    "final_weight": 0.4697,
+    "keyphrase_score": 0.7511,
+    "final_weight": 0.3758,
     "doc_id": "CS1050-L03",
     "needs_review": false
-  },
-  {
-    "name": "collections framework",
-    "aliases": [
-      "collection framework"
-    ],
-    "slide_ids": [
-      "slide_003",
-      "slide_008",
-      "slide_009"
-    ],
-    "source_type": "bullet",
-    "keyphrase_score": 0.6353,
-    "final_weight": 0.6417,
-    "doc_id": "CS1050-L03",
-    "needs_review": true
   },
   {
     "name": "java language environment",
@@ -47,10 +19,22 @@
       "slide_003"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.6043,
-    "final_weight": 0.6414,
+    "keyphrase_score": 0.579,
+    "final_weight": 0.2144,
     "doc_id": "CS1050-L03",
     "needs_review": false
+  },
+  {
+    "name": "collection",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4805,
+    "final_weight": 0.1936,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
   },
   {
     "name": "adts",
@@ -59,8 +43,8 @@
       "slide_004"
     ],
     "source_type": "heading",
-    "keyphrase_score": 0.9054,
-    "final_weight": 0.4991,
+    "keyphrase_score": 1.0,
+    "final_weight": 0.5907,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -71,10 +55,35 @@
       "slide_004"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.4719,
-    "final_weight": 0.7915,
+    "keyphrase_score": 0.4694,
+    "final_weight": 0.6359,
     "doc_id": "CS1050-L03",
     "needs_review": false
+  },
+  {
+    "name": "interfaces",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_008"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3955,
+    "final_weight": 0.1953,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "collections",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.544,
+    "final_weight": 0.6117,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
   },
   {
     "name": "java collections framework",
@@ -83,8 +92,8 @@
       "slide_005"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.9484,
-    "final_weight": 0.6892,
+    "keyphrase_score": 0.9473,
+    "final_weight": 0.7006,
     "doc_id": "CS1050-L03",
     "needs_review": true
   },
@@ -95,10 +104,25 @@
       "slide_008"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.4188,
-    "final_weight": 0.1968,
+    "keyphrase_score": 0.3813,
+    "final_weight": 0.2284,
     "doc_id": "CS1050-L03",
     "needs_review": false
+  },
+  {
+    "name": "collection framework",
+    "aliases": [
+      "collections framework"
+    ],
+    "slide_ids": [
+      "slide_003",
+      "slide_009"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.8997,
+    "final_weight": 0.6233,
+    "doc_id": "CS1050-L03",
+    "needs_review": true
   },
   {
     "name": "each type of java collection",
@@ -107,10 +131,10 @@
       "slide_009"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.7316,
-    "final_weight": 0.368,
+    "keyphrase_score": 0.6492,
+    "final_weight": 0.858,
     "doc_id": "CS1050-L03",
-    "needs_review": true
+    "needs_review": false
   },
   {
     "name": "rehashing",
@@ -119,8 +143,8 @@
       "slide_011"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.9352,
-    "final_weight": 0.4032,
+    "keyphrase_score": 0.9204,
+    "final_weight": 0.423,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -130,21 +154,9 @@
     "slide_ids": [
       "slide_011"
     ],
-    "source_type": "heading",
-    "keyphrase_score": 0.8822,
-    "final_weight": 0.5312,
-    "doc_id": "CS1050-L03",
-    "needs_review": false
-  },
-  {
-    "name": "initial capacity",
-    "aliases": [],
-    "slide_ids": [
-      "slide_011"
-    ],
-    "source_type": "heading",
-    "keyphrase_score": 0.7315,
-    "final_weight": 0.2778,
+    "source_type": "bullet",
+    "keyphrase_score": 0.8586,
+    "final_weight": 0.4736,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -154,34 +166,9 @@
     "slide_ids": [
       "slide_011"
     ],
-    "source_type": "heading",
-    "keyphrase_score": 0.7175,
-    "final_weight": 0.5261,
-    "doc_id": "CS1050-L03",
-    "needs_review": false
-  },
-  {
-    "name": "threshold",
-    "aliases": [],
-    "slide_ids": [
-      "slide_011"
-    ],
     "source_type": "bullet",
-    "keyphrase_score": 0.7017,
-    "final_weight": 0.2795,
-    "doc_id": "CS1050-L03",
-    "needs_review": false
-  },
-  {
-    "name": "object",
-    "aliases": [],
-    "slide_ids": [
-      "slide_012",
-      "slide_016"
-    ],
-    "source_type": "bullet",
-    "keyphrase_score": 0.6428,
-    "final_weight": 0.2135,
+    "keyphrase_score": 0.6806,
+    "final_weight": 0.4701,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -193,20 +180,33 @@
       "slide_016"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.5731,
-    "final_weight": 0.4314,
+    "keyphrase_score": 0.7373,
+    "final_weight": 0.4427,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
   {
-    "name": "hashmap",
+    "name": "object",
     "aliases": [],
     "slide_ids": [
-      "slide_014"
+      "slide_012",
+      "slide_016"
     ],
-    "source_type": "heading",
-    "keyphrase_score": 0.5577,
-    "final_weight": 0.3428,
+    "source_type": "bullet",
+    "keyphrase_score": 0.6977,
+    "final_weight": 0.2117,
+    "doc_id": "CS1050-L03",
+    "needs_review": false
+  },
+  {
+    "name": "arraylist",
+    "aliases": [],
+    "slide_ids": [
+      "slide_018"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4997,
+    "final_weight": 0.3638,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -217,20 +217,8 @@
       "slide_022"
     ],
     "source_type": "bullet",
-    "keyphrase_score": 0.4453,
-    "final_weight": 0.4442,
-    "doc_id": "CS1050-L03",
-    "needs_review": false
-  },
-  {
-    "name": "search",
-    "aliases": [],
-    "slide_ids": [
-      "slide_022"
-    ],
-    "source_type": "bullet",
-    "keyphrase_score": 0.4102,
-    "final_weight": 0.3555,
+    "keyphrase_score": 0.4128,
+    "final_weight": 0.2136,
     "doc_id": "CS1050-L03",
     "needs_review": false
   }
