@@ -1,35 +1,35 @@
 {
-  "doc_id": "CS1050-L03",
+  "doc_id": "ComputerFund",
   "pipeline_version": "PACE-KG-v1",
-  "total_slides": 22,
-  "total_concepts": 23,
-  "total_edges": 21,
-  "extraction_edges": 21,
-  "expansion_edges": 0,
-  "srs_pool_size": 21,
+  "total_slides": 14,
+  "total_concepts": 28,
+  "total_edges": 10,
+  "extraction_edges": 7,
+  "expansion_edges": 3,
+  "srs_pool_size": 7,
   "constraints": [
     {
       "name": "Slide concept coverage",
       "passed": false,
-      "details": "11/22 slides have concepts",
+      "details": "8/14 slides have concepts",
       "warnings": [
         "slide_001",
-        "slide_006",
         "slide_007",
-        "slide_010",
-        "slide_013"
+        "slide_008",
+        "slide_011",
+        "slide_012"
       ]
     },
     {
       "name": "All concepts in Neo4j",
       "passed": true,
-      "details": "18 local concepts, 23 in Neo4j",
+      "details": "28 local concepts, 28 in Neo4j",
       "warnings": []
     },
     {
       "name": "Evidence provenance preserved",
       "passed": true,
-      "details": "21 extraction edges with evidence, 0 without",
+      "details": "7 extraction edges with evidence, 0 without",
       "warnings": []
     },
     {
@@ -41,12 +41,10 @@
   ],
   "all_constraints_passed": false,
   "relation_distribution": {
-    "isPartOf": 6,
-    "isGeneralizationOf": 4,
-    "isDefinedAs": 3,
-    "appliedIn": 3,
-    "causeOf": 2,
+    "isPartOf": 3,
+    "relatedConcept": 3,
     "contrastedWith": 2,
-    "isPrerequisiteOf": 1
+    "causeOf": 1,
+    "isGeneralizationOf": 1
   }
 }

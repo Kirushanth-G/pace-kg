@@ -1,0 +1,424 @@
+[
+  {
+    "name": "methodologies",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.9632,
+    "final_weight": 0.2236,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "principles",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.9286,
+    "final_weight": 0.2167,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "modularity",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_005",
+      "slide_006",
+      "slide_009",
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8028,
+    "final_weight": 0.4796,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "incremental development",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_005",
+      "slide_006",
+      "slide_009",
+      "slide_013",
+      "slide_017",
+      "slide_019"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6216,
+    "final_weight": 0.7933,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "software development",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5667,
+    "final_weight": 0.554,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "separation of concerns",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_005",
+      "slide_006",
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5169,
+    "final_weight": 0.4909,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "abstraction",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_005",
+      "slide_006",
+      "slide_009",
+      "slide_011",
+      "slide_013",
+      "slide_014"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4524,
+    "final_weight": 0.4156,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "rigor and formality",
+    "aliases": [],
+    "slide_ids": [
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3505,
+    "final_weight": 0.2966,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "divide & conquer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_006"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5029,
+    "final_weight": 0.2138,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "functionality",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7548,
+    "final_weight": 0.2118,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "user interface",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6958,
+    "final_weight": 0.2048,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "usability",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6785,
+    "final_weight": 0.2045,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "modules",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009",
+      "slide_010",
+      "slide_011",
+      "slide_012"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8156,
+    "final_weight": 0.479,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "self-contained",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7452,
+    "final_weight": 0.2169,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "subsystem",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5669,
+    "final_weight": 0.2577,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "system",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010",
+      "slide_014",
+      "slide_017"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5257,
+    "final_weight": 0.262,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "components",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4106,
+    "final_weight": 0.2286,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "low coupling",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010",
+      "slide_011",
+      "slide_012"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3969,
+    "final_weight": 0.3587,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "understandable separately",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3684,
+    "final_weight": 0.198,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "high cohesion",
+    "aliases": [],
+    "slide_ids": [
+      "slide_012"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.8565,
+    "final_weight": 0.3979,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "methodology",
+    "aliases": [],
+    "slide_ids": [
+      "slide_015"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8556,
+    "final_weight": 0.2366,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_015"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4817,
+    "final_weight": 0.2072,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "unit testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9192,
+    "final_weight": 0.5596,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "acceptance testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8816,
+    "final_weight": 0.4935,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "integration testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8507,
+    "final_weight": 0.4049,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "module testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7362,
+    "final_weight": 0.2441,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "sub-system testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7284,
+    "final_weight": 0.2517,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "system testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.708,
+    "final_weight": 0.6113,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "review and maintenance",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6607,
+    "final_weight": 0.3842,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "alpha and beta testing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_016"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6235,
+    "final_weight": 0.4067,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  },
+  {
+    "name": "increments",
+    "aliases": [],
+    "slide_ids": [
+      "slide_017"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6688,
+    "final_weight": 0.3839,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "early increments",
+    "aliases": [],
+    "slide_ids": [
+      "slide_019"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5483,
+    "final_weight": 0.4401,
+    "doc_id": "softwareDprinciple",
+    "needs_review": true
+  },
+  {
+    "name": "system functionality",
+    "aliases": [],
+    "slide_ids": [
+      "slide_019"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4821,
+    "final_weight": 0.2091,
+    "doc_id": "softwareDprinciple",
+    "needs_review": false
+  }
+]

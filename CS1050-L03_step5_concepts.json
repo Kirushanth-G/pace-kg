@@ -44,7 +44,7 @@
     ],
     "source_type": "heading",
     "keyphrase_score": 1.0,
-    "final_weight": 0.5907,
+    "final_weight": 0.4407,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },
@@ -120,7 +120,7 @@
     ],
     "source_type": "heading",
     "keyphrase_score": 0.8997,
-    "final_weight": 0.6233,
+    "final_weight": 0.6703,
     "doc_id": "CS1050-L03",
     "needs_review": true
   },
@@ -132,7 +132,7 @@
     ],
     "source_type": "bullet",
     "keyphrase_score": 0.6492,
-    "final_weight": 0.858,
+    "final_weight": 0.7061,
     "doc_id": "CS1050-L03",
     "needs_review": false
   },

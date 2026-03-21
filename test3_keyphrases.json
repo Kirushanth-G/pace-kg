@@ -1,0 +1,568 @@
+{
+  "slide_001": [],
+  "slide_003": [
+    {
+      "phrase": "list",
+      "score": 0.9656,
+      "source_type": "bullet",
+      "appears_in": "Collections and Data Structure Arrays List, Queue, Map Searching and Sorting Linked List"
+    },
+    {
+      "phrase": "queue",
+      "score": 0.9632,
+      "source_type": "bullet",
+      "appears_in": "Collections and Data Structure Arrays List, Queue, Map Searching and Sorting Linked List"
+    },
+    {
+      "phrase": "map",
+      "score": 0.9567,
+      "source_type": "bullet",
+      "appears_in": "Collections and Data Structure Arrays List, Queue, Map Searching and Sorting Linked List"
+    },
+    {
+      "phrase": "searching and sorting",
+      "score": 0.8645,
+      "source_type": "bullet",
+      "appears_in": "Collections and Data Structure Arrays List, Queue, Map Searching and Sorting Linked List"
+    },
+    {
+      "phrase": "arrays",
+      "score": 0.484,
+      "source_type": "bullet",
+      "appears_in": "Collections and Data Structure Arrays List, Queue, Map Searching and Sorting Linked List"
+    }
+  ],
+  "slide_004": [
+    {
+      "phrase": "an array",
+      "score": 0.8604,
+      "source_type": "bullet",
+      "appears_in": "An array is an ordered list o values An array of size N is indexed from zero to N-1 This array holds 10 values that are indexed from 0 to 9"
+    }
+  ],
+  "slide_005": [
+    {
+      "phrase": "arrays",
+      "score": 0.4257,
+      "source_type": "bullet",
+      "appears_in": "Arrays*"
+    },
+    {
+      "phrase": "scores",
+      "score": 0.4087,
+      "source_type": "bullet",
+      "appears_in": "A particular value in an array is referenced using the array name followed by the index in brackets scores[2]* Refers to the value 85 (the 3rd value in the array) That expression represents a place to store a single integer and can be used wherever an integer variable can be used"
+    }
+  ],
+  "slide_006": [
+    {
+      "phrase": "an array",
+      "score": 0.7715,
+      "source_type": "bullet",
+      "appears_in": "The values held in an array are called array elements An array stores multiple values of the same type the element type The element type can be a primitive type or an object We can create an array of integers, an array of characters, an array of String objects, an array of Coin objects, etc."
+    },
+    {
+      "phrase": "the element type",
+      "score": 0.526,
+      "source_type": "bullet",
+      "appears_in": "The values held in an array are called array elements An array stores multiple values of the same type the element type The element type can be a primitive type or an object We can create an array of integers, an array of characters, an array of String objects, an array of Coin objects, etc."
+    },
+    {
+      "phrase": "an object",
+      "score": 0.479,
+      "source_type": "bullet",
+      "appears_in": "The values held in an array are called array elements An array stores multiple values of the same type the element type The element type can be a primitive type or an object We can create an array of integers, an array of characters, an array of String objects, an array of Coin objects, etc."
+    }
+  ],
+  "slide_007": [
+    {
+      "phrase": "an array of integers",
+      "score": 0.474,
+      "source_type": "bullet",
+      "appears_in": "[] (an array of integers)"
+    },
+    {
+      "phrase": "int",
+      "score": 0.4134,
+      "source_type": "bullet",
+      "appears_in": "To declare an array you will use this general form The type of the variable scores is int"
+    },
+    {
+      "phrase": "new operator",
+      "score": 0.3546,
+      "source_type": "bullet",
+      "appears_in": "The reference variable scores is set to a new array object that can hold 10 integers When you declare an array, you can specify the initial values and in this case you don't use the new operator:"
+    }
+  ],
+  "slide_008": [
+    {
+      "phrase": "arrayindexoutofboundsexception",
+      "score": 0.8499,
+      "source_type": "bullet",
+      "appears_in": "The Java interpreter throws an ArrayIndexOutOfBoundsException if an array index is out of bounds"
+    },
+    {
+      "phrase": "java interpreter",
+      "score": 0.6007,
+      "source_type": "bullet",
+      "appears_in": "The Java interpreter throws an ArrayIndexOutOfBoundsException if an array index is out of bounds"
+    },
+    {
+      "phrase": "exception",
+      "score": 0.5552,
+      "source_type": "bullet",
+      "appears_in": "If the array scores can hold 10 values, it can be indexed using only the numbers 0 to 9 If the value of count is 10, then the following reference will cause an exception to be thrown: It's common to introduce off-by-one errors when using arrays Problem"
+    }
+  ],
+  "slide_009": [
+    {
+      "phrase": "length",
+      "score": 0.8507,
+      "source_type": "bullet",
+      "appears_in": "Each array object has a public constant called length that stores the size of the array It is referenced using the array name: Note that length holds the number of elements, not the largest index"
+    },
+    {
+      "phrase": "each array object",
+      "score": 0.361,
+      "source_type": "bullet",
+      "appears_in": "Each array object has a public constant called length that stores the size of the array It is referenced using the array name: Note that length holds the number of elements, not the largest index"
+    }
+  ],
+  "slide_010": [
+    {
+      "phrase": "formal parameter",
+      "score": 0.6693,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    },
+    {
+      "phrase": "parameter",
+      "score": 0.5811,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    },
+    {
+      "phrase": "type",
+      "score": 0.5295,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    },
+    {
+      "phrase": "method",
+      "score": 0.5262,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    },
+    {
+      "phrase": "reference",
+      "score": 0.4382,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    },
+    {
+      "phrase": "an individual array element",
+      "score": 0.3599,
+      "source_type": "bullet",
+      "appears_in": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other Therefore, changing an array element within the method changes the original An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type"
+    }
+  ],
+  "slide_011": [
+    {
+      "phrase": "each object stored in an array",
+      "score": 0.6675,
+      "source_type": "bullet",
+      "appears_in": "The elements of an array can be object references The following declaration reserves space to store 3 references to String objects It does NOT create the String objects themselves Initially an array of objects holds null references Each object stored in an array must be instantiated separately"
+    },
+    {
+      "phrase": "the elements of an array",
+      "score": 0.5144,
+      "source_type": "bullet",
+      "appears_in": "The elements of an array can be object references The following declaration reserves space to store 3 references to String objects It does NOT create the String objects themselves Initially an array of objects holds null references Each object stored in an array must be instantiated separately"
+    },
+    {
+      "phrase": "the following declaration",
+      "score": 0.4421,
+      "source_type": "bullet",
+      "appears_in": "The elements of an array can be object references The following declaration reserves space to store 3 references to String objects It does NOT create the String objects themselves Initially an array of objects holds null references Each object stored in an array must be instantiated separately"
+    },
+    {
+      "phrase": "object references",
+      "score": 0.3507,
+      "source_type": "bullet",
+      "appears_in": "The elements of an array can be object references The following declaration reserves space to store 3 references to String objects It does NOT create the String objects themselves Initially an array of objects holds null references Each object stored in an array must be instantiated separately"
+    }
+  ],
+  "slide_012": [
+    {
+      "phrase": "add",
+      "score": 0.5692,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "contains",
+      "score": 0.5283,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "remove",
+      "score": 0.5214,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "elements",
+      "score": 0.5112,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "clear",
+      "score": 0.5077,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "size",
+      "score": 0.447,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "some allow duplicates",
+      "score": 0.4387,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "search",
+      "score": 0.4244,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    },
+    {
+      "phrase": "typical operations",
+      "score": 0.3519,
+      "source_type": "bullet",
+      "appears_in": "Collection is an object that stores data the objects stored are called elements some collections maintain an ordering; some allow duplicates typical operations: add, remove, clear, contains (search), size examples found in the Java class libraries:"
+    }
+  ],
+  "slide_013": [
+    {
+      "phrase": "a list",
+      "score": 0.5574,
+      "source_type": "bullet",
+      "appears_in": "A collection storing an ordered sequence of elements each element is accessible by a 0-based index a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object"
+    },
+    {
+      "phrase": "size",
+      "score": 0.4782,
+      "source_type": "bullet",
+      "appears_in": "A collection storing an ordered sequence of elements each element is accessible by a 0-based index a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object"
+    },
+    {
+      "phrase": "a collection",
+      "score": 0.4553,
+      "source_type": "bullet",
+      "appears_in": "A collection storing an ordered sequence of elements each element is accessible by a 0-based index a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object"
+    },
+    {
+      "phrase": "each element",
+      "score": 0.3945,
+      "source_type": "bullet",
+      "appears_in": "A collection storing an ordered sequence of elements each element is accessible by a 0-based index a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object"
+    }
+  ],
+  "slide_014": [
+    {
+      "phrase": "dynamic resizing",
+      "score": 0.8807,
+      "source_type": "bullet",
+      "appears_in": "It changes size dynamically as new elements are added – Dynamic Resizing 2."
+    },
+    {
+      "phrase": "methods",
+      "score": 0.4776,
+      "source_type": "bullet",
+      "appears_in": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements."
+    },
+    {
+      "phrase": "inserting",
+      "score": 0.3748,
+      "source_type": "bullet",
+      "appears_in": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements."
+    },
+    {
+      "phrase": "removing elements",
+      "score": 0.3554,
+      "source_type": "bullet",
+      "appears_in": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements."
+    }
+  ],
+  "slide_015": [
+    {
+      "phrase": "to construct an array list",
+      "score": 0.5602,
+      "source_type": "bullet",
+      "appears_in": "Any list of String: To construct an array list To access an element"
+    },
+    {
+      "phrase": "to access an element",
+      "score": 0.4425,
+      "source_type": "bullet",
+      "appears_in": "Any list of String: To construct an array list To access an element"
+    },
+    {
+      "phrase": "any list of string",
+      "score": 0.4409,
+      "source_type": "bullet",
+      "appears_in": "Any list of String: To construct an array list To access an element"
+    }
+  ],
+  "slide_016": [],
+  "slide_017": [],
+  "slide_018": [
+    {
+      "phrase": "retrieving a value",
+      "score": 0.6732,
+      "source_type": "bullet",
+      "appears_in": "• construction • storing a value • retrieving a value • doing something to each value that starts with \"B\" • seeing whether the value \"Benson\" is found"
+    },
+    {
+      "phrase": "construction",
+      "score": 0.6727,
+      "source_type": "bullet",
+      "appears_in": "• construction • storing a value • retrieving a value • doing something to each value that starts with \"B\" • seeing whether the value \"Benson\" is found"
+    },
+    {
+      "phrase": "storing a value",
+      "score": 0.4873,
+      "source_type": "bullet",
+      "appears_in": "• construction • storing a value • retrieving a value • doing something to each value that starts with \"B\" • seeing whether the value \"Benson\" is found"
+    }
+  ],
+  "slide_019": [
+    {
+      "phrase": "iterator",
+      "score": 0.5809,
+      "source_type": "bullet",
+      "appears_in": "It is an interface so you can 't say new Set( ) There are four implementations: HashSet is best for most purposes, backed by a hash table TreeSet guarantees that an iterator will return elements in sorted order LinkedHashSet guarantees that an iterator will return elements in the order they were inserted AbstractSet is a \"helper\" abstract class for new implementations"
+    },
+    {
+      "phrase": "abstractset",
+      "score": 0.4384,
+      "source_type": "bullet",
+      "appears_in": "It is an interface so you can 't say new Set( ) There are four implementations: HashSet is best for most purposes, backed by a hash table TreeSet guarantees that an iterator will return elements in sorted order LinkedHashSet guarantees that an iterator will return elements in the order they were inserted AbstractSet is a \"helper\" abstract class for new implementations"
+    }
+  ],
+  "slide_020": [
+    {
+      "phrase": "a map",
+      "score": 0.5829,
+      "source_type": "bullet",
+      "appears_in": "A Map is an object that maps keys to values: Map<Key, Value>"
+    },
+    {
+      "phrase": "treemap",
+      "score": 0.4903,
+      "source_type": "bullet",
+      "appears_in": "A map cannot contain duplicate keys and each key can map to at most one value Map is an interface; you can't say new Map( ) Here are two implementations: HashMap is the faster TreeMap guarantees the order of iteration"
+    },
+    {
+      "phrase": "iteration",
+      "score": 0.4378,
+      "source_type": "bullet",
+      "appears_in": "A map cannot contain duplicate keys and each key can map to at most one value Map is an interface; you can't say new Map( ) Here are two implementations: HashMap is the faster TreeMap guarantees the order of iteration"
+    },
+    {
+      "phrase": "hashmap",
+      "score": 0.4369,
+      "source_type": "bullet",
+      "appears_in": "A map cannot contain duplicate keys and each key can map to at most one value Map is an interface; you can't say new Map( ) Here are two implementations: HashMap is the faster TreeMap guarantees the order of iteration"
+    }
+  ],
+  "slide_021": [
+    {
+      "phrase": "fifo",
+      "score": 0.3998,
+      "source_type": "bullet",
+      "appears_in": "A collection whose elements are added at one end (the rear or tail of the queue) and removed from the other end (the front or head of the queue) A queue is a FIFO (first in, first out) data structure Any waiting line is a queue: The check-out line at a grocery store The cars at a stop light An assembly line"
+    },
+    {
+      "phrase": "a queue",
+      "score": 0.3878,
+      "source_type": "bullet",
+      "appears_in": "A collection whose elements are added at one end (the rear or tail of the queue) and removed from the other end (the front or head of the queue) A queue is a FIFO (first in, first out) data structure Any waiting line is a queue: The check-out line at a grocery store The cars at a stop light An assembly line"
+    }
+  ],
+  "slide_022": [
+    {
+      "phrase": "size",
+      "score": 0.7006,
+      "source_type": "table",
+      "appears_in": "Operation Description dequeue Removes an element from the front of the queue enqueue Adds an element to the rear of the queue first Examines the element at the front of the queue isEmpty Determines whether the queue is empty size Determines the number of elements in the queue toString Returns a string representation of the queue"
+    },
+    {
+      "phrase": "isempty",
+      "score": 0.6574,
+      "source_type": "table",
+      "appears_in": "Operation Description dequeue Removes an element from the front of the queue enqueue Adds an element to the rear of the queue first Examines the element at the front of the queue isEmpty Determines whether the queue is empty size Determines the number of elements in the queue toString Returns a string representation of the queue"
+    },
+    {
+      "phrase": "dequeue",
+      "score": 0.6512,
+      "source_type": "table",
+      "appears_in": "Operation Description dequeue Removes an element from the front of the queue enqueue Adds an element to the rear of the queue first Examines the element at the front of the queue isEmpty Determines whether the queue is empty size Determines the number of elements in the queue toString Returns a string representation of the queue"
+    },
+    {
+      "phrase": "enqueue",
+      "score": 0.6459,
+      "source_type": "table",
+      "appears_in": "Operation Description dequeue Removes an element from the front of the queue enqueue Adds an element to the rear of the queue first Examines the element at the front of the queue isEmpty Determines whether the queue is empty size Determines the number of elements in the queue toString Returns a string representation of the queue"
+    },
+    {
+      "phrase": "tostring",
+      "score": 0.5882,
+      "source_type": "table",
+      "appears_in": "Operation Description dequeue Removes an element from the front of the queue enqueue Adds an element to the rear of the queue first Examines the element at the front of the queue isEmpty Determines whether the queue is empty size Determines the number of elements in the queue toString Returns a string representation of the queue"
+    }
+  ],
+  "slide_023": [
+    {
+      "phrase": "sorting",
+      "score": 0.819,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    },
+    {
+      "phrase": "fundamental problems",
+      "score": 0.7778,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    },
+    {
+      "phrase": "searching",
+      "score": 0.6631,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    },
+    {
+      "phrase": "computer science",
+      "score": 0.549,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    },
+    {
+      "phrase": "multiple different algorithms",
+      "score": 0.4428,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    },
+    {
+      "phrase": "algorithm",
+      "score": 0.4172,
+      "source_type": "bullet",
+      "appears_in": "Fundamental problems in computer science and programming Sorting done to make searching easier Multiple different algorithms to solve the same problem How do we know which algorithm is \"better\"?"
+    }
+  ],
+  "slide_024": [
+    {
+      "phrase": "binarysearch",
+      "score": 0.4288,
+      "source_type": "table",
+      "appears_in": "Class Arrays in java.util has many useful array methods: Method name Description binarySearch(array, value) returns the index of the given value in a sorted<br>array (or < 0 if not found) binarySearch(array,<br>minIndex, maxIndex, value) returns index of given value in a sorted<br>array<br>between indexes min<br>/max<br>-<br>1 (< 0 if not found) copyOf(array, length) returns a new resized copy of an array equals(array1, array2) returns true<br>if the two arrays contain same<br>elements in the same order fill(array, value) sets every element to the given value sort(array) arranges the elements into sorted order toString(array) returns a string representing the array, such as<br>\"[10, 30, -25, 17]\""
+    },
+    {
+      "phrase": "sort",
+      "score": 0.3624,
+      "source_type": "table",
+      "appears_in": "Class Arrays in java.util has many useful array methods: Method name Description binarySearch(array, value) returns the index of the given value in a sorted<br>array (or < 0 if not found) binarySearch(array,<br>minIndex, maxIndex, value) returns index of given value in a sorted<br>array<br>between indexes min<br>/max<br>-<br>1 (< 0 if not found) copyOf(array, length) returns a new resized copy of an array equals(array1, array2) returns true<br>if the two arrays contain same<br>elements in the same order fill(array, value) sets every element to the given value sort(array) arranges the elements into sorted order toString(array) returns a string representing the array, such as<br>\"[10, 30, -25, 17]\""
+    }
+  ],
+  "slide_025": [
+    {
+      "phrase": "sort",
+      "score": 0.4843,
+      "source_type": "bullet",
+      "appears_in": "Very useful for sorting collection."
+    },
+    {
+      "phrase": "array/list",
+      "score": 0.4451,
+      "source_type": "bullet",
+      "appears_in": "We can sort an array/list of primitive types We can sort array/list of custom objects."
+    },
+    {
+      "phrase": "custom objects",
+      "score": 0.4225,
+      "source_type": "bullet",
+      "appears_in": "We can sort an array/list of primitive types We can sort array/list of custom objects."
+    },
+    {
+      "phrase": "of primitive types",
+      "score": 0.4004,
+      "source_type": "bullet",
+      "appears_in": "We can sort an array/list of primitive types We can sort array/list of custom objects."
+    }
+  ],
+  "slide_026": [
+    {
+      "phrase": "sorting algorithms",
+      "score": 0.7281,
+      "source_type": "bullet",
+      "appears_in": "Sorting algorithms are used to arrange random data into some order can be solved in many ways: there are many sorting algorithms some are faster/slower than others some use more/less memory than others some work better with specific kinds of data some can utilize multiple computers / processors, ... comparison-based sorting : determining order by comparing pairs of elements: <, >, compareTo, …"
+    },
+    {
+      "phrase": "compareto",
+      "score": 0.462,
+      "source_type": "bullet",
+      "appears_in": "Sorting algorithms are used to arrange random data into some order can be solved in many ways: there are many sorting algorithms some are faster/slower than others some use more/less memory than others some work better with specific kinds of data some can utilize multiple computers / processors, ... comparison-based sorting : determining order by comparing pairs of elements: <, >, compareTo, …"
+    },
+    {
+      "phrase": "comparison-based sorting",
+      "score": 0.4246,
+      "source_type": "bullet",
+      "appears_in": "Sorting algorithms are used to arrange random data into some order can be solved in many ways: there are many sorting algorithms some are faster/slower than others some use more/less memory than others some work better with specific kinds of data some can utilize multiple computers / processors, ... comparison-based sorting : determining order by comparing pairs of elements: <, >, compareTo, …"
+    }
+  ],
+  "slide_027": [],
+  "slide_028": [
+    {
+      "phrase": "node",
+      "score": 0.8362,
+      "source_type": "bullet",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    },
+    {
+      "phrase": "singly linked list",
+      "score": 0.7247,
+      "source_type": "bullet",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    },
+    {
+      "phrase": "head",
+      "score": 0.6692,
+      "source_type": "bullet",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    },
+    {
+      "phrase": "a linked data structure",
+      "score": 0.4467,
+      "source_type": "body",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    },
+    {
+      "phrase": "pointer",
+      "score": 0.4311,
+      "source_type": "bullet",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    },
+    {
+      "phrase": "link",
+      "score": 0.4012,
+      "source_type": "bullet",
+      "appears_in": "A linked data structure consists of items, called Nodes, that are linked to other items Singly linked list: each item points to the next item A linked list is an ordered sequence of items called nodes A node is the basic unit of representation in a linked list A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure The first item (node) in the linked list is accessed via a front or head  pointer The linked list is defined by its head (this is its starting point)"
+    }
+  ]
+}

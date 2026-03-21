@@ -1,0 +1,152 @@
+[
+  {
+    "subject": "new operator",
+    "relation": "isPartOf",
+    "object": "an array of integers",
+    "evidence": "The reference variable scores is set to a new array object that can hold 10 integers",
+    "confidence": 0.7,
+    "slide_id": "slide_007",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "int",
+    "relation": "isPartOf",
+    "object": "an array of integers",
+    "evidence": "The type of the variable scores is int[] (an array of integers)",
+    "confidence": 0.9,
+    "slide_id": "slide_007",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "reference",
+    "relation": "isPartOf",
+    "object": "parameter",
+    "evidence": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other",
+    "confidence": 0.8,
+    "slide_id": "slide_010",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "an individual array element",
+    "relation": "isPartOf",
+    "object": "parameter",
+    "evidence": "An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type",
+    "confidence": 0.8,
+    "slide_id": "slide_010",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "type",
+    "relation": "isPartOf",
+    "object": "parameter",
+    "evidence": "An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type",
+    "confidence": 0.8,
+    "slide_id": "slide_010",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "method",
+    "relation": "appliedIn",
+    "object": "reference",
+    "evidence": "An entire array can be passed as a parameter to a method Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other",
+    "confidence": 0.7,
+    "slide_id": "slide_010",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "a list",
+    "relation": "isExampleOf",
+    "object": "a collection",
+    "evidence": "a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object",
+    "confidence": 0.8,
+    "slide_id": "slide_013",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "size",
+    "relation": "isPartOf",
+    "object": "a list",
+    "evidence": "a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object",
+    "confidence": 0.9,
+    "slide_id": "slide_013",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "a collection",
+    "relation": "isGeneralizationOf",
+    "object": "a list",
+    "evidence": "A collection storing an ordered sequence of elements each element is accessible by a 0-based index a list has a size (number of elements that have been added) elements can be added to the front, back, or elsewhere in Java, a list can be represented as an ArrayList object",
+    "confidence": 0.8,
+    "slide_id": "slide_013",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "any list of string",
+    "relation": "isGeneralizationOf",
+    "object": "to construct an array list",
+    "evidence": "Any list of String: To construct an array list To access an element",
+    "confidence": 0.7,
+    "slide_id": "slide_015",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "a queue",
+    "relation": "isDefinedAs",
+    "object": "fifo",
+    "evidence": "A queue is a FIFO (first in, first out) data structure",
+    "confidence": 1.0,
+    "slide_id": "slide_021",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "comparison-based sorting",
+    "evidence": "Sorting algorithms are used to arrange random data into some order can be solved in many ways: there are many sorting algorithms some are faster/slower than others some use more/less memory than others some work better with specific kinds of data some can utilize multiple computers / processors, ... comparison-based sorting : determining order by comparing pairs of elements: <, >, compareTo, …",
+    "confidence": 0.7,
+    "slide_id": "slide_026",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "node",
+    "relation": "isPartOf",
+    "object": "a linked data structure",
+    "evidence": "A linked data structure consists of items, called Nodes, that are linked to other items",
+    "confidence": 0.8,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "pointer",
+    "relation": "isPartOf",
+    "object": "node",
+    "evidence": "A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure",
+    "confidence": 0.8,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "link",
+    "relation": "isPartOf",
+    "object": "node",
+    "evidence": "A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure",
+    "confidence": 0.8,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  }
+]

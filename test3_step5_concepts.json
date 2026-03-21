@@ -1,0 +1,584 @@
+[
+  {
+    "name": "list",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9656,
+    "final_weight": 0.2099,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "searching and sorting",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8645,
+    "final_weight": 0.3032,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "arrays",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003",
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.484,
+    "final_weight": 0.331,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "an array",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004",
+      "slide_006"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8604,
+    "final_weight": 0.3648,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "scores",
+    "aliases": [],
+    "slide_ids": [
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4087,
+    "final_weight": 0.2707,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "the element type",
+    "aliases": [],
+    "slide_ids": [
+      "slide_006"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.526,
+    "final_weight": 0.2223,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "an array of integers",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.474,
+    "final_weight": 0.5355,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "int",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4134,
+    "final_weight": 0.3377,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "new operator",
+    "aliases": [],
+    "slide_ids": [
+      "slide_007"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3546,
+    "final_weight": 0.281,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "arrayindexoutofboundsexception",
+    "aliases": [],
+    "slide_ids": [
+      "slide_008"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8499,
+    "final_weight": 0.325,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "each array object",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.361,
+    "final_weight": 0.2859,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "formal parameter",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6693,
+    "final_weight": 0.2138,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "parameter",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5811,
+    "final_weight": 0.3615,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "type",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5295,
+    "final_weight": 0.1988,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "method",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5262,
+    "final_weight": 0.1933,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "an individual array element",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3599,
+    "final_weight": 0.5056,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "each object stored in an array",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6675,
+    "final_weight": 0.3029,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "the elements of an array",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5144,
+    "final_weight": 0.3072,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "the following declaration",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4421,
+    "final_weight": 0.2266,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "object references",
+    "aliases": [],
+    "slide_ids": [
+      "slide_011"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3507,
+    "final_weight": 0.2728,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "a list",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5574,
+    "final_weight": 0.583,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "a collection",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4553,
+    "final_weight": 0.53,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "each element",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3945,
+    "final_weight": 0.202,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "to construct an array list",
+    "aliases": [],
+    "slide_ids": [
+      "slide_015"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5602,
+    "final_weight": 0.8093,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "any list of string",
+    "aliases": [],
+    "slide_ids": [
+      "slide_015"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4409,
+    "final_weight": 0.7279,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "retrieving a value",
+    "aliases": [],
+    "slide_ids": [
+      "slide_018"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6732,
+    "final_weight": 0.2361,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "storing a value",
+    "aliases": [],
+    "slide_ids": [
+      "slide_018"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4873,
+    "final_weight": 0.2655,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "abstractset",
+    "aliases": [],
+    "slide_ids": [
+      "slide_019"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4384,
+    "final_weight": 0.2411,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "a map",
+    "aliases": [],
+    "slide_ids": [
+      "slide_020"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5829,
+    "final_weight": 0.2375,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "treemap",
+    "aliases": [],
+    "slide_ids": [
+      "slide_020"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4903,
+    "final_weight": 0.2409,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "hashmap",
+    "aliases": [],
+    "slide_ids": [
+      "slide_020"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4369,
+    "final_weight": 0.2953,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "fifo",
+    "aliases": [],
+    "slide_ids": [
+      "slide_021"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3998,
+    "final_weight": 0.4011,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "a queue",
+    "aliases": [],
+    "slide_ids": [
+      "slide_021"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3878,
+    "final_weight": 0.6243,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "dequeue",
+    "aliases": [],
+    "slide_ids": [
+      "slide_022"
+    ],
+    "source_type": "table",
+    "keyphrase_score": 0.6512,
+    "final_weight": 0.2244,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "enqueue",
+    "aliases": [],
+    "slide_ids": [
+      "slide_022"
+    ],
+    "source_type": "table",
+    "keyphrase_score": 0.6459,
+    "final_weight": 0.1969,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "sorting",
+    "aliases": [
+      "sort"
+    ],
+    "slide_ids": [
+      "slide_023",
+      "slide_024",
+      "slide_025"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.819,
+    "final_weight": 0.2636,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "computer science",
+    "aliases": [],
+    "slide_ids": [
+      "slide_023"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.549,
+    "final_weight": 0.202,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "multiple different algorithms",
+    "aliases": [],
+    "slide_ids": [
+      "slide_023"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4428,
+    "final_weight": 0.3006,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "algorithm",
+    "aliases": [],
+    "slide_ids": [
+      "slide_023"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4172,
+    "final_weight": 0.2879,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "binarysearch",
+    "aliases": [],
+    "slide_ids": [
+      "slide_024"
+    ],
+    "source_type": "table",
+    "keyphrase_score": 0.4288,
+    "final_weight": 0.2008,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "array/list",
+    "aliases": [],
+    "slide_ids": [
+      "slide_025"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4451,
+    "final_weight": 0.2755,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "of primitive types",
+    "aliases": [],
+    "slide_ids": [
+      "slide_025"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4004,
+    "final_weight": 0.2065,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "sorting algorithms",
+    "aliases": [],
+    "slide_ids": [
+      "slide_026"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7281,
+    "final_weight": 0.7841,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "comparison-based sorting",
+    "aliases": [],
+    "slide_ids": [
+      "slide_026"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4246,
+    "final_weight": 0.7961,
+    "doc_id": "test3",
+    "needs_review": true
+  },
+  {
+    "name": "node",
+    "aliases": [],
+    "slide_ids": [
+      "slide_028"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8362,
+    "final_weight": 0.2958,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "singly linked list",
+    "aliases": [],
+    "slide_ids": [
+      "slide_028"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7247,
+    "final_weight": 0.3139,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "a linked data structure",
+    "aliases": [],
+    "slide_ids": [
+      "slide_028"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.4467,
+    "final_weight": 0.6957,
+    "doc_id": "test3",
+    "needs_review": false
+  },
+  {
+    "name": "pointer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_028"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4311,
+    "final_weight": 0.4214,
+    "doc_id": "test3",
+    "needs_review": false
+  }
+]

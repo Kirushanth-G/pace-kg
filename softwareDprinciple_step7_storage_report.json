@@ -1,14 +1,9 @@
 {
-  "doc_id": "CS1050-L03",
-  "total_slides": 22,
+  "doc_id": "softwareDprinciple",
+  "total_slides": 18,
   "slides_stored": [
     {
       "slide_id": "slide_001",
-      "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_002",
       "extraction_edges": 0,
       "expansion_edges": 0
     },
@@ -19,12 +14,12 @@
     },
     {
       "slide_id": "slide_004",
-      "extraction_edges": 2,
-      "expansion_edges": 0
+      "extraction_edges": 4,
+      "expansion_edges": 1
     },
     {
       "slide_id": "slide_005",
-      "extraction_edges": 1,
+      "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
@@ -44,23 +39,23 @@
     },
     {
       "slide_id": "slide_009",
-      "extraction_edges": 1,
-      "expansion_edges": 0
+      "extraction_edges": 0,
+      "expansion_edges": 1
     },
     {
       "slide_id": "slide_010",
       "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_011",
-      "extraction_edges": 2,
       "expansion_edges": 2
     },
     {
-      "slide_id": "slide_012",
-      "extraction_edges": 1,
+      "slide_id": "slide_011",
+      "extraction_edges": 0,
       "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_012",
+      "extraction_edges": 2,
+      "expansion_edges": 1
     },
     {
       "slide_id": "slide_013",
@@ -79,12 +74,12 @@
     },
     {
       "slide_id": "slide_016",
-      "extraction_edges": 0,
+      "extraction_edges": 5,
       "expansion_edges": 0
     },
     {
       "slide_id": "slide_017",
-      "extraction_edges": 0,
+      "extraction_edges": 3,
       "expansion_edges": 0
     },
     {
@@ -94,27 +89,12 @@
     },
     {
       "slide_id": "slide_019",
-      "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_020",
-      "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_021",
-      "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_022",
-      "extraction_edges": 0,
+      "extraction_edges": 1,
       "expansion_edges": 0
     }
   ],
-  "total_concepts_stored": 18,
-  "total_extraction_edges": 7,
-  "total_expansion_edges": 2,
+  "total_concepts_stored": 33,
+  "total_extraction_edges": 15,
+  "total_expansion_edges": 5,
   "errors": []
 }

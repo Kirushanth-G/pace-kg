@@ -1,0 +1,270 @@
+{
+  "slide_001": [],
+  "slide_003": [
+    {
+      "phrase": "type of pc",
+      "score": 0.6497,
+      "source_type": "bullet",
+      "appears_in": "Contents Definition Uses/Applications Capabilities Limitations History Generation Difference between Computer and Calculator Block Diagram Types of computer Type of PC"
+    },
+    {
+      "phrase": "block diagram",
+      "score": 0.6014,
+      "source_type": "bullet",
+      "appears_in": "Contents Definition Uses/Applications Capabilities Limitations History Generation Difference between Computer and Calculator Block Diagram Types of computer Type of PC"
+    },
+    {
+      "phrase": "types of computer",
+      "score": 0.6001,
+      "source_type": "bullet",
+      "appears_in": "Contents Definition Uses/Applications Capabilities Limitations History Generation Difference between Computer and Calculator Block Diagram Types of computer Type of PC"
+    },
+    {
+      "phrase": "difference between computer and calculator",
+      "score": 0.4238,
+      "source_type": "bullet",
+      "appears_in": "Contents Definition Uses/Applications Capabilities Limitations History Generation Difference between Computer and Calculator Block Diagram Types of computer Type of PC"
+    }
+  ],
+  "slide_004": [
+    {
+      "phrase": "input",
+      "score": 0.8547,
+      "source_type": "body",
+      "appears_in": "It has the ability to accept data (input), process it, and then produce outputs as desired."
+    },
+    {
+      "phrase": "instructions",
+      "score": 0.6681,
+      "source_type": "body",
+      "appears_in": "Definition A computer is an electronic machine or device that performs processes, calculations and operations based on instructions provided by a user."
+    },
+    {
+      "phrase": "calculations",
+      "score": 0.5728,
+      "source_type": "body",
+      "appears_in": "Definition A computer is an electronic machine or device that performs processes, calculations and operations based on instructions provided by a user."
+    },
+    {
+      "phrase": "operations",
+      "score": 0.5556,
+      "source_type": "body",
+      "appears_in": "Definition A computer is an electronic machine or device that performs processes, calculations and operations based on instructions provided by a user."
+    },
+    {
+      "phrase": "processes",
+      "score": 0.4846,
+      "source_type": "body",
+      "appears_in": "Definition A computer is an electronic machine or device that performs processes, calculations and operations based on instructions provided by a user."
+    },
+    {
+      "phrase": "data",
+      "score": 0.4262,
+      "source_type": "body",
+      "appears_in": "It has the ability to accept data (input), process it, and then produce outputs as desired."
+    }
+  ],
+  "slide_005": [
+    {
+      "phrase": "data processing",
+      "score": 0.7372,
+      "source_type": "bullet",
+      "appears_in": "Uses/Applications of Computer Banking Education Industries Entertainments Hospitals Business Defence Reservation Science and Research Data processing"
+    },
+    {
+      "phrase": "science and research",
+      "score": 0.3917,
+      "source_type": "bullet",
+      "appears_in": "Uses/Applications of Computer Banking Education Industries Entertainments Hospitals Business Defence Reservation Science and Research Data processing"
+    }
+  ],
+  "slide_006": [
+    {
+      "phrase": "accuracy",
+      "score": 0.8085,
+      "source_type": "bullet",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    },
+    {
+      "phrase": "speed",
+      "score": 0.8069,
+      "source_type": "bullet",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    },
+    {
+      "phrase": "versatility",
+      "score": 0.7893,
+      "source_type": "bullet",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    },
+    {
+      "phrase": "storage capacity",
+      "score": 0.713,
+      "source_type": "bullet",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    },
+    {
+      "phrase": "capabilities of computer",
+      "score": 0.7749,
+      "source_type": "heading",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    },
+    {
+      "phrase": "deligency",
+      "score": 0.4551,
+      "source_type": "bullet",
+      "appears_in": "Capabilities of Computer Speed Storage capacity Accuracy •Deligency Versatility"
+    }
+  ],
+  "slide_007": [],
+  "slide_008": [],
+  "slide_009": [
+    {
+      "phrase": "ulsi",
+      "score": 0.8156,
+      "source_type": "bullet",
+      "appears_in": "Apple Os Fifth Generation (1991-now) ULSI, Portable PC,CD-ROM, Internet"
+    },
+    {
+      "phrase": "vlsi",
+      "score": 0.8135,
+      "source_type": "bullet",
+      "appears_in": "VLSI (Microprocessor), PC, semiconductor replaced magnetic core memories, Networking,DOS, Unix, Windows,"
+    },
+    {
+      "phrase": "windows",
+      "score": 0.7049,
+      "source_type": "bullet",
+      "appears_in": "VLSI (Microprocessor), PC, semiconductor replaced magnetic core memories, Networking,DOS, Unix, Windows,"
+    },
+    {
+      "phrase": "apple os",
+      "score": 0.6579,
+      "source_type": "bullet",
+      "appears_in": "Apple Os Fifth Generation (1991-now) ULSI, Portable PC,CD-ROM, Internet"
+    },
+    {
+      "phrase": "dos",
+      "score": 0.5305,
+      "source_type": "bullet",
+      "appears_in": "VLSI (Microprocessor), PC, semiconductor replaced magnetic core memories, Networking,DOS, Unix, Windows,"
+    },
+    {
+      "phrase": "unix",
+      "score": 0.5278,
+      "source_type": "bullet",
+      "appears_in": "VLSI (Microprocessor), PC, semiconductor replaced magnetic core memories, Networking,DOS, Unix, Windows,"
+    },
+    {
+      "phrase": "integrated circuits",
+      "score": 0.3797,
+      "source_type": "bullet",
+      "appears_in": "Integrated Circuits Forth Generation (1975-1990)"
+    },
+    {
+      "phrase": "networking",
+      "score": 0.3774,
+      "source_type": "bullet",
+      "appears_in": "VLSI (Microprocessor), PC, semiconductor replaced magnetic core memories, Networking,DOS, Unix, Windows,"
+    },
+    {
+      "phrase": "transistors",
+      "score": 0.3626,
+      "source_type": "bullet",
+      "appears_in": "Transistors Third Generation (1965-1974)"
+    }
+  ],
+  "slide_010": [
+    {
+      "phrase": "arithmetic operations",
+      "score": 0.6482,
+      "source_type": "body",
+      "appears_in": "Difference between Computer and Calculator The main difference between Computer and Calculator is that the Computer is a simple general-purpose device for performing arithmetic or logical operations and Calculator is a electronic device used to perform arithmetic operations only."
+    },
+    {
+      "phrase": "logical operations",
+      "score": 0.5346,
+      "source_type": "body",
+      "appears_in": "Difference between Computer and Calculator The main difference between Computer and Calculator is that the Computer is a simple general-purpose device for performing arithmetic or logical operations and Calculator is a electronic device used to perform arithmetic operations only."
+    },
+    {
+      "phrase": "electronic device",
+      "score": 0.3665,
+      "source_type": "body",
+      "appears_in": "Difference between Computer and Calculator The main difference between Computer and Calculator is that the Computer is a simple general-purpose device for performing arithmetic or logical operations and Calculator is a electronic device used to perform arithmetic operations only."
+    }
+  ],
+  "slide_011": [],
+  "slide_012": [],
+  "slide_013": [
+    {
+      "phrase": "digital computer",
+      "score": 0.9564,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "hybrid computer",
+      "score": 0.9501,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "micro computer",
+      "score": 0.9473,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "general purpose computer",
+      "score": 0.9422,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "mini computer",
+      "score": 0.9251,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "super computer",
+      "score": 0.9078,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "anolog computer",
+      "score": 0.8962,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    },
+    {
+      "phrase": "mainframe computer",
+      "score": 0.8929,
+      "source_type": "bullet",
+      "appears_in": "Type of computer On the basis of operating principles ✓Digital computer ✓Anolog Computer ✓Hybrid Computer On the basis of applications ✓General purpose computer ✓Special purpose computer On the basis of size and capability ✓Micro computer ✓Mini computer ✓Mainframe computer ✓Super computer"
+    }
+  ],
+  "slide_014": [
+    {
+      "phrase": "personal computer",
+      "score": 0.7739,
+      "source_type": "heading",
+      "appears_in": "Personal Computer (PC) A PC can be defined as a small, relatively inexpensive micro computer designed for an individual user."
+    },
+    {
+      "phrase": "microprocessor technology",
+      "score": 0.582,
+      "source_type": "bullet",
+      "appears_in": "PCs are based on the microprocessor technology that enables manufacturers to put an entire CPU on one chip."
+    },
+    {
+      "phrase": "cpu",
+      "score": 0.4407,
+      "source_type": "bullet",
+      "appears_in": "PCs are based on the microprocessor technology that enables manufacturers to put an entire CPU on one chip."
+    }
+  ],
+  "slide_015": []
+}

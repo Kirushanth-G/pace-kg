@@ -1,0 +1,47 @@
+[
+  {
+    "subject": "high cohesion",
+    "object": "low cohesion",
+    "relation": "relatedConcept",
+    "source": "expansion",
+    "confidence": 0.8475,
+    "slide_id": "slide_012",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "subject": "incremental development",
+    "object": "incremental development advantages",
+    "relation": "relatedConcept",
+    "source": "expansion",
+    "confidence": 0.834,
+    "slide_id": "slide_004",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "subject": "low coupling",
+    "object": "high coupling",
+    "relation": "relatedConcept",
+    "source": "expansion",
+    "confidence": 0.8789,
+    "slide_id": "slide_010",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "subject": "low coupling",
+    "object": "low interactions",
+    "relation": "relatedConcept",
+    "source": "expansion",
+    "confidence": 0.6708,
+    "slide_id": "slide_010",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "subject": "modules",
+    "object": "a module",
+    "relation": "relatedConcept",
+    "source": "expansion",
+    "confidence": 0.8212,
+    "slide_id": "slide_009",
+    "doc_id": "softwareDprinciple"
+  }
+]

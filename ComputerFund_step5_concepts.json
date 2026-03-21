@@ -1,0 +1,338 @@
+[
+  {
+    "name": "type of pc",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6497,
+    "final_weight": 0.2573,
+    "doc_id": "ComputerFund",
+    "needs_review": true
+  },
+  {
+    "name": "types of computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6001,
+    "final_weight": 0.3127,
+    "doc_id": "ComputerFund",
+    "needs_review": true
+  },
+  {
+    "name": "difference between computer and calculator",
+    "aliases": [],
+    "slide_ids": [
+      "slide_003"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4238,
+    "final_weight": 0.3499,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "instructions",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.6681,
+    "final_weight": 0.1959,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "calculations",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.5728,
+    "final_weight": 0.2363,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "operations",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.5556,
+    "final_weight": 0.2455,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "processes",
+    "aliases": [],
+    "slide_ids": [
+      "slide_004"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.4846,
+    "final_weight": 0.2321,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "data processing",
+    "aliases": [],
+    "slide_ids": [
+      "slide_005"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.7372,
+    "final_weight": 0.3424,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "storage capacity",
+    "aliases": [],
+    "slide_ids": [
+      "slide_006"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.713,
+    "final_weight": 0.2684,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "capabilities of computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_006"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.7749,
+    "final_weight": 0.3723,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "vlsi",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8135,
+    "final_weight": 0.4289,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "apple os",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.6579,
+    "final_weight": 0.2077,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "unix",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.5278,
+    "final_weight": 0.1942,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "integrated circuits",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3797,
+    "final_weight": 0.4903,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "transistors",
+    "aliases": [],
+    "slide_ids": [
+      "slide_009"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.3626,
+    "final_weight": 0.2046,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "arithmetic operations",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.6482,
+    "final_weight": 0.441,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "logical operations",
+    "aliases": [],
+    "slide_ids": [
+      "slide_010"
+    ],
+    "source_type": "body",
+    "keyphrase_score": 0.5346,
+    "final_weight": 0.3319,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "digital computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9564,
+    "final_weight": 0.6496,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "hybrid computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9501,
+    "final_weight": 0.2243,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "micro computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9473,
+    "final_weight": 0.2597,
+    "doc_id": "ComputerFund",
+    "needs_review": true
+  },
+  {
+    "name": "general purpose computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9422,
+    "final_weight": 0.548,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "mini computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9251,
+    "final_weight": 0.2146,
+    "doc_id": "ComputerFund",
+    "needs_review": true
+  },
+  {
+    "name": "super computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.9078,
+    "final_weight": 0.2406,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "anolog computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8962,
+    "final_weight": 0.2395,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "mainframe computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_013"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.8929,
+    "final_weight": 0.2772,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "personal computer",
+    "aliases": [],
+    "slide_ids": [
+      "slide_014"
+    ],
+    "source_type": "heading",
+    "keyphrase_score": 0.7739,
+    "final_weight": 0.3977,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "microprocessor technology",
+    "aliases": [],
+    "slide_ids": [
+      "slide_014"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.582,
+    "final_weight": 0.2929,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  },
+  {
+    "name": "cpu",
+    "aliases": [],
+    "slide_ids": [
+      "slide_014"
+    ],
+    "source_type": "bullet",
+    "keyphrase_score": 0.4407,
+    "final_weight": 0.2573,
+    "doc_id": "ComputerFund",
+    "needs_review": false
+  }
+]

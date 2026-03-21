@@ -1,14 +1,5 @@
 [
   {
-    "subject": "abstract data types",
-    "object": "abstract data types (adt) main",
-    "relation": "relatedConcept",
-    "source": "expansion",
-    "confidence": 0.8281,
-    "slide_id": "slide_004",
-    "doc_id": "CS1050-L03"
-  },
-  {
     "subject": "load factor",
     "object": "16 and load factor",
     "relation": "relatedConcept",

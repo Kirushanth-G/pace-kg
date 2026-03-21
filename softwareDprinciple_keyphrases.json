@@ -1,0 +1,492 @@
+{
+  "slide_001": [],
+  "slide_003": [
+    {
+      "phrase": "techniques",
+      "score": 0.9689,
+      "source_type": "body",
+      "appears_in": "Principles form the basis of methods, techniques, methodologies and tools"
+    },
+    {
+      "phrase": "methodologies",
+      "score": 0.9632,
+      "source_type": "body",
+      "appears_in": "Principles form the basis of methods, techniques, methodologies and tools"
+    },
+    {
+      "phrase": "methods",
+      "score": 0.9469,
+      "source_type": "body",
+      "appears_in": "Principles form the basis of methods, techniques, methodologies and tools"
+    },
+    {
+      "phrase": "tools",
+      "score": 0.9409,
+      "source_type": "body",
+      "appears_in": "Principles form the basis of methods, techniques, methodologies and tools"
+    },
+    {
+      "phrase": "principles",
+      "score": 0.9286,
+      "source_type": "body",
+      "appears_in": "Principles form the basis of methods, techniques, methodologies and tools"
+    }
+  ],
+  "slide_004": [
+    {
+      "phrase": "modularity",
+      "score": 0.8028,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Modularity is the cornerstone principle supporting software design"
+    },
+    {
+      "phrase": "incremental development",
+      "score": 0.6216,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Modularity is the cornerstone principle supporting software design"
+    },
+    {
+      "phrase": "software development",
+      "score": 0.5667,
+      "source_type": "bullet",
+      "appears_in": "INTRODUCING THE ISSUES Seven important principles that may be used in all phases of software development •"
+    },
+    {
+      "phrase": "separation of concerns",
+      "score": 0.5169,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Modularity is the cornerstone principle supporting software design"
+    },
+    {
+      "phrase": "abstraction",
+      "score": 0.4524,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Modularity is the cornerstone principle supporting software design"
+    }
+  ],
+  "slide_005": [
+    {
+      "phrase": "incremental development",
+      "score": 0.8853,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "modularity",
+      "score": 0.6467,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "abstraction",
+      "score": 0.5833,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "generality",
+      "score": 0.5811,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "separation of concerns",
+      "score": 0.4924,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "rigor and formality",
+      "score": 0.3505,
+      "source_type": "bullet",
+      "appears_in": "Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    }
+  ],
+  "slide_006": [
+    {
+      "phrase": "separation of concerns",
+      "score": 0.9863,
+      "source_type": "heading",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    },
+    {
+      "phrase": "incremental development",
+      "score": 0.6374,
+      "source_type": "bullet",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    },
+    {
+      "phrase": "modularity",
+      "score": 0.6036,
+      "source_type": "bullet",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    },
+    {
+      "phrase": "divide & conquer",
+      "score": 0.5029,
+      "source_type": "bullet",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    },
+    {
+      "phrase": "divide et impera",
+      "score": 0.4987,
+      "source_type": "bullet",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    },
+    {
+      "phrase": "abstraction",
+      "score": 0.4093,
+      "source_type": "bullet",
+      "appears_in": "Separation of concerns Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development To dominate the complexity, separate the issues to concentrate on one at a time \"Divide & conquer\" (divide et impera) Supports parallelization/synchronisations of efforts and separation of responsibilities"
+    }
+  ],
+  "slide_007": [
+    {
+      "phrase": "performance",
+      "score": 0.7608,
+      "source_type": "bullet",
+      "appears_in": "Keep product requirements separate functionality performance user interface and usability"
+    },
+    {
+      "phrase": "functionality",
+      "score": 0.7548,
+      "source_type": "bullet",
+      "appears_in": "Keep product requirements separate functionality performance user interface and usability"
+    },
+    {
+      "phrase": "user interface",
+      "score": 0.6958,
+      "source_type": "bullet",
+      "appears_in": "Keep product requirements separate functionality performance user interface and usability"
+    },
+    {
+      "phrase": "usability",
+      "score": 0.6785,
+      "source_type": "bullet",
+      "appears_in": "Keep product requirements separate functionality performance user interface and usability"
+    }
+  ],
+  "slide_008": [
+    {
+      "phrase": "qualities",
+      "score": 0.8259,
+      "source_type": "bullet",
+      "appears_in": "Time Life cycle models Qualities (qualitative analysis of software)"
+    },
+    {
+      "phrase": "views",
+      "score": 0.4969,
+      "source_type": "bullet",
+      "appears_in": "Views activity versus control Problem Domain from Implementation Domain"
+    }
+  ],
+  "slide_009": [
+    {
+      "phrase": "modules",
+      "score": 0.8156,
+      "source_type": "bullet",
+      "appears_in": "A complex system (S) may be divided into simpler subsystems called modules (M)."
+    },
+    {
+      "phrase": "modularity",
+      "score": 0.9512,
+      "source_type": "heading",
+      "appears_in": "Modularity Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "incremental development",
+      "score": 0.7584,
+      "source_type": "bullet",
+      "appears_in": "Modularity Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    },
+    {
+      "phrase": "abstraction",
+      "score": 0.4268,
+      "source_type": "bullet",
+      "appears_in": "Modularity Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development"
+    }
+  ],
+  "slide_010": [
+    {
+      "phrase": "self-contained",
+      "score": 0.7452,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "meaningful unit",
+      "score": 0.645,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "modules",
+      "score": 0.596,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "subsystem",
+      "score": 0.5669,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "system",
+      "score": 0.5257,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "components",
+      "score": 0.4106,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "low coupling",
+      "score": 0.3969,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    },
+    {
+      "phrase": "understandable separately",
+      "score": 0.3684,
+      "source_type": "bullet",
+      "appears_in": "Mn should be highly cohesive module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S. Components of a module are closely related to one another Modules should exhibit low coupling modules have low interactions with others understandable separately"
+    }
+  ],
+  "slide_011": [
+    {
+      "phrase": "modules",
+      "score": 0.8775,
+      "source_type": "bullet",
+      "appears_in": "On the contrary, Modules should exhibit low coupling modules should have low interactions with others (otherwise, they cannot be designed on their own, e.g. abstraction from the other modules and the connectivity would not work)"
+    },
+    {
+      "phrase": "low coupling",
+      "score": 0.6068,
+      "source_type": "bullet",
+      "appears_in": "On the contrary, Modules should exhibit low coupling modules should have low interactions with others (otherwise, they cannot be designed on their own, e.g. abstraction from the other modules and the connectivity would not work)"
+    },
+    {
+      "phrase": "connectivity",
+      "score": 0.5101,
+      "source_type": "bullet",
+      "appears_in": "On the contrary, Modules should exhibit low coupling modules should have low interactions with others (otherwise, they cannot be designed on their own, e.g. abstraction from the other modules and the connectivity would not work)"
+    },
+    {
+      "phrase": "abstraction",
+      "score": 0.3545,
+      "source_type": "bullet",
+      "appears_in": "On the contrary, Modules should exhibit low coupling modules should have low interactions with others (otherwise, they cannot be designed on their own, e.g. abstraction from the other modules and the connectivity would not work)"
+    }
+  ],
+  "slide_012": [
+    {
+      "phrase": "high cohesion",
+      "score": 0.8565,
+      "source_type": "body",
+      "appears_in": "(a) Avoid: high coupling of the modules M1 – M3 and low cohesion within them (b) Target: high cohesion within modules M1 – M3 and low coupling"
+    },
+    {
+      "phrase": "low coupling",
+      "score": 0.8456,
+      "source_type": "body",
+      "appears_in": "(a) Avoid: high coupling of the modules M1 – M3 and low cohesion within them (b) Target: high cohesion within modules M1 – M3 and low coupling"
+    },
+    {
+      "phrase": "modules",
+      "score": 0.553,
+      "source_type": "body",
+      "appears_in": "(a) Avoid: high coupling of the modules M1 – M3 and low cohesion within them (b) Target: high cohesion within modules M1 – M3 and low coupling"
+    },
+    {
+      "phrase": "m1 – m3",
+      "score": 0.355,
+      "source_type": "body",
+      "appears_in": "(a) Avoid: high coupling of the modules M1 – M3 and low cohesion within them (b) Target: high cohesion within modules M1 – M3 and low coupling"
+    }
+  ],
+  "slide_013": [
+    {
+      "phrase": "abstraction",
+      "score": 0.9991,
+      "source_type": "heading",
+      "appears_in": "Abstraction Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Identify the important aspects of a phenomenon and ignore its details Linked closely to separation of concerns Type of abstraction to apply depends on purpose Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time."
+    },
+    {
+      "phrase": "modularity",
+      "score": 0.7927,
+      "source_type": "bullet",
+      "appears_in": "Abstraction Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Identify the important aspects of a phenomenon and ignore its details Linked closely to separation of concerns Type of abstraction to apply depends on purpose Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time."
+    },
+    {
+      "phrase": "separation of concerns",
+      "score": 0.672,
+      "source_type": "bullet",
+      "appears_in": "Abstraction Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Identify the important aspects of a phenomenon and ignore its details Linked closely to separation of concerns Type of abstraction to apply depends on purpose Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time."
+    },
+    {
+      "phrase": "incremental development",
+      "score": 0.663,
+      "source_type": "bullet",
+      "appears_in": "Abstraction Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Identify the important aspects of a phenomenon and ignore its details Linked closely to separation of concerns Type of abstraction to apply depends on purpose Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time."
+    },
+    {
+      "phrase": "generality",
+      "score": 0.6099,
+      "source_type": "bullet",
+      "appears_in": "Abstraction Rigor and formality Separation of concerns Modularity Abstraction Anticipation of change Generality Incremental Development Identify the important aspects of a phenomenon and ignore its details Linked closely to separation of concerns Type of abstraction to apply depends on purpose Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time."
+    }
+  ],
+  "slide_014": [
+    {
+      "phrase": "abstraction",
+      "score": 0.9752,
+      "source_type": "bullet",
+      "appears_in": "Abstraction: we have done it already many times!"
+    },
+    {
+      "phrase": "system",
+      "score": 0.5988,
+      "source_type": "bullet",
+      "appears_in": "You make your own abstraction introducing the context of the system, You make your abstractions when prioritise requirements You make your abstractions when you define data types, i.e. defining the precision"
+    }
+  ],
+  "slide_015": [
+    {
+      "phrase": "methodology",
+      "score": 0.8556,
+      "source_type": "bullet",
+      "appears_in": "Ch. 3 14 Methodology: Increments Development & Testing"
+    },
+    {
+      "phrase": "testing",
+      "score": 0.4817,
+      "source_type": "bullet",
+      "appears_in": "Ch. 3 14 Methodology: Increments Development & Testing"
+    }
+  ],
+  "slide_016": [
+    {
+      "phrase": "functions",
+      "score": 0.9816,
+      "source_type": "body",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "classes",
+      "score": 0.9596,
+      "source_type": "body",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "unit testing",
+      "score": 0.9192,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "acceptance testing",
+      "score": 0.8816,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "integration testing",
+      "score": 0.8507,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "les",
+      "score": 0.8367,
+      "source_type": "body",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "module testing",
+      "score": 0.7362,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "sub-system testing",
+      "score": 0.7284,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "system testing",
+      "score": 0.708,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "review and maintenance",
+      "score": 0.6607,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "alpha and beta testing",
+      "score": 0.6235,
+      "source_type": "bullet",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    },
+    {
+      "phrase": "libraries",
+      "score": 0.4699,
+      "source_type": "body",
+      "appears_in": "functions, member functions etc classes, les etc libraries etc Unit testing: Module testing: Sub-system testing: System testing Integration testing Acceptance testing, alpha and beta testing Review and Maintenance"
+    }
+  ],
+  "slide_017": [
+    {
+      "phrase": "incremental development",
+      "score": 1.0,
+      "source_type": "heading",
+      "appears_in": "Incremental development <sup>l</sup> Rather than deliver the system in a single attempt, the development and delivery is broken down into increments with each increment delivering part of the required functionality <sup>l</sup>"
+    },
+    {
+      "phrase": "increments",
+      "score": 0.6688,
+      "source_type": "bullet",
+      "appears_in": "Incremental development <sup>l</sup> Rather than deliver the system in a single attempt, the development and delivery is broken down into increments with each increment delivering part of the required functionality <sup>l</sup>"
+    },
+    {
+      "phrase": "system",
+      "score": 0.4344,
+      "source_type": "bullet",
+      "appears_in": "Incremental development <sup>l</sup> Rather than deliver the system in a single attempt, the development and delivery is broken down into increments with each increment delivering part of the required functionality <sup>l</sup>"
+    }
+  ],
+  "slide_018": [],
+  "slide_019": [
+    {
+      "phrase": "incremental development",
+      "score": 0.9619,
+      "source_type": "heading",
+      "appears_in": "Incremental development advantages <sup>l</sup> Customer value can be delivered with each increment so system functionality is available earlier <sup>l</sup>"
+    },
+    {
+      "phrase": "early increments",
+      "score": 0.5483,
+      "source_type": "bullet",
+      "appears_in": "Early increments act as a prototype to help elicit requirements for later increments <sup>l</sup>"
+    },
+    {
+      "phrase": "system functionality",
+      "score": 0.4821,
+      "source_type": "bullet",
+      "appears_in": "Incremental development advantages <sup>l</sup> Customer value can be delivered with each increment so system functionality is available earlier <sup>l</sup>"
+    },
+    {
+      "phrase": "customer value",
+      "score": 0.3662,
+      "source_type": "bullet",
+      "appears_in": "Incremental development advantages <sup>l</sup> Customer value can be delivered with each increment so system functionality is available earlier <sup>l</sup>"
+    }
+  ]
+}

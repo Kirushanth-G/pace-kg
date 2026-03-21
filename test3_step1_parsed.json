@@ -1,0 +1,164 @@
+[
+  {
+    "slide_id": "slide_001",
+    "page_number": 1,
+    "raw_markdown": "> OCR: UNIVERSITY OF WESTMINSTER\n> OCR: Zee :o il | =\n> OCR: vvv\n> OCR: 5COSC001W — Object Oriented Programming\n> OCR: Week 5\n> OCR: Dr. Barbara Villarini\n> OCR: b.villarini@westminster.ac.uk",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "raw_markdown": "![](_page_1_Picture_0.jpeg)\n\n# **Summary**\n\n- Collections and Data Structure\n- Arrays\n- List, Queue, Map\n- Searching and Sorting\n- Linked List\n\n{2}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "raw_markdown": "![](_page_2_Picture_0.jpeg)\n\n# **Recap on Arrays**\n\n- Arrays are the fundamental mechanism for collecting multiple values.\n- An array is an ordered list o values\n\n![](_page_2_Figure_4.jpeg)\n\n- An array of size N is indexed from zero to N-1\n- This array holds 10 values that are indexed from 0 to 9\n\n{3}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "raw_markdown": "![](_page_3_Figure_0.jpeg)\n\n**Arrays**\n\n• A particular value in an array is referenced using the array name followed by the index in brackets\n\n**scores[2]** Refers to the value 85 (the 3rd value in the array)\n\n• That expression represents a place to store a single integer and can be used wherever an integer variable can be used\n\n{4}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_006",
+    "page_number": 6,
+    "raw_markdown": "![](_page_4_Picture_0.jpeg)\n\n# **Arrays**\n\n- The values held in an array are called *array elements*\n- An array stores multiple values of the same type the *element type*\n- The element type can be a primitive type or an object\n- We can create an array of integers, an array of characters, an array of String objects, an array of Coin objects, etc.\n- In Java, the array itself is an object that must be instantiated\n\n{5}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_007",
+    "page_number": 7,
+    "raw_markdown": "# **Declaring arrays**\n\n• To declare an array you will use this general form\n\n```\nint[] scores = new int[10];\ntype[] array-name= new type[size];\n```\n\n- The type of the variable scores is int[] (an array of integers)\n- The reference variable scores is set to a new array object that can hold 10 integers\n- When you declare an array, you can specify the initial values and in this case you don't use the new operator:\n\n```\nint[] scores = {77, 88, 85, 50, 67, 78, 94, 82, 74, 97}\n```\n\n{6}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_008",
+    "page_number": 8,
+    "raw_markdown": "# **Bound Checking**\n\n![](_page_6_Figure_1.jpeg)\n\n- If the array scores can hold 10 values, it can be indexed using only the numbers 0 to 9\n- If the value of count is 10, then the following reference will cause an exception to be thrown:\n\n```\nSystem.out.println (scores[count]);\n```\n\n• It's common to introduce *off-by-one errors* when using arrays **Problem**\n\n```\nfor (int index=0; index <= 10; index++)\n  scorse[index] = index*5 + epsilon;\n```\n\n• The Java interpreter throws an ArrayIndexOutOfBoundsException if an array index is out of bounds\n\n{7}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_009",
+    "page_number": 9,
+    "raw_markdown": "![](_page_7_Picture_0.jpeg)\n\n# **Length**\n\n- Each array object has a public constant called length that stores the size of the array\n- It is referenced using the array name:\n\nscores.length\n\n• Note that length holds the number of elements, not the largest index\n\n{8}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_010",
+    "page_number": 10,
+    "raw_markdown": "![](_page_8_Picture_0.jpeg)\n\n# **Arrays as Parameters**\n\n- An entire array can be passed as a parameter to a method\n- Like any other object, the reference to the array is passed, making the formal and actual parameters aliases of each other\n- Therefore, changing an array element within the method changes the original\n- An individual array element can be passed to a method as well, in which case the type of the formal parameter is the same as the element type\n\n{9}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_011",
+    "page_number": 11,
+    "raw_markdown": "![](_page_9_Picture_0.jpeg)\n\n# **Arrays of Objects**\n\n- The elements of an array can be object references\n- The following declaration reserves space to store 3 references to String objects\n\n```\nString[] words = new String[3];\n```\n\n- It does NOT create the String objects themselves\n- Initially an array of objects holds null references\n- Each object stored in an array must be instantiated separately\n\n{10}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_012",
+    "page_number": 12,
+    "raw_markdown": "![](_page_10_Picture_0.jpeg)\n\n# **Collections**\n\n- **Collection** is an object that stores data\n  - the objects stored are called **elements**\n  - some collections maintain an ordering; some allow duplicates\n  - typical operations: *add*, *remove*, *clear*, *contains* (search), *size*\n  - examples found in the Java class libraries:\n    - **ArrayList, LinkedList, HashMap, TreeSet, PriorityQueue**\n  - all collections are in the **java.util** package **import java.util.\\*;**\n\n{11}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_013",
+    "page_number": 13,
+    "raw_markdown": "![](_page_11_Picture_0.jpeg)\n\n# **List**\n\n- A collection storing an ordered sequence of elements\n  - each element is accessible by a 0-based **index**\n  - a list has a **size** (number of elements that have been added)\n  - elements can be added to the front, back, or elsewhere\n  - in Java, a list can be represented as an **ArrayList** object\n\n![](_page_11_Figure_7.jpeg)\n\n{12}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_014",
+    "page_number": 14,
+    "raw_markdown": "# **Array Lists in Java**\n\n- You don't always know how many inputs you will have.\n- An array list offers two significant advantages:\n  - 1. Array lists can grow and shrink as needed. It changes size dynamically as new elements are added – Dynamic Resizing\n\n- 2. The ArrayList class supplies methods for common tasks, such as inserting and removing elements.\n- In order to use array lists you need to:\n  - Use the statement import **java.util.ArrayList**\n\n{13}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_015",
+    "page_number": 15,
+    "raw_markdown": "![](_page_13_Picture_0.jpeg)\n\n# **Declaring and using Array Lists**\n\n• Any list of String:\n\n```\nArrayList<type> nameArrayList = new ArrayList<type>();\nVariable type Variable name An array list object size 0\n```\n\n• To construct an array list\n\n```\nnew ArrayList<typeName>()\n```\n\n• To access an element\n\n```\nnameArrayList .get(index) \nnameArrayList .set(index, value)\n```\n\n{14}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_016",
+    "page_number": 16,
+    "raw_markdown": "![](_page_14_Picture_0.jpeg)\n\n# **ArrayList methods**\n\n| add(value)        | appends value at end of list                                                                |  |\n|-------------------|---------------------------------------------------------------------------------------------|--|\n| add(index, value) | inserts given value just before the given index,<br>shifting subsequent values to the right |  |\n| clear()           | removes all elements of the list                                                            |  |\n| indexOf(value)    | returns first index where given value is found<br>in list (-1 if not found)                 |  |\n| get(index)        | returns the value at given index                                                            |  |\n| remove(index)     | removes/returns value at given index, shifting<br>subsequent values to the left             |  |\n| set(index, value) | replaces value at given index with given value                                              |  |\n| size()            | returns the number of elements in list                                                      |  |\n| toString()        | returns a string representation of the list<br>such as \"[3, 42, -7, 15]\"                    |  |\n\n{15}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_017",
+    "page_number": 17,
+    "raw_markdown": "![](_page_15_Picture_0.jpeg)\n\n![](_page_15_Picture_1.jpeg)\n\n| addAll(list)<br>addAll(index, list) | adds all elements from the given list to this list               |  |\n|-------------------------------------|------------------------------------------------------------------|--|\n|                                     | (at the end of the list, or inserts them at the given index)     |  |\n| contains(value)                     | returns true if given value is found somewhere in this list      |  |\n| containsAll(list)                   | returns true if this list contains every element from given list |  |\n| equals(list)                        | returns true if given other list contains the same elements      |  |\n| lastIndexOf(value)                  | returns last index value is found in list (-1 if not found)      |  |\n| remove(value)                       | finds and removes the given value from this list                 |  |\n| removeAll(list)                     | removes any elements found in the given list from this list      |  |\n| retainAll(list)                     | removes any elements not<br>found in given list from this list   |  |\n| subList(from, to)                   | returns the sub-portion of the list between                      |  |\n|                                     | indexes from<br>(inclusive) and to<br>(exclusive)                |  |\n|                                     |                                                                  |  |\n| toArray()                           | returns the elements in this list as an array                    |  |\n\n{16}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_018",
+    "page_number": 18,
+    "raw_markdown": "# **ArrayList vs Array**\n\n```\n• construction\n   String[] list= new String[5];\n   ArrayList<String> list = new ArrayList<String>();\n• storing a value\n   list[0] = \"Jessica\";\n   list.add(\"Jessica\");\n• retrieving a value\n   String s = list[0];\n   String s = list.get(0);\n• doing something to each value that starts with \"B\"\n   for (int i = 0; i < list.length; i++) {\n    if (list[i].startsWith(\"B\")) { ... }\n   }\n   for (int i = 0; i < list.size(); i++) {\n    if (list.get(i).startsWith(\"B\")) { ... }\n   }\n• seeing whether the value \"Benson\" is found\n   for (int i = 0; i < list.length; i++) {\n    if (list[i].equals(\"Benson\")) { ... }\n   }\n```\n\n**if (list.contains(\"Benson\")) { ... }**\n\n{17}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_019",
+    "page_number": 19,
+    "raw_markdown": "# **An other collection: Set Interface**\n\n- A Set is a collection, it is an unordered list and has no duplicates.\n- It is an interface so you can 't say new Set( )\n- There are four implementations:\n  - HashSet is best for most purposes, backed by a hash table\n  - TreeSet guarantees that an iterator will return elements in sorted order\n  - LinkedHashSet guarantees that an iterator will return elements in the order they were inserted\n  - AbstractSet is a \"helper\" abstract class for new implementations\n\n```\nSet s = new HashSet( );\nHashSet s = new HashSet( );\n```\n\n• https://docs.oracle.com/javase/8/docs/api/java/util/Set.html\n\n{18}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_020",
+    "page_number": 20,
+    "raw_markdown": "# **Map interface**\n\n![](_page_18_Picture_1.jpeg)\n\n- A Map is an object that maps keys to values: Map<Key, Value>\n- A map cannot contain duplicate keys and each key can map to at most one value\n- Map is an interface; you can't say new Map( )\n- Here are two implementations:\n  - HashMap is the faster\n  - TreeMap guarantees the order of iteration\n\n```\nMap map<KeyType, ValueType> = new HashMap <KeyType,ValueType> ( );\n```\n\n• https://docs.oracle.com/javase/8/docs/api/java/util/Map.html\n\n{19}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_021",
+    "page_number": 21,
+    "raw_markdown": "![](_page_19_Picture_0.jpeg)\n\n# **Queue**\n\n- A collection whose elements are added at one end (the *rear* or *tail* of the queue) and removed from the other end (the *front* or *head* of the queue)\n- A queue is a *FIFO* (first in, first out) data structure\n- Any waiting line is a queue:\n  - The check-out line at a grocery store\n  - The cars at a stop light\n  - An assembly line\n\nhttps://docs.oracle.com/javase/7/docs/api/java/util/Queue.html\n\n{20}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_022",
+    "page_number": 22,
+    "raw_markdown": "![](_page_20_Picture_0.jpeg)\n\n# **Operation on a Queue**\n\n| Operation | Description                                    |\n|-----------|------------------------------------------------|\n| dequeue   | Removes an element from the front of the queue |\n| enqueue   | Adds an element to the rear of the queue       |\n| first     | Examines the element at the front of the queue |\n| isEmpty   | Determines whether the queue is empty          |\n| size      | Determines the number of elements in the queue |\n| toString  | Returns a string representation of the queue   |\n\n{21}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_023",
+    "page_number": 23,
+    "raw_markdown": "![](_page_21_Picture_0.jpeg)\n\n# **Searching and sorting**\n\n- Fundamental problems in computer science and programming\n- Sorting done to make searching easier\n- Multiple different algorithms to solve the same problem\n  - How do we know which algorithm is \"better\"?\n\n{22}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_024",
+    "page_number": 24,
+    "raw_markdown": "# **In Java**\n\n![](_page_22_Picture_1.jpeg)\n\n• Class Arrays in java.util has many useful array methods:\n\n| Method name                                       | Description                                                                                                   |\n|---------------------------------------------------|---------------------------------------------------------------------------------------------------------------|\n| binarySearch(array, value)                        | returns the index of the given value in a sorted<br>array (or < 0 if not found)                               |\n| binarySearch(array,<br>minIndex, maxIndex, value) | returns index of given value in a sorted<br>array<br>between indexes min<br>/max<br>-<br>1 (< 0 if not found) |\n| copyOf(array, length)                             | returns a new resized copy of an array                                                                        |\n| equals(array1, array2)                            | returns true<br>if the two arrays contain same<br>elements in the same order                                  |\n| fill(array, value)                                | sets every element to the given value                                                                         |\n| sort(array)                                       | arranges the elements into sorted order                                                                       |\n| toString(array)                                   | returns a string representing the array, such as<br>\"[10, 30, -25, 17]\"                                       |\n\n• Syntax:Arrays.**methodName**(**parameters**)\n\n{23}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_025",
+    "page_number": 25,
+    "raw_markdown": "![](_page_23_Picture_0.jpeg)\n\n# **Comparable in Java**\n\n- Very useful for sorting collection.\n- We can sort an array/list of primitive types\n- We can sort array/list of custom objects.\n- Let's see how it works through the following example\n\n{24}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_026",
+    "page_number": 26,
+    "raw_markdown": "![](_page_24_Picture_0.jpeg)\n\n# **Sorting algorithms**\n\n- Sorting algorithms are used to arrange random data into some order\n  - can be solved in many ways:\n    - there are many sorting algorithms\n    - some are faster/slower than others\n    - some use more/less memory than others\n    - some work better with specific kinds of data\n    - some can utilize multiple computers / processors, ...\n  - *comparison-based sorting* : determining order by comparing pairs of elements:\n    - <, >, compareTo, …\n\n{25}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_027",
+    "page_number": 27,
+    "raw_markdown": "![](_page_25_Picture_0.jpeg)\n\n# **Sorting algorithms**\n\n- **bubble sort**: swap adjacent pairs that are out of order\n- **selection sort**: look for the smallest element, move to front\n- **insertion sort**: build an increasingly large sorted front portion\n- **merge sort**: recursively divide the array in half and sort it\n- **heap sort**: place the values into a sorted tree structure\n- **quick sort**: recursively partition array based on a middle value\n\n#### other specialized sorting algorithms:\n\n- **bucket sort**: cluster elements into smaller groups, sort them\n- **radix sort**: sort integers by last digit, then 2nd to last, then ...\n- ...\n\n{26}",
+    "doc_id": "test3"
+  },
+  {
+    "slide_id": "slide_028",
+    "page_number": 28,
+    "raw_markdown": "![](_page_26_Picture_0.jpeg)\n\n# **Linked List**\n\nA *linked* data structure consists of items, called Nodes, that are linked to other items\n\n*Singly linked list:* each item points to the next item\n\n- A linked list is an ordered sequence of items called *nodes*\n  - A node is the basic unit of representation in a linked list\n- A *node* in a *singly linked list* consists of two fields:\n  - A *data* portion\n  - A *link (pointer)* to the *next* node in the structure\n- The first item (node) in the linked list is accessed via a *front* or *head*  pointer\n  - The linked list is defined by its head (this is its starting point)\n\n{27}",
+    "doc_id": "test3"
+  }
+]

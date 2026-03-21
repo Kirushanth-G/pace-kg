@@ -1,0 +1,110 @@
+[
+  {
+    "slide_id": "slide_001",
+    "page_number": 1,
+    "raw_markdown": "> OCR: 5SENG0O07W\n> OCR: Software Engineering Principles\n> OCR: and Practice\n> OCR: Week 5 Lecture\n> OCR: Software Engineering Principles: Modules,\n> OCR: interfaces, separation of concerns, and programming\n> OCR: patterns. Practical aspects of abstractions, invariants.",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "raw_markdown": "# From Principles to Tools\n\nPrinciples form the basis of methods, techniques, methodologies and tools\n\n![](_page_1_Figure_2.jpeg)\n\n{2}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "raw_markdown": "## INTRODUCING THE ISSUES\n\n• Seven important principles that may be used in all phases of software development • **Rigor and formality**\n\n- Separation of concerns\n- Modularity\n- Abstraction\n- Anticipation of change\n- Generality\n- Incremental Development\n\n• Modularity is the cornerstone principle supporting software design\n\n{3}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "raw_markdown": "# Main principles for Software Development\n\n- Rigor and formality\n- Separation of concerns\n- Modularity\n- Abstraction\n- Anticipation of change\n- Generality\n- Incremental Development\n\n{4}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_006",
+    "page_number": 6,
+    "raw_markdown": "## Separation of concerns\n\n- Rigor and formality\n- **Separation of concerns**\n- Modularity\n- Abstraction\n- Anticipation of change\n- Generality\n- Incremental Development\n- To dominate the complexity, separate the issues to concentrate on one at a time\n- \"Divide & conquer\" (divide et impera)\n- Supports parallelization/synchronisations of efforts and separation of responsibilities\n\n{5}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_007",
+    "page_number": 7,
+    "raw_markdown": "# Separation in Product\n\n- Keep product requirements separate\n  - functionality\n  - performance\n  - user interface and usability\n\n{6}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_008",
+    "page_number": 8,
+    "raw_markdown": "# What to Separate\n\n- Time\n  - Life cycle models\n- Qualities (qualitative analysis of software)\n- Views\n  - activity versus control\n- Problem Domain from Implementation Domain\n\n{7}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_009",
+    "page_number": 9,
+    "raw_markdown": "## Modularity\n\n- Rigor and formality\n- Separation of concerns\n- **Modularity**\n- Abstraction\n- Anticipation of change\n- Generality\n- Incremental Development\n- A complex system (S) may be divided into simpler subsystems called modules (M).\n- A system (S) that is composed of modules (M1 … Mn) is called modular.\n- Modularity supports separation of concerns\n  - dealing with a module we can ignore details of other modules\n\n{8}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_010",
+    "page_number": 10,
+    "raw_markdown": "# Cohesion and coupling: how to tackle these\n\n- Each module Mi from M1 …. Mn should be highly cohesive\n  - module Mi is a \"self-contained\" meaningful unit, a system itself, which is a subsystem of a given system S.\n  - Components of a module are closely related to one another\n- Modules should exhibit low coupling\n  - modules have low interactions with others\n  - understandable separately\n\n{9}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_011",
+    "page_number": 11,
+    "raw_markdown": "# Cohesion and coupling: how to tackle these\n\n- On the contrary,\n- Modules should exhibit low coupling\n  - modules should have low interactions with others (otherwise, they cannot be designed on their own, e.g. abstraction from the other modules and the connectivity would not work)\n  - Modules are understandable separately\n\n{10}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_012",
+    "page_number": 12,
+    "raw_markdown": "# Cohesion & Coupling: a visual representation\n\n![](_page_10_Picture_1.jpeg)\n\n(a) Avoid: high coupling of the modules M1 – M3 and low cohesion within them\n\n![](_page_10_Picture_3.jpeg)\n\n(b) Target: high cohesion within modules M1 – M3 and low coupling\n\n{11}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_013",
+    "page_number": 13,
+    "raw_markdown": "## Abstraction\n\n- Rigor and formality\n- Separation of concerns\n- Modularity\n- **Abstraction**\n- Anticipation of change\n- Generality\n- Incremental Development\n- Identify the important aspects of a phenomenon and ignore its details\n- Linked closely to separation of concerns\n- Type of abstraction to apply depends on purpose\n- Example: the user interface of a watch (its buttons) abstracts from the watch's internals for the purpose of setting time.\n\n{12}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_014",
+    "page_number": 14,
+    "raw_markdown": "# Abstraction ignores details\n\n- Abstraction: we have done it already many times!\n- You make your own abstraction introducing the context of the system,\n- You make your abstractions when prioritise requirements\n- You make your abstractions when you define data types, i.e. defining the precision\n\n{13}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_015",
+    "page_number": 15,
+    "raw_markdown": "# LINKING TOGETHER\n\n- Methodology:\n  - Increments\n    - Development & Testing\n\nCh. 3 14\n\n{14}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_016",
+    "page_number": 16,
+    "raw_markdown": "# Levels of testing\n\n• Unit testing:\n\nfunctions, member functions etc\n\n• Module testing:\n\nclasses, les etc\n\n• Sub-system testing:\n\nlibraries etc\n\n- System testing\n- Integration testing\n- Acceptance testing, alpha and beta testing\n- Review and Maintenance\n\n{15}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_017",
+    "page_number": 17,
+    "raw_markdown": "#### **Incremental development**\n\n- <sup>l</sup> Rather than deliver the system in a single attempt, **the development and delivery is broken down into increments** with each increment delivering part of the required functionality\n- <sup>l</sup> **User requirements are prioritised** and the highest priority requirements are included in early increments\n- <sup>l</sup> **Once the development of an increment is started, the requirements are frozen** though requirements for later increments can continue to evolve\n\n{16}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_018",
+    "page_number": 18,
+    "raw_markdown": "### **Incremental development**\n\n![](_page_16_Figure_1.jpeg)\n\n{17}",
+    "doc_id": "softwareDprinciple"
+  },
+  {
+    "slide_id": "slide_019",
+    "page_number": 19,
+    "raw_markdown": "#### **Incremental development advantages**\n\n- <sup>l</sup> **Customer value** can be delivered with each increment so system functionality is available earlier\n- <sup>l</sup> **Early increments** act as a prototype to help elicit requirements for later increments\n- <sup>l</sup> Lower risk of overall project failure\n- <sup>l</sup> **The highest priority system services** tend to receive the most testing\n\n{18}",
+    "doc_id": "softwareDprinciple"
+  }
+]

@@ -2,16 +2,16 @@
   "doc_id": "CS1050-L03",
   "pipeline": "PACE-KG-v1",
   "total_slides": 22,
-  "total_concepts": 24,
-  "total_edges": 19,
+  "total_concepts": 23,
+  "total_edges": 21,
   "relation_distribution": {
     "isPartOf": 6,
+    "isGeneralizationOf": 4,
     "isDefinedAs": 3,
     "appliedIn": 3,
-    "isGeneralizationOf": 3,
     "causeOf": 2,
-    "isPrerequisiteOf": 1,
-    "contrastedWith": 1
+    "contrastedWith": 2,
+    "isPrerequisiteOf": 1
   },
   "nodes": [
     {
@@ -22,7 +22,7 @@
       ],
       "source_type": "bullet",
       "keyphrase_score": 0.6492,
-      "final_weight": 0.858,
+      "final_weight": 0.7061,
       "needs_review": false
     },
     {
@@ -34,6 +34,20 @@
       "source_type": "bullet",
       "keyphrase_score": 0.9473,
       "final_weight": 0.7006,
+      "needs_review": true
+    },
+    {
+      "name": "collection framework",
+      "aliases": [
+        "collections framework"
+      ],
+      "slide_ids": [
+        "slide_003",
+        "slide_009"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 0.8997,
+      "final_weight": 0.6703,
       "needs_review": true
     },
     {
@@ -63,20 +77,6 @@
       "needs_review": false
     },
     {
-      "name": "collection framework",
-      "aliases": [
-        "collections framework"
-      ],
-      "slide_ids": [
-        "slide_003",
-        "slide_009"
-      ],
-      "source_type": "heading",
-      "keyphrase_score": 0.8997,
-      "final_weight": 0.6233,
-      "needs_review": true
-    },
-    {
       "name": "collections",
       "aliases": [],
       "slide_ids": [
@@ -86,17 +86,6 @@
       "keyphrase_score": 0.544,
       "final_weight": 0.6117,
       "needs_review": true
-    },
-    {
-      "name": "adts",
-      "aliases": [],
-      "slide_ids": [
-        "slide_004"
-      ],
-      "source_type": "heading",
-      "keyphrase_score": 1.0,
-      "final_weight": 0.5907,
-      "needs_review": false
     },
     {
       "name": "load factor",
@@ -130,6 +119,17 @@
       "source_type": "bullet",
       "keyphrase_score": 0.7373,
       "final_weight": 0.4427,
+      "needs_review": false
+    },
+    {
+      "name": "adts",
+      "aliases": [],
+      "slide_ids": [
+        "slide_004"
+      ],
+      "source_type": "heading",
+      "keyphrase_score": 1.0,
+      "final_weight": 0.4407,
       "needs_review": false
     },
     {
@@ -187,17 +187,6 @@
       "keyphrase_score": 0.7952,
       "final_weight": 0.3456,
       "needs_review": true
-    },
-    {
-      "name": "hashmap",
-      "aliases": [],
-      "slide_ids": [
-        "slide_014"
-      ],
-      "source_type": "heading",
-      "keyphrase_score": 0.5577,
-      "final_weight": 0.3428,
-      "needs_review": false
     },
     {
       "name": "threshold",
@@ -302,6 +291,26 @@
       "material_level": null
     },
     {
+      "subject": "adts",
+      "relation": "contrastedWith",
+      "object": "collections",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.9,
+      "source": "extraction",
+      "slide_id": "slide_004",
+      "material_level": null
+    },
+    {
+      "subject": "each type of java collection",
+      "relation": "isPartOf",
+      "object": "collection framework",
+      "evidence": "Performance Charateristics of Collection Framework Each type of Java Collection has a different level of functionality and memory overhead",
+      "confidence": 0.9,
+      "source": "extraction",
+      "slide_id": "slide_009",
+      "material_level": null
+    },
+    {
       "subject": "load factor",
       "relation": "causeOf",
       "object": "rehashing",
@@ -373,6 +382,16 @@
     },
     {
       "subject": "abstract data types",
+      "relation": "isGeneralizationOf",
+      "object": "collections",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "source": "extraction",
+      "slide_id": "slide_004",
+      "material_level": null
+    },
+    {
+      "subject": "abstract data types",
       "relation": "isDefinedAs",
       "object": "adts",
       "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
@@ -399,16 +418,6 @@
       "confidence": 0.8,
       "source": "extraction",
       "slide_id": "slide_005",
-      "material_level": null
-    },
-    {
-      "subject": "each type of java collection",
-      "relation": "isPartOf",
-      "object": "collection framework",
-      "evidence": "Each type of Java Collection has a different level of functionality and memory overhead",
-      "confidence": 0.8,
-      "source": "extraction",
-      "slide_id": "slide_009",
       "material_level": null
     },
     {
@@ -495,6 +504,26 @@
     },
     {
       "triple_id": "t00002",
+      "subject": "adts",
+      "relation": "contrastedWith",
+      "object": "collections",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.9,
+      "slide_id": "slide_004",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00003",
+      "subject": "each type of java collection",
+      "relation": "isPartOf",
+      "object": "collection framework",
+      "evidence": "Performance Charateristics of Collection Framework Each type of Java Collection has a different level of functionality and memory overhead",
+      "confidence": 0.9,
+      "slide_id": "slide_009",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00004",
       "subject": "load factor",
       "relation": "causeOf",
       "object": "rehashing",
@@ -504,7 +533,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00003",
+      "triple_id": "t00005",
       "subject": "capacity",
       "relation": "causeOf",
       "object": "rehashing",
@@ -514,7 +543,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00004",
+      "triple_id": "t00006",
       "subject": "collections",
       "relation": "contrastedWith",
       "object": "adts",
@@ -524,7 +553,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00005",
+      "triple_id": "t00007",
       "subject": "collections framework",
       "relation": "appliedIn",
       "object": "jdk",
@@ -534,7 +563,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00006",
+      "triple_id": "t00008",
       "subject": "collections framework",
       "relation": "isPartOf",
       "object": "java language environment",
@@ -544,7 +573,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00007",
+      "triple_id": "t00009",
       "subject": "adts",
       "relation": "isGeneralizationOf",
       "object": "collections",
@@ -554,7 +583,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00008",
+      "triple_id": "t00010",
       "subject": "adts",
       "relation": "isDefinedAs",
       "object": "abstract data types",
@@ -564,7 +593,17 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00009",
+      "triple_id": "t00011",
+      "subject": "abstract data types",
+      "relation": "isGeneralizationOf",
+      "object": "collections",
+      "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT)",
+      "confidence": 0.8,
+      "slide_id": "slide_004",
+      "source": "extraction"
+    },
+    {
+      "triple_id": "t00012",
       "subject": "abstract data types",
       "relation": "isDefinedAs",
       "object": "adts",
@@ -574,7 +613,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00010",
+      "triple_id": "t00013",
       "subject": "abstract data types",
       "relation": "isGeneralizationOf",
       "object": "adts",
@@ -584,7 +623,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00011",
+      "triple_id": "t00014",
       "subject": "java collections framework",
       "relation": "isPartOf",
       "object": "jdk",
@@ -594,17 +633,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00012",
-      "subject": "each type of java collection",
-      "relation": "isPartOf",
-      "object": "collection framework",
-      "evidence": "Each type of Java Collection has a different level of functionality and memory overhead",
-      "confidence": 0.8,
-      "slide_id": "slide_009",
-      "source": "extraction"
-    },
-    {
-      "triple_id": "t00013",
+      "triple_id": "t00015",
       "subject": "object",
       "relation": "isPartOf",
       "object": "jvm",
@@ -614,7 +643,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00014",
+      "triple_id": "t00016",
       "subject": "object",
       "relation": "appliedIn",
       "object": "jvm",
@@ -624,7 +653,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00015",
+      "triple_id": "t00017",
       "subject": "search",
       "relation": "isPrerequisiteOf",
       "object": "insertion and deletion",
@@ -634,7 +663,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00016",
+      "triple_id": "t00018",
       "subject": "collection framework",
       "relation": "isGeneralizationOf",
       "object": "each type of java collection",
@@ -644,7 +673,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00017",
+      "triple_id": "t00019",
       "subject": "load factor",
       "relation": "isPartOf",
       "object": "threshold",
@@ -654,7 +683,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00018",
+      "triple_id": "t00020",
       "subject": "capacity",
       "relation": "isPartOf",
       "object": "threshold",
@@ -664,7 +693,7 @@
       "source": "extraction"
     },
     {
-      "triple_id": "t00019",
+      "triple_id": "t00021",
       "subject": "jvm",
       "relation": "appliedIn",
       "object": "object",
@@ -674,5 +703,5 @@
       "source": "extraction"
     }
   ],
-  "srs_pool_size": 19
+  "srs_pool_size": 21
 }

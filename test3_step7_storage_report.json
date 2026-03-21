@@ -1,14 +1,9 @@
 {
-  "doc_id": "CS1050-L03",
-  "total_slides": 22,
+  "doc_id": "test3",
+  "total_slides": 27,
   "slides_stored": [
     {
       "slide_id": "slide_001",
-      "extraction_edges": 0,
-      "expansion_edges": 0
-    },
-    {
-      "slide_id": "slide_002",
       "extraction_edges": 0,
       "expansion_edges": 0
     },
@@ -19,12 +14,12 @@
     },
     {
       "slide_id": "slide_004",
-      "extraction_edges": 2,
+      "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
       "slide_id": "slide_005",
-      "extraction_edges": 1,
+      "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
@@ -34,8 +29,8 @@
     },
     {
       "slide_id": "slide_007",
-      "extraction_edges": 0,
-      "expansion_edges": 0
+      "extraction_edges": 2,
+      "expansion_edges": 3
     },
     {
       "slide_id": "slide_008",
@@ -44,27 +39,27 @@
     },
     {
       "slide_id": "slide_009",
-      "extraction_edges": 1,
+      "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
       "slide_id": "slide_010",
+      "extraction_edges": 2,
+      "expansion_edges": 1
+    },
+    {
+      "slide_id": "slide_011",
       "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
-      "slide_id": "slide_011",
-      "extraction_edges": 2,
-      "expansion_edges": 2
-    },
-    {
       "slide_id": "slide_012",
-      "extraction_edges": 1,
+      "extraction_edges": 0,
       "expansion_edges": 0
     },
     {
       "slide_id": "slide_013",
-      "extraction_edges": 0,
+      "extraction_edges": 2,
       "expansion_edges": 0
     },
     {
@@ -74,8 +69,8 @@
     },
     {
       "slide_id": "slide_015",
-      "extraction_edges": 0,
-      "expansion_edges": 0
+      "extraction_edges": 1,
+      "expansion_edges": 2
     },
     {
       "slide_id": "slide_016",
@@ -104,17 +99,47 @@
     },
     {
       "slide_id": "slide_021",
-      "extraction_edges": 0,
+      "extraction_edges": 1,
       "expansion_edges": 0
     },
     {
       "slide_id": "slide_022",
       "extraction_edges": 0,
       "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_023",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_024",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_025",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_026",
+      "extraction_edges": 1,
+      "expansion_edges": 1
+    },
+    {
+      "slide_id": "slide_027",
+      "extraction_edges": 0,
+      "expansion_edges": 0
+    },
+    {
+      "slide_id": "slide_028",
+      "extraction_edges": 2,
+      "expansion_edges": 1
     }
   ],
-  "total_concepts_stored": 18,
-  "total_extraction_edges": 7,
-  "total_expansion_edges": 2,
+  "total_concepts_stored": 48,
+  "total_extraction_edges": 11,
+  "total_expansion_edges": 8,
   "errors": []
 }
