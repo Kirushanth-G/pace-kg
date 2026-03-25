@@ -2,6 +2,8 @@ main.*
 apikey.txt
 *.pdf
 *.docx
+*.ipynb
+Colabresults/
 
 # Python
 __pycache__/
@@ -46,3 +48,4 @@ dist/
 # Redis and Neo4j
 redis_data/
 neo4j_data/
+

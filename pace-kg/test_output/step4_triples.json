@@ -1,0 +1,967 @@
+[
+  {
+    "slide_id": "slide_003",
+    "page_number": 3,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "collections",
+      "collection java language environment",
+      "most common composite data structures",
+      "collections framework",
+      "type collection quiz",
+      "basic data type",
+      "jdk",
+      "most programming languages",
+      "several classes",
+      "individual objects"
+    ],
+    "raw_count": 6,
+    "raw_triples": [
+      {
+        "subject": "collections",
+        "relation": "isPartOf",
+        "object": "most common composite data structures",
+        "evidence": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array",
+        "confidence": 0.8
+      },
+      {
+        "subject": "collection java language environment",
+        "relation": "isDefinedAs",
+        "object": "jdk",
+        "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+        "confidence": 0.9
+      },
+      {
+        "subject": "collections framework",
+        "relation": "isPartOf",
+        "object": "jdk",
+        "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+        "confidence": 0.9
+      },
+      {
+        "subject": "individual objects",
+        "relation": "isPartOf",
+        "object": "collections",
+        "evidence": "In OOP, a composite data structures must group together a set of individual objects and represent them as a single entity",
+        "confidence": 0.8
+      },
+      {
+        "subject": "collections",
+        "relation": "isExampleOf",
+        "object": "most common composite data structures",
+        "evidence": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array",
+        "confidence": 0.7
+      },
+      {
+        "subject": "basic data type",
+        "relation": "contrastedWith",
+        "object": "collections",
+        "evidence": "While a string is also a composite data structure, most programming languages treat it as a basic data type and provide native support for manipulation through common operators such as = for value assignment and + for string concatenation",
+        "confidence": 0.6
+      }
+    ],
+    "validated_count": 4,
+    "triples": [
+      {
+        "subject": "collections",
+        "relation": "isPartOf",
+        "object": "most common composite data structures",
+        "evidence": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "collection java language environment",
+        "relation": "isDefinedAs",
+        "object": "jdk",
+        "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+        "confidence": 0.9,
+        "source": "extraction"
+      },
+      {
+        "subject": "collections framework",
+        "relation": "isPartOf",
+        "object": "jdk",
+        "evidence": "Java language environment (JDK) provides a Collections Framework that hold together several classes and interfaces of the type collection",
+        "confidence": 0.9,
+        "source": "extraction"
+      },
+      {
+        "subject": "collections",
+        "relation": "isExampleOf",
+        "object": "most common composite data structures",
+        "evidence": "Collections Composite data structures are essential for programmers to store and manipulate related data together The most common composite data structures is the array",
+        "confidence": 0.7,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_004",
+    "page_number": 4,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "collections",
+      "abstract data types (adt) main",
+      "adts",
+      "familiar composite data structures",
+      "specific adt"
+    ],
+    "raw_count": 3,
+    "raw_triples": [
+      {
+        "subject": "abstract data types (adt) main",
+        "relation": "isGeneralizationOf",
+        "object": "specific adt",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.8
+      },
+      {
+        "subject": "familiar composite data structures",
+        "relation": "isExampleOf",
+        "object": "collections",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.9
+      },
+      {
+        "subject": "adts",
+        "relation": "isPartOf",
+        "object": "collections",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 3,
+    "triples": [
+      {
+        "subject": "abstract data types (adt) main",
+        "relation": "isGeneralizationOf",
+        "object": "specific adt",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "familiar composite data structures",
+        "relation": "isExampleOf",
+        "object": "collections",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.9,
+        "source": "extraction"
+      },
+      {
+        "subject": "adts",
+        "relation": "isPartOf",
+        "object": "collections",
+        "evidence": "Collections vs ADTs There are familiar composite data structures behaving as collections called Abstract Data Types (ADT) Main among these are the List, Stack (LIFO), Queue (FIFO), Tree, and Table",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_005",
+    "page_number": 5,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "java pre- and post- collections",
+      "java collections framework",
+      "collection",
+      "collection interface",
+      "java.util",
+      "object-oriented program designs",
+      "java.util.map",
+      "common interface",
+      "jdk",
+      "hashtables",
+      "utility classes",
+      "classes"
+    ],
+    "raw_count": 10,
+    "raw_triples": [
+      {
+        "subject": "java collections framework",
+        "relation": "isGeneralizationOf",
+        "object": "collection",
+        "evidence": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+        "confidence": 0.8
+      },
+      {
+        "subject": "collection interface",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.9
+      },
+      {
+        "subject": "java.util",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.8
+      },
+      {
+        "subject": "java.util.map",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.9
+      },
+      {
+        "subject": "hashtables",
+        "relation": "isExampleOf",
+        "object": "collection",
+        "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+        "confidence": 0.7
+      },
+      {
+        "subject": "java pre- and post- collections",
+        "relation": "contrastedWith",
+        "object": "java collections framework",
+        "evidence": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+        "confidence": 0.6
+      },
+      {
+        "subject": "collection",
+        "relation": "isDefinedAs",
+        "object": "java collections framework",
+        "evidence": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+        "confidence": 0.5
+      },
+      {
+        "subject": "jdk",
+        "relation": "causeOf",
+        "object": "java collections framework",
+        "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+        "confidence": 0.4
+      },
+      {
+        "subject": "utility classes",
+        "relation": "isPartOf",
+        "object": "jdk",
+        "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+        "confidence": 0.7
+      },
+      {
+        "subject": "classes",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+        "confidence": 0.6
+      }
+    ],
+    "validated_count": 6,
+    "triples": [
+      {
+        "subject": "java collections framework",
+        "relation": "isGeneralizationOf",
+        "object": "collection",
+        "evidence": "Java pre- and post- Collections Object-oriented program designs can benefit from a framework of classes providing the functionality of a collection if they all perform similar tasks in a similar manner",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "collection interface",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.9,
+        "source": "extraction"
+      },
+      {
+        "subject": "java.util",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "java.util.map",
+        "relation": "isPartOf",
+        "object": "java collections framework",
+        "evidence": "In the Java Collections Framework, there are 2 main root interface classes: 1. Collection interface (java.util.Collection) 2. Map interface (java.util.Map)",
+        "confidence": 0.9,
+        "source": "extraction"
+      },
+      {
+        "subject": "hashtables",
+        "relation": "isExampleOf",
+        "object": "collection",
+        "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+        "confidence": 0.7,
+        "source": "extraction"
+      },
+      {
+        "subject": "utility classes",
+        "relation": "isPartOf",
+        "object": "jdk",
+        "evidence": "Originally, JDK provided the ability to group objects through Arrays (as a native language feature) and Vectors or Hashtables (as utility classes)",
+        "confidence": 0.7,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_008",
+    "page_number": 8,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "collection framework",
+      "collection",
+      "advantages",
+      "abstraction and encapsulation increased program performance",
+      "high-performance implementations",
+      "essential data structures",
+      "oop concepts",
+      "hashset",
+      "arraylist",
+      "all the implementation classes",
+      "conceptually abstract methods",
+      "run-time efficiency"
+    ],
+    "raw_count": 8,
+    "raw_triples": [
+      {
+        "subject": "collection framework",
+        "relation": "isDefinedAs",
+        "object": "essential data structures",
+        "evidence": "All the implementation classes have some common set of methods",
+        "confidence": 0.8
+      },
+      {
+        "subject": "abstraction and encapsulation increased program performance",
+        "relation": "isPartOf",
+        "object": "oop concepts",
+        "evidence": "Due to the use of a common set of conceptually abstract methods, programmers can effectively use the OOP concepts of Abstraction and Encapsulation",
+        "confidence": 0.9
+      },
+      {
+        "subject": "high-performance implementations",
+        "relation": "causeOf",
+        "object": "run-time efficiency",
+        "evidence": "Availability of high-performance implementations of essential data structures and algorithms improves both memory use and run-time efficiency",
+        "confidence": 0.95
+      },
+      {
+        "subject": "collection framework",
+        "relation": "isGeneralizationOf",
+        "object": "arraylist",
+        "evidence": "The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+        "confidence": 0.7
+      },
+      {
+        "subject": "collection framework",
+        "relation": "isGeneralizationOf",
+        "object": "hashset",
+        "evidence": "The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+        "confidence": 0.7
+      },
+      {
+        "subject": "high-performance implementations",
+        "relation": "isPartOf",
+        "object": "collection framework",
+        "evidence": "Availability of high-performance implementations of essential data structures and algorithms improves both memory use and run-time efficiency",
+        "confidence": 0.8
+      },
+      {
+        "subject": "collection",
+        "relation": "isPartOf",
+        "object": "collection framework",
+        "evidence": "The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+        "confidence": 0.9
+      },
+      {
+        "subject": "advantages",
+        "relation": "isPartOf",
+        "object": "collection framework",
+        "evidence": "Advantages of the Collection Framework Consistent API: The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 1,
+    "triples": [
+      {
+        "subject": "advantages",
+        "relation": "isPartOf",
+        "object": "collection framework",
+        "evidence": "Advantages of the Collection Framework Consistent API: The API has a basic set of interfaces (Collection, Set, List, Queue, Deque, Map, etc) and a set of classes that implement these interfaces (HashSet, TreeSet, ArrayList, LinkedList, ArrayDeque, HashMap, TreeMap, Vector, etc)",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_009",
+    "page_number": 9,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "collection framework",
+      "java collection",
+      "collection",
+      "performance charateristics",
+      "significant additional memory"
+    ],
+    "raw_count": 0,
+    "raw_triples": [],
+    "validated_count": 0,
+    "triples": []
+  },
+  {
+    "slide_id": "slide_010",
+    "page_number": 10,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "hashmap class",
+      "hashmap<key, value> class",
+      "java map interface",
+      "key, value",
+      "implementation"
+    ],
+    "raw_count": 4,
+    "raw_triples": [
+      {
+        "subject": "hashmap class",
+        "relation": "isDefinedAs",
+        "object": "hashmap<key, value> class",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.8
+      },
+      {
+        "subject": "hashmap<key, value> class",
+        "relation": "isImplementationOf",
+        "object": "java map interface",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.9
+      },
+      {
+        "subject": "hashmap<key, value> class",
+        "relation": "isPartOf",
+        "object": "implementation",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.7
+      },
+      {
+        "subject": "key, value",
+        "relation": "isPartOf",
+        "object": "hashmap<key, value> class",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 3,
+    "triples": [
+      {
+        "subject": "hashmap class",
+        "relation": "isDefinedAs",
+        "object": "hashmap<key, value> class",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "hashmap<key, value> class",
+        "relation": "isPartOf",
+        "object": "implementation",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.7,
+        "source": "extraction"
+      },
+      {
+        "subject": "key, value",
+        "relation": "isPartOf",
+        "object": "hashmap<key, value> class",
+        "evidence": "HashMap Class HashMap<Key, Value> class is an implementation of the Java Map interface and stores data as (Key, Value) pairs",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_011",
+    "page_number": 11,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "initial capacity",
+      "load factor",
+      "capacity",
+      "rehashing sizes",
+      "capacity x load factor",
+      "hashmap",
+      "capacity increase"
+    ],
+    "raw_count": 8,
+    "raw_triples": [
+      {
+        "subject": "initial capacity",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity",
+        "confidence": 1.0
+      },
+      {
+        "subject": "load factor",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "The fraction of buckets used after which the capacity is increased is the load factor",
+        "confidence": 1.0
+      },
+      {
+        "subject": "capacity x load factor",
+        "relation": "isDefinedAs",
+        "object": "threshold",
+        "evidence": "The threshold at which rehashing happens along with capacity increase is computed as Capacity x Load Factor",
+        "confidence": 1.0
+      },
+      {
+        "subject": "capacity",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity",
+        "confidence": 0.8
+      },
+      {
+        "subject": "rehashing sizes",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "Quiz: what is the default sequence of rehashing sizes for HashMap?",
+        "confidence": 1.0
+      },
+      {
+        "subject": "capacity increase",
+        "relation": "causeOf",
+        "object": "rehashing sizes",
+        "evidence": "The fraction of buckets used after which the capacity is increased is the load factor",
+        "confidence": 0.9
+      },
+      {
+        "subject": "initial capacity",
+        "relation": "isPrerequisiteOf",
+        "object": "capacity increase",
+        "evidence": "The number of storage buckets a HashMap can hold when it is instantiated is the initial capacity",
+        "confidence": 0.7
+      },
+      {
+        "subject": "load factor",
+        "relation": "isPrerequisiteOf",
+        "object": "capacity increase",
+        "evidence": "The fraction of buckets used after which the capacity is increased is the load factor",
+        "confidence": 0.7
+      }
+    ],
+    "validated_count": 0,
+    "triples": []
+  },
+  {
+    "slide_id": "slide_012",
+    "page_number": 12,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "hashmap",
+      "hashmap\\$entry objects",
+      "empty hashmap",
+      "linked list hashmap object",
+      "jvm",
+      "hash function"
+    ],
+    "raw_count": 5,
+    "raw_triples": [
+      {
+        "subject": "hashmap",
+        "relation": "isPartOf",
+        "object": "jvm",
+        "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+        "confidence": 0.8
+      },
+      {
+        "subject": "hashmap$entry objects",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+        "confidence": 0.9
+      },
+      {
+        "subject": "hash function",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+        "confidence": 0.8
+      },
+      {
+        "subject": "linked list hashmap object",
+        "relation": "isExampleOf",
+        "object": "hashmap",
+        "evidence": "as the HashMap is implemented as a linked list",
+        "confidence": 0.7
+      },
+      {
+        "subject": "empty hashmap",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "Size of an empty HashMap using default parameters is 128 bytes",
+        "confidence": 0.6
+      }
+    ],
+    "validated_count": 2,
+    "triples": [
+      {
+        "subject": "hashmap",
+        "relation": "isPartOf",
+        "object": "jvm",
+        "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "hash function",
+        "relation": "isPartOf",
+        "object": "hashmap",
+        "evidence": "JVM implements HashMap as an array of HashMap$Entry objects with each object having 4 fields: 1. int hash value computed using a hash function 2. Object key 3. Object value 4. Object next reference to the next HashMap$Entry object as the HashMap is implemented as a linked list",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_015",
+    "page_number": 15,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "linkedlist class",
+      "linked list",
+      "linked list data structure",
+      "list",
+      "pointers"
+    ],
+    "raw_count": 4,
+    "raw_triples": [
+      {
+        "subject": "linkedlist class",
+        "relation": "isImplementationOf",
+        "object": "linked list data structure",
+        "evidence": "LinkedList Class LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+        "confidence": 1.0
+      },
+      {
+        "subject": "linked list",
+        "relation": "isPartOf",
+        "object": "linkedlist class",
+        "evidence": "LinkedList Class LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+        "confidence": 0.8
+      },
+      {
+        "subject": "pointers",
+        "relation": "isPartOf",
+        "object": "linked list data structure",
+        "evidence": "LinkedList Class LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+        "confidence": 0.8
+      },
+      {
+        "subject": "linked list data structure",
+        "relation": "isGeneralizationOf",
+        "object": "list",
+        "evidence": "The linked list is implemented as a doubly linked list data structure allowing for efficient insertion and removal of items from the list",
+        "confidence": 0.7
+      }
+    ],
+    "validated_count": 3,
+    "triples": [
+      {
+        "subject": "linked list",
+        "relation": "isPartOf",
+        "object": "linkedlist class",
+        "evidence": "LinkedList Class LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "pointers",
+        "relation": "isPartOf",
+        "object": "linked list data structure",
+        "evidence": "LinkedList Class LinkedList class is an implementation of the linked list data structure where elements are linked using pointers and addresses",
+        "confidence": 0.8,
+        "source": "extraction"
+      },
+      {
+        "subject": "linked list data structure",
+        "relation": "isGeneralizationOf",
+        "object": "list",
+        "evidence": "The linked list is implemented as a doubly linked list data structure allowing for efficient insertion and removal of items from the list",
+        "confidence": 0.7,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_016",
+    "page_number": 16,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "linkedlist object",
+      "linkedlist\\$entry object",
+      "jvm"
+    ],
+    "raw_count": 2,
+    "raw_triples": [
+      {
+        "subject": "linkedlist object",
+        "relation": "isPartOf",
+        "object": "jvm",
+        "evidence": "JVM implements LinkedList as a linked list of LinkedList$Entry objects with each object having 3 fields: 1. Object previous 2. Object next 3. Object entry",
+        "confidence": 0.8
+      },
+      {
+        "subject": "linkedlist$entry object",
+        "relation": "isPartOf",
+        "object": "linkedlist object",
+        "evidence": "JVM implements LinkedList as a linked list of LinkedList$Entry objects with each object having 3 fields: 1. Object previous 2. Object next 3. Object entry",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 1,
+    "triples": [
+      {
+        "subject": "linkedlist object",
+        "relation": "isPartOf",
+        "object": "jvm",
+        "evidence": "JVM implements LinkedList as a linked list of LinkedList$Entry objects with each object having 3 fields: 1. Object previous 2. Object next 3. Object entry",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_018",
+    "page_number": 18,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "arraylist class",
+      "dynamic array data structure",
+      "heap",
+      "wrapper classes",
+      "primitive types",
+      "storage slots",
+      "memory",
+      "example implementation",
+      "newly allocated space",
+      "current memory contents",
+      "new memory"
+    ],
+    "raw_count": 8,
+    "raw_triples": [
+      {
+        "subject": "arraylist class",
+        "relation": "isExampleOf",
+        "object": "dynamic array data structure",
+        "evidence": "ArrayList class is an implementation of a dynamic array data structure where the size of the array automatically changes when items are dynamically added (or removed)",
+        "confidence": 1.0
+      },
+      {
+        "subject": "wrapper classes",
+        "relation": "isPartOf",
+        "object": "arraylist class",
+        "evidence": "Unlike normal arrays, ArrayList can not be used for primitive types such as int or char but need wrapper classes such as Integer or Character",
+        "confidence": 0.8
+      },
+      {
+        "subject": "primitive types",
+        "relation": "contrastedWith",
+        "object": "wrapper classes",
+        "evidence": "Unlike normal arrays, ArrayList can not be used for primitive types such as int or char but need wrapper classes such as Integer or Character",
+        "confidence": 0.9
+      },
+      {
+        "subject": "example implementation",
+        "relation": "isPartOf",
+        "object": "arraylist class",
+        "evidence": "In an example implementation of ArrayList: An initial structure could be created with a default number of storage slots and allocating memory from the heap",
+        "confidence": 0.8
+      },
+      {
+        "subject": "storage slots",
+        "relation": "isPartOf",
+        "object": "arraylist class",
+        "evidence": "An initial structure could be created with a default number of storage slots and allocating memory from the heap",
+        "confidence": 0.8
+      },
+      {
+        "subject": "heap",
+        "relation": "isPartOf",
+        "object": "memory",
+        "evidence": "An initial structure could be created with a default number of storage slots and allocating memory from the heap",
+        "confidence": 0.7
+      },
+      {
+        "subject": "newly allocated space",
+        "relation": "isPartOf",
+        "object": "new memory",
+        "evidence": "a bigger-sized structure is created by allocating new memory from the heap with current memory contents copied to the newly allocated space",
+        "confidence": 0.8
+      },
+      {
+        "subject": "current memory contents",
+        "relation": "isPartOf",
+        "object": "newly allocated space",
+        "evidence": "a bigger-sized structure is created by allocating new memory from the heap with current memory contents copied to the newly allocated space",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 2,
+    "triples": [
+      {
+        "subject": "arraylist class",
+        "relation": "isExampleOf",
+        "object": "dynamic array data structure",
+        "evidence": "ArrayList class is an implementation of a dynamic array data structure where the size of the array automatically changes when items are dynamically added (or removed)",
+        "confidence": 1.0,
+        "source": "extraction"
+      },
+      {
+        "subject": "example implementation",
+        "relation": "isPartOf",
+        "object": "arraylist class",
+        "evidence": "In an example implementation of ArrayList: An initial structure could be created with a default number of storage slots and allocating memory from the heap",
+        "confidence": 0.8,
+        "source": "extraction"
+      }
+    ]
+  },
+  {
+    "slide_id": "slide_019",
+    "page_number": 19,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "arraylist",
+      "arraylist\\$entry object",
+      "empty arraylist",
+      "jvm"
+    ],
+    "raw_count": 3,
+    "raw_triples": [
+      {
+        "subject": "arraylist",
+        "relation": "isDefinedAs",
+        "object": "array of objects",
+        "evidence": "JVM implements ArrayList as an array of objects with each objects ArrayList object overhead = 32 bytes",
+        "confidence": 0.8
+      },
+      {
+        "subject": "empty arraylist",
+        "relation": "isPartOf",
+        "object": "arraylist",
+        "evidence": "Default constructor ArrayList() creates an empty array list",
+        "confidence": 0.9
+      },
+      {
+        "subject": "arraylist$entry object",
+        "relation": "isPartOf",
+        "object": "arraylist",
+        "evidence": "JVM implements ArrayList as an array of objects with each objects ArrayList object overhead = 32 bytes",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 0,
+    "triples": []
+  },
+  {
+    "slide_id": "slide_022",
+    "page_number": 22,
+    "doc_id": "CS1050-L03",
+    "keyphrases": [
+      "hash-based collections",
+      "data storage collections",
+      "computationally expensive operation collections",
+      "array collections",
+      "therefore insertion and deletion search time",
+      "much larger overhead additional data",
+      "collection",
+      "search time",
+      "run-time performance trade-off",
+      "memory footprint"
+    ],
+    "raw_count": 10,
+    "raw_triples": [
+      {
+        "subject": "hash-based collections",
+        "relation": "isPartOf",
+        "object": "data storage collections",
+        "evidence": "Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+        "confidence": 0.8
+      },
+      {
+        "subject": "hash-based collections",
+        "relation": "contrastedWith",
+        "object": "array collections",
+        "evidence": "Search time is constant for hash-based collections most of the time Search time is linear for array collections",
+        "confidence": 0.9
+      },
+      {
+        "subject": "hash-based collections",
+        "relation": "isExampleOf",
+        "object": "collection",
+        "evidence": "Hash-based collections have a much larger overhead Additional data stored in hash-based collections improve the performance of search for items",
+        "confidence": 0.7
+      },
+      {
+        "subject": "collection",
+        "relation": "causeOf",
+        "object": "much larger overhead additional data",
+        "evidence": "Hash-based collections have a much larger overhead Additional data stored in hash-based collections improve the performance of search for items",
+        "confidence": 0.6
+      },
+      {
+        "subject": "collection",
+        "relation": "isPrerequisiteOf",
+        "object": "run-time performance trade-off",
+        "evidence": "Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+        "confidence": 0.8
+      },
+      {
+        "subject": "array collections",
+        "relation": "isExampleOf",
+        "object": "collection",
+        "evidence": "Search time is linear for array collections",
+        "confidence": 0.7
+      },
+      {
+        "subject": "hash-based collections",
+        "relation": "appliedIn",
+        "object": "data storage collections",
+        "evidence": "Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+        "confidence": 0.8
+      },
+      {
+        "subject": "collection",
+        "relation": "causeOf",
+        "object": "computationally expensive operation collections",
+        "evidence": "Collections expand by reallocation, which is a computationally expensive operation",
+        "confidence": 0.9
+      },
+      {
+        "subject": "search time",
+        "relation": "isPartOf",
+        "object": "run-time performance trade-off",
+        "evidence": "Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+        "confidence": 0.8
+      },
+      {
+        "subject": "memory footprint",
+        "relation": "isPartOf",
+        "object": "run-time performance trade-off",
+        "evidence": "Carefully evaluate the memory footprint and run-time performance trade-off when deciding on a collection for data storage",
+        "confidence": 0.8
+      }
+    ],
+    "validated_count": 1,
+    "triples": [
+      {
+        "subject": "hash-based collections",
+        "relation": "isExampleOf",
+        "object": "collection",
+        "evidence": "Hash-based collections have a much larger overhead Additional data stored in hash-based collections improve the performance of search for items",
+        "confidence": 0.7,
+        "source": "extraction"
+      }
+    ]
+  }
+]

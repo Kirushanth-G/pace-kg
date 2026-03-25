@@ -20,6 +20,7 @@ from dataclasses import dataclass, field
 from collections import Counter
 
 from pipeline.step1_marker.parser import SlideMarkdown
+from pipeline.utils import is_code_line as _is_code_line
 
 # ---------------------------------------------------------------------------
 # Inline markdown stripping
@@ -57,6 +58,8 @@ NOISE_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"^\s*(references|bibliography)\s*$", re.IGNORECASE),
     re.compile(r"https?://\S+"),
     re.compile(r"^\s*\[\d+\]"),
+    # Slide quiz prompts — not educational concepts
+    re.compile(r"^quiz\s*:", re.IGNORECASE),
 ]
 
 
@@ -80,6 +83,10 @@ class SlideContent:
     table_cells: list[str] = field(default_factory=list)
     captions: list[str] = field(default_factory=list)
     body_text: list[str] = field(default_factory=list)
+    # Code lines routed here during Stage 1/Step 2 loading.
+    # Excluded from SIFRank input in Step 3 — preserves evidence sentences
+    # for Step 4 LLM validation (evidence can still be in clean_text).
+    code_lines: list[str] = field(default_factory=list)
 
     # Derived (set by Stage 4)
     heading_phrases: list[str] = field(default_factory=list)
@@ -97,6 +104,7 @@ def _parse_buckets(raw_markdown: str) -> dict[str, list[str]]:
         "table_cells": [],
         "captions": [],
         "body_text": [],
+        "code_lines": [],
     }
 
     for line in raw_markdown.splitlines():
@@ -140,7 +148,10 @@ def _parse_buckets(raw_markdown: str) -> dict[str, list[str]]:
         else:
             text = _strip_inline(stripped)
             if text:
-                buckets["body_text"].append(text)
+                if _is_code_line(text):
+                    buckets.setdefault("code_lines", []).append(text)
+                else:
+                    buckets["body_text"].append(text)
 
     return buckets
 
@@ -192,6 +203,7 @@ def _cross_slide_filter(all_contents: list[SlideContent]) -> None:
         sc.table_cells = [t for t in sc.table_cells if t not in noise_blocks]
         sc.captions    = [t for t in sc.captions    if t not in noise_blocks]
         sc.body_text   = [t for t in sc.body_text   if t not in noise_blocks]
+        sc.code_lines  = [t for t in sc.code_lines  if t not in noise_blocks]
 
 
 # ---------------------------------------------------------------------------
@@ -247,6 +259,37 @@ def load_preprocessed_json(json_path: str, doc_id: str) -> list[SlideContent]:
         # Strip leading bullet-marker characters (◮, •, ▶, etc.) from bullets
         bullets = [_strip_bullet(b) for b in item.get("bullets", []) if _strip_bullet(b)]
 
+        # Build heading set for deduplication (Marker sometimes copies heading text into body_text,
+        # or begins the first body paragraph with the heading as a prefix)
+        heading_set = {h.lower().strip() for h in item.get("headings", [])}
+
+        # Route body_text lines: strip heading duplicates, route code to code_lines
+        code_lines: list[str] = []
+        clean_body: list[str] = []
+        for line in body:
+            line_lower = line.lower().strip()
+
+            # Skip exact heading duplicates
+            if line_lower in heading_set:
+                continue
+
+            # Strip heading prefix from lines that start with a heading text
+            # (Marker embeds the heading at the start of the first body paragraph,
+            # causing "LinkedList Class LinkedList class is an implementation..."
+            # when we later join headings + body in sifrank_text.)
+            for h in heading_set:
+                if line_lower.startswith(h + " ") or line_lower.startswith(h + "\t"):
+                    line = line[len(h):].strip()
+                    break
+
+            if not line:
+                continue
+
+            if _is_code_line(line):
+                code_lines.append(line)
+            else:
+                clean_body.append(line)
+
         sc = SlideContent(
             slide_id=item["slide_id"],
             page_number=item["page_number"],
@@ -255,12 +298,14 @@ def load_preprocessed_json(json_path: str, doc_id: str) -> list[SlideContent]:
             bullets=bullets,
             table_cells=item.get("table_cells", []),
             captions=item.get("captions", []),
-            body_text=body,
+            body_text=clean_body,
+            code_lines=code_lines,
             heading_phrases=item.get("heading_phrases", []),
         )
 
         # Rebuild clean_text using our assembly format
-        # (ignore the stored clean_text — rebuild to drop {N} refs and match our pipeline)
+        # Include code_lines so Step 4 LLM can still use them as evidence.
+        # SIFRank (Step 3) excludes code_lines separately via SlideContent.code_lines.
         all_parts = sc.headings + sc.body_text + sc.bullets + sc.table_cells + sc.captions
         sc.clean_text = " ".join(all_parts)
 
@@ -296,6 +341,7 @@ def preprocess_slides(slides: list[SlideMarkdown]) -> list[SlideContent]:
             table_cells=buckets["table_cells"],
             captions=buckets["captions"],
             body_text=buckets["body_text"],
+            code_lines=buckets["code_lines"],
         )
         contents.append(sc)
 
