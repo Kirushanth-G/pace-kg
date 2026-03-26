@@ -1,0 +1,452 @@
+[
+  {
+    "subject": "arrays",
+    "relation": "isDefinedAs",
+    "object": "ordered list",
+    "evidence": "An array is an ordered list o values",
+    "confidence": 1.0,
+    "slide_id": "slide_004",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "array elements",
+    "relation": "isPartOf",
+    "object": "array",
+    "evidence": "The values held in an array are called array elements",
+    "confidence": 1.0,
+    "slide_id": "slide_006",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "array",
+    "relation": "isDefinedAs",
+    "object": "object",
+    "evidence": "In Java, the array itself is an object that must be instantiated",
+    "confidence": 1.0,
+    "slide_id": "slide_006",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "int",
+    "relation": "isPartOf",
+    "object": "an array of integers",
+    "evidence": "The type of the variable scores is int[] (an array of integers)",
+    "confidence": 0.8,
+    "slide_id": "slide_007",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "length",
+    "relation": "isPartOf",
+    "object": "array object",
+    "evidence": "Each array object has a public constant called length that stores the size of the array",
+    "confidence": 1.0,
+    "slide_id": "slide_009",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "arrays",
+    "relation": "appliedIn",
+    "object": "method",
+    "evidence": "An entire array can be passed as a parameter to a method",
+    "confidence": 0.9,
+    "slide_id": "slide_010",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "arrays of objects",
+    "relation": "isDefinedAs",
+    "object": "object references",
+    "evidence": "The elements of an array can be object references",
+    "confidence": 0.8,
+    "slide_id": "slide_011",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "arraylist",
+    "relation": "isExampleOf",
+    "object": "list",
+    "evidence": "in Java, a list can be represented as an ArrayList object",
+    "confidence": 0.9,
+    "slide_id": "slide_013",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "inserting",
+    "relation": "isPartOf",
+    "object": "methods",
+    "evidence": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements.",
+    "confidence": 0.9,
+    "slide_id": "slide_014",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "removing elements",
+    "relation": "isPartOf",
+    "object": "methods",
+    "evidence": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements.",
+    "confidence": 0.9,
+    "slide_id": "slide_014",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "methods",
+    "relation": "isPartOf",
+    "object": "list",
+    "evidence": "The ArrayList class supplies methods for common tasks, such as inserting and removing elements.",
+    "confidence": 0.7,
+    "slide_id": "slide_014",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "add(value)",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods add(value) appends value at end of list",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "add(index, value)",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods add(index, value) inserts given value just before the given index, shifting subsequent values to the right",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "clear()",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods clear() removes all elements of the list",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "indexof(value)",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods indexOf(value) returns first index where given value is found in list (-1 if not found)",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "remove(index)",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods remove(index) removes/returns value at given index, shifting subsequent values to the left",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "set(index, value)",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods set(index, value) replaces value at given index with given value",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "size()",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods size() returns the number of elements in list",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "tostring()",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "ArrayList methods toString() returns a string representation of the list such as \"[3, 42, -7, 15]\"",
+    "confidence": 1.0,
+    "slide_id": "slide_016",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "addall",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "addAll(list)<br>addAll(index, list) adds all elements from the given list to this list (at the end of the list, or inserts them at the given index)",
+    "confidence": 0.8,
+    "slide_id": "slide_017",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "remove",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "remove(value) finds and removes the given value from this list",
+    "confidence": 0.8,
+    "slide_id": "slide_017",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "removeall",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "removeAll(list) removes any elements found in the given list from this list",
+    "confidence": 0.8,
+    "slide_id": "slide_017",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "retainall",
+    "relation": "isPartOf",
+    "object": "arraylist",
+    "evidence": "retainAll(list) removes any elements not<br>found in given list from this list",
+    "confidence": 0.8,
+    "slide_id": "slide_017",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "abstractset",
+    "relation": "isExampleOf",
+    "object": "set interface",
+    "evidence": "An other collection: Set Interface A Set is a collection, it is an unordered list and has no duplicates.",
+    "confidence": 0.8,
+    "slide_id": "slide_019",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "treemap",
+    "relation": "isExampleOf",
+    "object": "map",
+    "evidence": "Here are two implementations: HashMap is the faster TreeMap guarantees the order of iteration",
+    "confidence": 0.9,
+    "slide_id": "slide_020",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "treemap",
+    "relation": "contrastedWith",
+    "object": "hashmap",
+    "evidence": "Here are two implementations: HashMap is the faster TreeMap guarantees the order of iteration",
+    "confidence": 0.8,
+    "slide_id": "slide_020",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "queue",
+    "relation": "isDefinedAs",
+    "object": "fifo",
+    "evidence": "A queue is a FIFO (first in, first out) data structure",
+    "confidence": 1.0,
+    "slide_id": "slide_021",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "dequeue",
+    "relation": "isPartOf",
+    "object": "queue",
+    "evidence": "Operation on a Queue dequeue Removes an element from the front of the queue",
+    "confidence": 0.8,
+    "slide_id": "slide_022",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "enqueue",
+    "relation": "isPartOf",
+    "object": "queue",
+    "evidence": "Operation on a Queue enqueue Adds an element to the rear of the queue",
+    "confidence": 0.8,
+    "slide_id": "slide_022",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting",
+    "relation": "isPartOf",
+    "object": "fundamental problems",
+    "evidence": "Searching and sorting Fundamental problems in computer science and programming",
+    "confidence": 0.8,
+    "slide_id": "slide_023",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "searching",
+    "relation": "isPartOf",
+    "object": "fundamental problems",
+    "evidence": "Searching and sorting Fundamental problems in computer science and programming",
+    "confidence": 0.8,
+    "slide_id": "slide_023",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "comparable",
+    "relation": "appliedIn",
+    "object": "sorting collection",
+    "evidence": "Comparable in Java Very useful for sorting collection.",
+    "confidence": 0.9,
+    "slide_id": "slide_025",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "comparison-based sorting",
+    "evidence": "can be solved in many ways: there are many sorting algorithms some are faster/slower than others some use more/less memory than others some work better with specific kinds of data some can utilize multiple computers / processors, ... comparison-based sorting : determining order by comparing pairs of elements: <, >, compareTo, …",
+    "confidence": 0.8,
+    "slide_id": "slide_026",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "bubble sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: bubble sort: swap adjacent pairs that are out of order",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "selection sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... selection sort: look for the smallest element, move to front",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "insertion sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... insertion sort: build an increasingly large sorted front portion",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "merge sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... merge sort: recursively divide the array in half and sort it",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "heap sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... heap sort: place the values into a sorted tree structure",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "quick sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... quick sort: recursively partition array based on a middle value",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "bucket sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... bucket sort: cluster elements into smaller groups, sort them",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "sorting algorithms",
+    "relation": "isGeneralizationOf",
+    "object": "radix sort",
+    "evidence": "Sorting algorithms other specialized sorting algorithms: ... radix sort: sort integers by last digit, then 2nd to last, then ... ...",
+    "confidence": 0.8,
+    "slide_id": "slide_027",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "node",
+    "relation": "isPartOf",
+    "object": "linked list",
+    "evidence": "A linked list is an ordered sequence of items called nodes",
+    "confidence": 0.9,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "link",
+    "relation": "isPartOf",
+    "object": "node",
+    "evidence": "A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure",
+    "confidence": 0.9,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "head",
+    "relation": "isPartOf",
+    "object": "linked list",
+    "evidence": "The linked list is defined by its head (this is its starting point)",
+    "confidence": 0.9,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  },
+  {
+    "subject": "pointer",
+    "relation": "isPartOf",
+    "object": "node",
+    "evidence": "A node in a singly linked list consists of two fields: A data portion A link (pointer) to the next node in the structure",
+    "confidence": 0.9,
+    "slide_id": "slide_028",
+    "doc_id": "test3",
+    "source": "extraction"
+  }
+]

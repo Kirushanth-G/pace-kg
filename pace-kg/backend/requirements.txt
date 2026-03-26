@@ -1,15 +1,31 @@
-fastapi
-uvicorn[standard]
-celery[redis]
-redis
-neo4j
-pymupdf4llm
-sentence-transformers
-spacy
-langchain
-langchain-groq
-mistune
-pydantic-settings
-python-multipart
-networkx
-gliner
+# FastAPI core
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+pydantic-settings==2.1.0
+
+# PDF parsing
+marker-pdf==0.2.17
+pytesseract==0.3.10
+pillow==10.2.0
+pymupdf==1.23.21
+
+# NLP and ML
+sentence-transformers==2.3.1
+spacy==3.7.2
+gliner==0.1.12
+transformers==4.37.2
+torch==2.2.0
+
+# LLM and LangChain
+langchain==0.1.6
+langchain-groq==0.0.1
+
+# Graph database
+neo4j==5.16.0
+
+# Document generation
+python-docx==1.1.0
+
+# Utilities
+numpy==1.26.3
