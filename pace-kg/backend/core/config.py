@@ -66,9 +66,7 @@ class Settings(BaseSettings):
     output_dir: str = "./outputs"
     max_upload_size_mb: int = 50
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    model_config = {"extra": "ignore", "env_file": ".env", "case_sensitive": False}
 
 
 settings = Settings()
