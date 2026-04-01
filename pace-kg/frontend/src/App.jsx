@@ -320,7 +320,7 @@ function App() {
     <main className="app-root">
       <header className="app-header">
         <div>
-          <h1>PACE-KG Frontend</h1>
+          <h1>PACE-KG</h1>
           <p>{FRONTEND_ONLY ? "Demo mode: backend disabled" : `Backend: ${API_BASE}`}</p>
         </div>
       </header>
