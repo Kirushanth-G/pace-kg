@@ -165,13 +165,16 @@ class PipelineRunner:
             print("Loading Marker models (first run ~5min download)...")
             self.marker_models = create_model_dict()
 
-        # Run Marker with paginate_output enabled (page_separator is deprecated)
-        converter = PdfConverter(artifact_dict=self.marker_models)
-        rendered = converter(self.pdf_path, paginate_output=True)
+        # Run Marker with paginate_output enabled via config dict
+        converter = PdfConverter(
+            artifact_dict=self.marker_models,
+            config={"paginate_output": True, "page_separator": settings.page_sep},
+        )
+        rendered = converter(self.pdf_path)
+        full_md = rendered.markdown
 
-        # Marker returns a list of RenderedPage objects when paginate_output=True
-        # Extract markdown from each page
-        page_mds = [page.markdown for page in rendered.pages]
+        # Split into pages using the separator
+        page_mds = [p.strip() for p in full_md.split(settings.page_sep)]
         slides_md: List[SlideMarkdown] = []
 
         # Track seen content for duplicate detection
