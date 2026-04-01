@@ -5,7 +5,7 @@ python-multipart==0.0.6
 pydantic-settings==2.1.0
 
 # PDF parsing
-marker-pdf==0.2.17
+marker-pdf[full]
 pytesseract==0.3.10
 pillow==10.2.0
 pymupdf==1.23.21
@@ -28,4 +28,5 @@ neo4j==5.16.0
 python-docx==1.1.0
 
 # Utilities
-numpy==1.26.3
+numpy<2.0.0
+hf-transfer
