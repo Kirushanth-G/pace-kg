@@ -429,7 +429,7 @@ class PipelineRunner:
             self.llm_fallback = ChatGroq(
                 model=settings.llm_fallback,
                 temperature=0,
-                groq_api_key=settings.groq_api_key,
+                api_key=settings.groq_api_key,
             )
 
         labels = [
@@ -620,7 +620,7 @@ JSON array of keyphrases:"""
             self.llm_primary = ChatGroq(
                 model=settings.llm_primary,
                 temperature=0,
-                groq_api_key=settings.groq_api_key,
+                api_key=settings.groq_api_key,
             )
         if self.sbert is None:
             print("Loading SBERT all-mpnet-base-v2...")
@@ -1352,14 +1352,14 @@ STRICT RULES -- violating any rule invalidates your entire response:
             self.llm_primary = ChatGroq(
                 model=settings.llm_primary,
                 temperature=0,
-                groq_api_key=settings.groq_api_key,
+                api_key=settings.groq_api_key,
                 model_kwargs={"response_format": {"type": "json_object"}},
             )
         if self.llm_fallback is None:
             self.llm_fallback = ChatGroq(
                 model=settings.llm_fallback,
                 temperature=0,
-                groq_api_key=settings.groq_api_key,
+                api_key=settings.groq_api_key,
                 model_kwargs={"response_format": {"type": "json_object"}},
             )
 
@@ -2113,7 +2113,7 @@ STRICT RULES -- violating any rule invalidates your entire response:
             self.llm_summary = ChatGroq(
                 model=settings.llm_summary,
                 temperature=0,
-                groq_api_key=settings.groq_api_key,
+                api_key=settings.groq_api_key,
             )
 
         summaries: List[SlideSummary] = []

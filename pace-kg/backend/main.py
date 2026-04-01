@@ -139,7 +139,9 @@ def run_pipeline(doc_id: str, pdf_path: str):
         jobs[doc_id].progress = 0.6
 
         # Step 6
-        expansions = runner.step6_expand(concepts, pruned_triples, slides_content)
+        expansions = runner.step6_expand(
+            concepts, pruned_triples, slides_content, keyphrases
+        )
         jobs[doc_id].current_step = "Step 7: Storing in Neo4j"
         jobs[doc_id].progress = 0.7
 
