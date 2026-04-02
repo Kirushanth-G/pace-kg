@@ -151,7 +151,7 @@ def run_pipeline(doc_id: str, pdf_path: str):
         jobs[doc_id].progress = 0.8
 
         # Step 8
-        lm_edkg = runner.step8_aggregate()
+        lm_edkg = runner.step8_aggregate(slides_content)
         jobs[doc_id].current_step = "Step 9: Generating Summaries"
         jobs[doc_id].progress = 0.9
 
