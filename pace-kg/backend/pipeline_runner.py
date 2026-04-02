@@ -426,10 +426,12 @@ class PipelineRunner:
             print("Loading MiniLM...")
             self.minilm = SentenceTransformer("all-MiniLM-L6-v2")
         if self.llm_fallback is None:
+            # Use 70B model for Step 3 fallback (higher quality keyphrases)
             self.llm_fallback = ChatGroq(
-                model=settings.llm_fallback,
+                model=settings.llm_primary,  # llama-3.3-70b-versatile
                 temperature=0,
                 api_key=settings.groq_api_key,
+                model_kwargs={"response_format": {"type": "json_object"}},
             )
 
         labels = [
@@ -538,20 +540,42 @@ class PipelineRunner:
         return text[:200]
 
     def _llm_keyphrase_fallback(self, text: str, sc: SlideContent) -> List[Keyphrase]:
-        """LLM fallback for sparse slides."""
-        prompt = f"""Extract up to 12 key technical terms or concepts from this slide text.
-Return ONLY a JSON array of strings, no other text.
+        """LLM fallback for sparse slides - uses reference implementation prompt."""
+        system_prompt = """You are extracting educational keyphrases from a single lecture slide.
 
-Slide text:
-{text}
+Return ONLY a JSON object: {"keyphrases": ["phrase1", "phrase2", ...]}
 
-JSON array of keyphrases:"""
+Rules:
+- Maximum 12 phrases.
+- Only include named concepts, technical terms, algorithms, data structures,
+  or named methods that a student MUST understand from this slide.
+- Good examples: "bubble sort", "ArrayList", "dynamic resizing", "FIFO",
+  "binarySearch", "hashmap", "null reference", "linked list"
+- Do NOT include: generic words (value, type, size, element, method),
+  instructional phrases (to construct, any list of, storing a value),
+  professor names, university names, course codes, dates, or slide titles.
+- If the slide has no educational content, return {"keyphrases": []}
+- Return ONLY the JSON object. No explanation."""
+
+        user_prompt = f"""SLIDE TEXT:
+{text}"""
 
         try:
-            resp = self.llm_fallback.invoke([HumanMessage(content=prompt)])
-            phrases_raw = json.loads(resp.content)
+            from langchain.schema import HumanMessage, SystemMessage
+
+            resp = self.llm_fallback.invoke(
+                [
+                    SystemMessage(content=system_prompt),
+                    HumanMessage(content=user_prompt),
+                ]
+            )
+            raw = json.loads(resp.content)
+            phrases = raw.get("keyphrases", [])
+            if not isinstance(phrases, list):
+                return []
+
             kps = []
-            for phrase in phrases_raw:
+            for phrase in phrases:
                 phrase = phrase.lower().strip()
                 if len(phrase) >= 3:
                     kp = Keyphrase(
@@ -747,23 +771,155 @@ STRICT RULES -- violating any rule invalidates your entire response:
 3. If no supporting sentence exists in the slide text, omit that triple entirely.
 4. Use ONLY these 8 relation types. Follow the DIRECTION rules exactly:
 
-   isPrerequisiteOf   subject must be understood BEFORE object
-   isDefinedAs        subject IS the concept; object is the definition
-   isExampleOf        subject is a SPECIFIC INSTANCE of broader object
-   contrastedWith     subject AND object explicitly compared
-   appliedIn          subject IS USED IN / runs INSIDE object
-   isPartOf           subject is a PHYSICAL/STRUCTURAL COMPONENT of object
-   causeOf            subject DIRECTLY CAUSES object
-   isGeneralizationOf subject is BROADER CATEGORY containing object
+   isPrerequisiteOf   subject must be understood BEFORE object can be understood
+                      e.g. "sort --[isPrerequisiteOf]--> binarysearch"
+                      (you must sort an array before binary search works on it)
 
-5. Diversity: limit isPartOf to 40% of triples.
-6. NEVER use the slide title as a triple object.
-7. Return ONLY valid JSON, no markdown formatting."""
+   isDefinedAs        subject IS the concept being defined; object is its definition
+                      e.g. "queue --[isDefinedAs]--> fifo"
+                      NEVER reverse: concept first, definition second
+                      ONE definition per concept — do not repeat with synonyms
+
+   isExampleOf        subject is a SPECIFIC INSTANCE or IMPLEMENTATION of object
+                      e.g. "arraylist --[isExampleOf]--> list"
+                      e.g. "hashmap --[isExampleOf]--> map"
+                      e.g. "bubble sort --[isExampleOf]--> sorting algorithms"
+                      USE THIS when X is a named implementation of an interface
+                      or a named member of a broader category
+
+   contrastedWith     subject AND object are EXPLICITLY compared or contrasted
+                      e.g. "hashmap --[contrastedWith]--> treemap"
+                      USE THIS when: slide title has "vs"/"comparison"/"advantages",
+                      OR slide text uses "unlike", "whereas", "faster than",
+                      "compared to", "better for"
+
+   appliedIn          subject IS USED IN, IS PASSED TO, or OPERATES INSIDE object
+                      e.g. "arrays --[appliedIn]--> method"
+                      e.g. "comparable --[appliedIn]--> sorting"
+                      USE THIS when slide says "X can be passed to Y",
+                      "X is used in Y", "X works inside Y"
+
+   isPartOf           subject is a PHYSICAL or STRUCTURAL FIELD/COMPONENT of object
+                      e.g. "link --[isPartOf]--> node"
+                      e.g. "length --[isPartOf]--> array object"
+                      ONLY for literal structural parts: fields of a class,
+                      components of a data structure, constants of an object.
+                      DO NOT use for: passing/usage, implementations, categories
+
+   causeOf            subject DIRECTLY CAUSES object as a result
+                      e.g. "off-by-one error --[causeOf]--> arrayindexoutofboundsexception"
+
+   isGeneralizationOf subject is the BROADER CATEGORY; object is a narrower member
+                      e.g. "sorting algorithms --[isGeneralizationOf]--> bubble sort"
+                      e.g. "map --[isGeneralizationOf]--> hashmap"
+                      The BROADER concept is ALWAYS the subject.
+
+5. CRITICAL DISAMBIGUATION — read every rule before choosing a relation:
+
+   PASSING / USAGE (use appliedIn, NOT isPartOf):
+   - "X can be passed to Y"  →  X appliedIn Y
+   - "X is used in Y"        →  X appliedIn Y
+   - "X works with Y"        →  X appliedIn Y
+   - NEVER use isPartOf when the slide is describing passing or usage
+
+   METHOD / OPERATION (use isPartOf for ownership, NOT isExampleOf):
+   - If X is a METHOD or OPERATION name (add, remove, enqueue, search):
+     → X isPartOf the class/structure it belongs to
+     e.g. "add isPartOf arraylist",  "enqueue isPartOf queue"
+   - NEVER use isExampleOf for a method or operation name
+
+   IMPLEMENTATION (use isExampleOf, NOT isPartOf):
+   - If X is a NAMED IMPLEMENTATION of an interface or abstract concept:
+     → X isExampleOf the interface/concept
+     e.g. "hashmap isExampleOf map",  "treeset isExampleOf set interface"
+
+   ACRONYM / EXPANSION (only one definition triple per concept):
+   - If the keyphrase list contains BOTH an acronym AND its expansion
+     (e.g. "fifo" and "first in, first out"), they refer to the SAME concept.
+   - Produce ONE isDefinedAs triple using the ACRONYM as subject:
+     e.g. "queue isDefinedAs fifo"
+   - Do NOT also produce "queue isDefinedAs first in, first out"
+   - Do NOT produce isGeneralizationOf or isExampleOf between the acronym
+     and its expansion — they are the same concept, not two different ones
+
+   isDefinedAs direction:
+   - The NAMED CONCEPT is always the subject.
+   - The DEFINITION or DESCRIPTION is the object.
+   - "array isDefinedAs ordered list" ✓
+   - "ordered list isDefinedAs array" ✗
+
+   isGeneralizationOf direction:
+   - The BROADER CATEGORY is the subject, the NARROWER member is the object.
+   - "sorting algorithms isGeneralizationOf bubble sort" ✓
+   - "bubble sort isGeneralizationOf sorting algorithms" ✗
+
+   Structural membership:
+   - If slide says "X consists of Y" / "X has Y" / "X contains Y":
+     → Y isPartOf X
+   - If slide says "X is a type of Y" / "X is an implementation of Y":
+     → X isExampleOf Y
+
+6. DIVERSITY REQUIREMENT:
+   - Consider ALL 8 relation types before choosing
+   - Do NOT use isPartOf for more than 40% of triples in this response
+   - If the slide title contains "vs", "comparison", or "advantages",
+     produce at least one contrastedWith triple
+
+7. SLIDE HEADING RULE:
+   - The slide title is a topic label, not an educational concept
+   - Do NOT use the full slide title as subject or object
+   - Use the specific concepts taught within the slide
+
+8. STRUCTURAL LABEL RULE:
+   - Do NOT use instructional sub-headings as subject or object:
+     e.g. "construction", "storing a value", "to construct an array list"
+   - If the keyphrase list contains only such labels, return []
+
+9. DUPLICATE RULE:
+   - Do NOT produce two triples with the same (subject, object) pair
+   - If you find two valid relations for the same pair, keep only the
+     most specific / highest-confidence one
+   - Do NOT produce both X isGeneralizationOf Y and Y isExampleOf X
+     for the same pair — pick ONE direction
+
+10. Return ONLY a valid JSON array. No markdown, no explanation, no preamble.
+11. If no valid triples found, return: []
+
+CRITICAL CONSTRAINTS:
+1. NO ADMINISTRATIVE ENTITIES: No people names, universities, course codes, dates.
+2. PEDAGOGICAL ONLY: Only academic/domain concepts taught in the material.
+3. EMPTY FALLBACK: Title slides, admin slides, ToC slides → return []"""
+
+    def _is_structural_label(self, phrase: str) -> bool:
+        """Return True if phrase is an instructional slide label, not a concept."""
+        p = phrase.strip().lower()
+        _starters = (
+            "to ",
+            "any ",
+            "how ",
+            "what ",
+            "when ",
+            "where ",
+            "why ",
+            "see ",
+            "let ",
+            "note ",
+            "given ",
+            "recall ",
+            "consider ",
+        )
+        if any(p.startswith(s) for s in _starters) and len(p.split()) >= 4:
+            return True
+        # Gerund-led instructional phrases (e.g. "storing a value", "declaring and using")
+        words = p.split()
+        if words and words[0].endswith("ing") and len(words) >= 3:
+            return True
+        return False
 
     def _validate_triple(
         self, triple: Triple, kps: List[Keyphrase], sc: SlideContent, is_llm_slide: bool
     ) -> bool:
-        """4-layer validation (ALL must pass)."""
+        """3-layer validation (ALL must pass) - matching reference implementation."""
 
         # Layer 1: Anchor check
         kp_phrases = {k.phrase for k in kps}
@@ -786,6 +942,12 @@ STRICT RULES -- violating any rule invalidates your entire response:
         ]:
             return False
 
+        # Check for structural labels (instructional headings, not concepts)
+        if self._is_structural_label(triple.subject) or self._is_structural_label(
+            triple.object
+        ):
+            return False
+
         # Layer 2: Evidence similarity
         threshold = (
             settings.evidence_similarity_threshold_llm
@@ -799,25 +961,59 @@ STRICT RULES -- violating any rule invalidates your entire response:
         if sim < threshold:
             return False
 
-        # Layer 3: Confidence threshold
-        if triple.confidence < settings.triple_confidence_threshold:
-            return False
-
         # Layer 4: Semantic post-validation (5 rules)
+        # Note: Layer 3 (confidence threshold) removed to match reference implementation
         return self._semantic_validation(triple)
 
     def _semantic_validation(self, triple: Triple) -> bool:
         """Layer 4 semantic checks (5 rules)."""
         ev_lower = triple.evidence.lower()
 
-        def in_ev(phrase: str, evidence: str) -> bool:
-            """Word-boundary-safe phrase search."""
-            patterns = [
-                rf"\b{re.escape(phrase)}\b",
-                rf"\b{re.escape(phrase)}s\b",
-                rf"\b{re.escape(phrase[:-1])}\b" if phrase.endswith("s") else None,
-            ]
-            return any(re.search(p, evidence, re.IGNORECASE) for p in patterns if p)
+        # Stop words for content word extraction
+        _STOP = frozenset({"a", "an", "the", "of", "in", "is", "are", "for", "to"})
+
+        def in_ev(phrase: str) -> int:
+            """Return start pos of phrase in ev_lower at a word boundary, or -1.
+
+            Sophisticated version matching reference implementation:
+            - Tries exact phrase match with word boundaries
+            - Tries plural/singular variant
+            - For multi-word phrases, tries root content word
+            - For root content word, tries singular form if root fails
+            """
+
+            def _s(p):
+                pat = re.escape(p.lower())
+                m = re.search(r"(?<![a-z])" + pat + r"(?![a-z])", ev_lower)
+                return m.start() if m else -1
+
+            pos = _s(phrase)
+            if pos != -1:
+                return pos
+
+            # Try plural/singular variant
+            alt = phrase[:-1] if phrase.endswith("s") else phrase + "s"
+            pos = _s(alt)
+            if pos != -1:
+                return pos
+
+            # Try root content word for multi-word phrases only
+            # (e.g. "arrays of objects" → "arrays").
+            # Do NOT try plural/singular of the root word alone — this causes false matches
+            # (e.g. "element" + "s" = "elements" would wrongly match "element type" in evidence).
+            # Exception: try the singular of the root word if the root itself fails
+            # (e.g. "arrays" → "array") because evidence often uses singular form.
+            words = phrase.lower().split()
+            content = [w for w in words if w not in _STOP]
+            if len(words) > 1 and content and content[0] != phrase.lower():
+                pos = _s(content[0])
+                if pos != -1:
+                    return pos
+                # Try singular of root content word only
+                root = content[0]
+                if root.endswith("s") and len(root) > 3:
+                    return _s(root[:-1])
+            return -1
 
         # L4-2: isDefinedAs checks
         if triple.relation == "isDefinedAs":
@@ -837,9 +1033,7 @@ STRICT RULES -- violating any rule invalidates your entire response:
             ]
             if not any(s in ev_lower for s in signals):
                 return False
-            if not in_ev(triple.subject, ev_lower) or not in_ev(
-                triple.object, ev_lower
-            ):
+            if in_ev(triple.subject) == -1 or in_ev(triple.object) == -1:
                 return False
             if (
                 f"called {triple.object}" in ev_lower
@@ -882,7 +1076,8 @@ STRICT RULES -- violating any rule invalidates your entire response:
             ]
             has_isa = any(s in ev_lower for s in isa_signals)
 
-            obj_in_ev = in_ev(triple.object, ev_lower)
+            obj_pos = in_ev(triple.object)
+            obj_in_ev = obj_pos != -1
             obj_injected = any(
                 k.phrase == triple.object and k.source_type == "injected" for k in []
             )
@@ -891,17 +1086,20 @@ STRICT RULES -- violating any rule invalidates your entire response:
                 if not obj_in_ev and not obj_injected:
                     return False
                 if not obj_in_ev and obj_injected:
-                    if not in_ev(triple.subject, ev_lower):
+                    if in_ev(triple.subject) == -1:
                         return False
-                if obj_in_ev and in_ev(triple.subject, ev_lower):
-                    subj_pos = ev_lower.find(triple.subject.lower())
-                    obj_pos = ev_lower.find(triple.object.lower())
-                    if subj_pos > obj_pos:
+                if obj_in_ev:
+                    subj_pos = in_ev(triple.subject)
+                    if subj_pos != -1 and subj_pos > obj_pos:
                         return False
 
             if "making" in ev_lower:
-                subj_pos = ev_lower.find(triple.subject.lower())
-                obj_pos = ev_lower.find(triple.object.lower())
+                subj_pos = in_ev(triple.subject)
+                obj_pos_check = in_ev(triple.object)
+                making_pos = ev_lower.find("making")
+                if subj_pos != -1 and obj_pos_check != -1:
+                    if subj_pos < making_pos < obj_pos_check:
+                        return False
                 making_pos = ev_lower.find("making")
                 if subj_pos < making_pos < obj_pos:
                     return False
@@ -921,8 +1119,92 @@ STRICT RULES -- violating any rule invalidates your entire response:
 
         return True
 
+    def _phrases_are_synonyms(self, a: str, b: str) -> bool:
+        """
+        Return True when two keyphrase strings refer to the same concept and
+        should be treated as identical for deduplication purposes.
+
+        Two cases handled — both are generic (no hardcoding):
+
+        1. Acronym / expansion pairs:
+           One string is an acronym (short all-alpha, ≤6 chars) and the other
+           is its expansion — the acronym matches the first letter of EVERY word
+           in the expansion (no stop-word filtering, to handle cases like
+           "first in, first out" → f,i,f,o → "fifo").
+           e.g. "fifo" vs "first in, first out"
+                "lifo" vs "last in, first out"
+                "api"  vs "application programming interface"
+
+        2. Substring containment with word-boundary guard:
+           One phrase is a clean substring of the other AND the match ends at a
+           word boundary (space or end of string) to avoid false positives like
+           "array" matching inside "arraylist".
+           e.g. "ordered list" vs "ordered list of values" ✓
+                "array" vs "arraylist"                     ✗ (no word boundary)
+           Capped at 5 words for the shorter phrase.
+        """
+        a, b = a.lower().strip(), b.lower().strip()
+        if a == b:
+            return True
+
+        # ── Case 1: acronym / expansion ───────────────────────────────────────────
+        def _is_acronym_of(short: str, long: str) -> bool:
+            """Return True if `short` is the acronym formed from initials of `long`."""
+            short_clean = re.sub(r"[^a-z]", "", short)
+            if len(short_clean) < 2 or len(short_clean) > 6:
+                return False
+            # Use ALL word initials (no stop-word filtering) so that
+            # "first in, first out" → [f,i,f,o] → "fifo" matches correctly
+            long_words = re.sub(r"[^a-z\s]", "", long).split()
+            if not long_words:
+                return False
+            all_initials = "".join(w[0] for w in long_words if w and w[0].isalpha())
+            return short_clean == all_initials
+
+        if _is_acronym_of(a, b) or _is_acronym_of(b, a):
+            return True
+
+        # ── Case 2: substring containment with word-boundary guard ────────────────
+        shorter, longer = (a, b) if len(a) <= len(b) else (b, a)
+        shorter_words = shorter.split()
+        if len(shorter_words) < 1 or len(shorter_words) > 5:
+            return False
+        idx = longer.find(shorter)
+        if idx == -1:
+            return False
+        # Word-boundary check: char immediately after the match must be a space or EOL
+        after = longer[idx + len(shorter) :]
+        if after and after[0] != " ":
+            return False  # e.g. "array" inside "arraylist" — next char is "l", not " "
+        # Also require they share the same first word
+        if not longer.startswith(shorter_words[0]):
+            return False
+        return True
+
     def _dedup_triples(self, triples: List[Triple]) -> List[Triple]:
-        """Post-validation deduplication."""
+        """
+        Deduplicate triples within the same slide.
+
+        Two deduplication passes:
+
+        Pass 1 — Exact pair dedup:
+          For any two triples with the same (subject, object) pair, keep only
+          the one with the highest confidence. Handles cases where the LLM
+          generates both isPartOf and isExampleOf for the same pair.
+
+        Pass 2 — Semantic pair dedup:
+          For any two triples where the subjects are synonyms AND the objects
+          are synonyms (or vice versa), keep only the higher-confidence one.
+          This handles acronym/expansion duplicates like:
+            "queue isDefinedAs fifo" + "queue isDefinedAs first in, first out"
+          where the two objects mean the same thing but are different strings,
+          so Pass 1 would not catch them.
+
+        Both passes are fully generic — no domain-specific knowledge used.
+        """
+        if not triples:
+            return []
+
         # Pass 1: exact pair dedup
         seen_pairs: Dict[Tuple[str, str], Triple] = {}
         for t in triples:
@@ -932,18 +1214,21 @@ STRICT RULES -- violating any rule invalidates your entire response:
 
         triples = list(seen_pairs.values())
 
-        # Pass 2: semantic pair dedup
+        # Pass 2: semantic pair dedup — O(n²) but n is small per slide (≤ 10 triples)
         final: List[Triple] = []
-        for t in triples:
-            is_dup = False
+        for t in sorted(triples, key=lambda x: -x.confidence):
+            is_semantic_dup = False
             for existing in final:
-                if self._phrases_are_synonyms(
-                    t.subject, existing.subject
-                ) and self._phrases_are_synonyms(t.object, existing.object):
-                    if t.confidence <= existing.confidence:
-                        is_dup = True
-                        break
-            if not is_dup:
+                # Same relation, semantically equivalent subject AND object
+                subj_match = self._phrases_are_synonyms(t.subject, existing.subject)
+                obj_match = self._phrases_are_synonyms(t.object, existing.object)
+                # OR reversed direction (both encode same real-world relationship)
+                subj_obj_match = self._phrases_are_synonyms(t.subject, existing.object)
+                obj_subj_match = self._phrases_are_synonyms(t.object, existing.subject)
+                if (subj_match and obj_match) or (subj_obj_match and obj_subj_match):
+                    is_semantic_dup = True
+                    break
+            if not is_semantic_dup:
                 final.append(t)
 
         return final
