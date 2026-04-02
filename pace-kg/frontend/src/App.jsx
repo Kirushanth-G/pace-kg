@@ -62,10 +62,9 @@ function UploadView({
     <section className="upload-shell">
       <div className="hero-copy">
         <p className="eyebrow">PACE-KG</p>
-        <h1>Build a Citation-Evidenced Learning Graph from Lecture Slides</h1>
+        <h1>Automatically construct a typed Educational Knowledge Graph from your lecture PDF slides</h1>
         <p>
-          Upload one PDF. The pipeline extracts concepts, validates relations with evidence,
-          and generates per-slide revision summaries.
+          Upload a lecture PDF. The pipeline extracts key concepts, constructs typed knowledge graph relations with evidence, and generates per-slide revision summaries.
         </p>
       </div>
 
@@ -386,7 +385,6 @@ function App() {
       <header className="app-header">
         <div>
           <h1>PACE-KG</h1>
-          <p>{FRONTEND_ONLY ? "Demo mode: backend disabled" : `Backend: ${API_BASE}`}</p>
         </div>
       </header>
 
