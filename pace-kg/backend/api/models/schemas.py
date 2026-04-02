@@ -31,7 +31,7 @@ class ConceptNode(BaseModel):
     source_type: str
     keyphrase_score: float
     final_weight: float
-    doc_id: str
+    doc_id: Optional[str] = None  # Optional - injected from URL param if missing
     needs_review: bool = False
 
 
@@ -44,7 +44,7 @@ class Edge(BaseModel):
     evidence: Optional[str] = None
     confidence: float
     slide_id: str
-    doc_id: str
+    doc_id: Optional[str] = None  # Optional - injected from URL param if missing
     source: str  # extraction or expansion
 
 
@@ -64,7 +64,7 @@ class SlideSummary(BaseModel):
     heading: str
     summary: str
     key_terms: List[str]
-    doc_id: str
+    doc_id: Optional[str] = None  # Optional - injected from URL param if missing
 
 
 class SummariesResponse(BaseModel):
