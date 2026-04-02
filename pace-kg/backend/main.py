@@ -3,7 +3,7 @@
 import json
 import uuid
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,10 +38,74 @@ app.add_middleware(
 jobs: Dict[str, JobStatus] = {}
 
 
+def is_job_completed_on_disk(doc_id: str) -> bool:
+    """Check if a job has completed output files on disk."""
+    output_dir = Path(settings.output_dir) / doc_id
+    graph_path = output_dir / f"{doc_id}_step8_lm_edkg.json"
+    summaries_path = output_dir / f"{doc_id}_step9_summaries.json"
+    return graph_path.exists() and summaries_path.exists()
+
+
+def get_completed_jobs_from_disk() -> List[str]:
+    """Scan output directory for completed jobs."""
+    output_dir = Path(settings.output_dir)
+    if not output_dir.exists():
+        return []
+
+    completed = []
+    for subdir in output_dir.iterdir():
+        if subdir.is_dir():
+            doc_id = subdir.name
+            if is_job_completed_on_disk(doc_id):
+                completed.append(doc_id)
+    return completed
+
+
 @app.get("/health")
 async def health():
     """Health check endpoint."""
     return {"status": "ok"}
+
+
+@app.get("/jobs")
+async def list_jobs():
+    """
+    List all jobs - both in-memory (running) and completed on disk.
+
+    This allows the frontend to discover previously completed jobs
+    even after server restart.
+    """
+    # Get completed jobs from disk
+    disk_jobs = get_completed_jobs_from_disk()
+
+    # Combine with in-memory jobs
+    all_jobs = []
+
+    # Add in-memory jobs (running or recently completed)
+    for doc_id, job in jobs.items():
+        all_jobs.append(
+            {
+                "doc_id": doc_id,
+                "status": job.status,
+                "current_step": job.current_step,
+                "progress": job.progress,
+            }
+        )
+
+    # Add disk jobs not in memory
+    in_memory_ids = set(jobs.keys())
+    for doc_id in disk_jobs:
+        if doc_id not in in_memory_ids:
+            all_jobs.append(
+                {
+                    "doc_id": doc_id,
+                    "status": "completed",
+                    "current_step": "Done",
+                    "progress": 1.0,
+                }
+            )
+
+    return {"jobs": all_jobs}
 
 
 @app.post("/upload", response_model=UploadResponse)
@@ -192,11 +256,12 @@ async def get_graph(doc_id: str):
 
     Returns the full LM-EduKG from Step 8.
     """
-    if doc_id not in jobs:
+    # Check in-memory first, then disk
+    if doc_id in jobs:
+        if jobs[doc_id].status != "completed":
+            raise HTTPException(status_code=400, detail="Pipeline not yet completed")
+    elif not is_job_completed_on_disk(doc_id):
         raise HTTPException(status_code=404, detail="Job not found")
-
-    if jobs[doc_id].status != "completed":
-        raise HTTPException(status_code=400, detail="Pipeline not yet completed")
 
     # Load step8 output
     output_dir = Path(settings.output_dir) / doc_id
@@ -222,11 +287,12 @@ async def get_summaries(doc_id: str):
 
     Returns all summaries from Step 9.
     """
-    if doc_id not in jobs:
+    # Check in-memory first, then disk
+    if doc_id in jobs:
+        if jobs[doc_id].status != "completed":
+            raise HTTPException(status_code=400, detail="Pipeline not yet completed")
+    elif not is_job_completed_on_disk(doc_id):
         raise HTTPException(status_code=404, detail="Job not found")
-
-    if jobs[doc_id].status != "completed":
-        raise HTTPException(status_code=400, detail="Pipeline not yet completed")
 
     # Load step9 output
     output_dir = Path(settings.output_dir) / doc_id
@@ -250,11 +316,12 @@ async def export_docx(doc_id: str):
 
     Returns the .docx file generated in Step 9.
     """
-    if doc_id not in jobs:
+    # Check in-memory first, then disk
+    if doc_id in jobs:
+        if jobs[doc_id].status != "completed":
+            raise HTTPException(status_code=400, detail="Pipeline not yet completed")
+    elif not is_job_completed_on_disk(doc_id):
         raise HTTPException(status_code=404, detail="Job not found")
-
-    if jobs[doc_id].status != "completed":
-        raise HTTPException(status_code=400, detail="Pipeline not yet completed")
 
     # Find docx file
     output_dir = Path(settings.output_dir) / doc_id

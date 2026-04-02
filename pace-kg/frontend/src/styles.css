@@ -367,6 +367,47 @@ p {
   font-weight: 600;
 }
 
+/* Completed jobs section */
+.completed-jobs {
+  margin-bottom: 16px;
+}
+
+.completed-jobs h3 {
+  margin-bottom: 8px;
+}
+
+.job-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.job-btn {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+/* Back button */
+.back-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.back-btn:hover {
+  background: #f5f3ff;
+}
+
+/* Results header */
+.results-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
 @media (max-width: 1120px) {
   .results-grid {
     grid-template-columns: 1fr;

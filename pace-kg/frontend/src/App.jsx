@@ -7,6 +7,7 @@ import {
   getStatus,
   getSummaries,
   uploadPdf,
+  listJobs,
   API_BASE,
 } from "./services/api";
 import { demoGraph, demoSummaries } from "./mocks/demoData";
@@ -53,6 +54,9 @@ function UploadView({
   onDragEnter,
   onDragLeave,
   onDrop,
+  completedJobs,
+  onSelectJob,
+  loadingJobs,
 }) {
   return (
     <section className="upload-shell">
@@ -64,6 +68,30 @@ function UploadView({
           and generates per-slide revision summaries.
         </p>
       </div>
+
+      {/* Show completed jobs if any exist */}
+      {completedJobs.length > 0 && (
+        <div className="completed-jobs panel">
+          <h3>Previously Completed Graphs</h3>
+          <p className="muted">Select a completed job to view its knowledge graph:</p>
+          <div className="job-list">
+            {completedJobs.map((job) => (
+              <button
+                key={job.doc_id}
+                type="button"
+                className="secondary-btn job-btn"
+                onClick={() => onSelectJob(job.doc_id)}
+              >
+                {job.doc_id.slice(0, 8)}...
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {loadingJobs && (
+        <p className="muted">Loading available jobs...</p>
+      )}
 
       <div
         className={`dropzone ${dragActive ? "drag-active" : ""}`}
@@ -152,6 +180,10 @@ function App() {
   const [selectedSlideId, setSelectedSlideId] = useState("");
   const [selectedNode, setSelectedNode] = useState("");
 
+  // New: track completed jobs from backend
+  const [completedJobs, setCompletedJobs] = useState([]);
+  const [loadingJobs, setLoadingJobs] = useState(false);
+
   const isProcessing = status === "pending" || status === "running";
 
   const canUpload = useMemo(
@@ -159,19 +191,52 @@ function App() {
     [selectedFile, isProcessing]
   );
 
+  // Fetch completed jobs on mount (if not in frontend-only mode)
   useEffect(() => {
-    if (!FRONTEND_ONLY) {
+    if (FRONTEND_ONLY) {
+      setDocId(DEMO_DOC_ID);
+      setStatus("completed");
+      setCurrentStep("Generating Summaries");
+      setProgress(1);
+      setGraph(demoGraph);
+      setSummaries(demoSummaries);
+      setSelectedSlideId(demoSummaries[0]?.slide_id || "");
       return;
     }
 
-    setDocId(DEMO_DOC_ID);
-    setStatus("completed");
-    setCurrentStep("Generating Summaries");
-    setProgress(1);
-    setGraph(demoGraph);
-    setSummaries(demoSummaries);
-    setSelectedSlideId(demoSummaries[0]?.slide_id || "");
+    // Fetch available jobs from backend
+    async function fetchJobs() {
+      setLoadingJobs(true);
+      try {
+        const response = await listJobs();
+        const completed = (response?.jobs || []).filter(
+          (job) => job.status === "completed"
+        );
+        setCompletedJobs(completed);
+      } catch (err) {
+        console.error("Failed to fetch jobs:", err);
+      } finally {
+        setLoadingJobs(false);
+      }
+    }
+
+    fetchJobs();
   }, []);
+
+  // Handler to load a previously completed job
+  async function handleSelectJob(selectedDocId) {
+    try {
+      setError("");
+      setDocId(selectedDocId);
+      setStatus("completed");
+      setProgress(1);
+      setCurrentStep("Done");
+      await loadResults(selectedDocId);
+    } catch (err) {
+      setError(err.message || "Failed to load job.");
+      setStatus("failed");
+    }
+  }
 
   async function loadResults(activeDocId) {
     const [graphPayload, summariesPayload] = await Promise.all([
@@ -338,6 +403,9 @@ function App() {
           onDragEnter={handleDragEnter}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
+          completedJobs={completedJobs}
+          onSelectJob={handleSelectJob}
+          loadingJobs={loadingJobs}
         />
       ) : null}
 
@@ -351,21 +419,39 @@ function App() {
       ) : null}
 
       {status === "completed" ? (
-        <section className="results-grid">
-          <GraphView
-            nodes={graph.nodes}
-            edges={graph.edges}
-            selectedSlideId={selectedSlideId}
-            selectedNode={selectedNode}
-            onSelectNode={setSelectedNode}
-          />
-          <SummaryPanel
-            summaries={summaries}
-            selectedSlideId={selectedSlideId}
-            onSelectSlide={handleSelectSlide}
-            onDownload={handleDownload}
-          />
-        </section>
+        <>
+          <div className="results-header">
+            <button
+              type="button"
+              className="secondary-btn back-btn"
+              onClick={() => {
+                setStatus("idle");
+                setDocId("");
+                setGraph({ nodes: [], edges: [] });
+                setSummaries([]);
+                setSelectedFile(null);
+              }}
+            >
+              &larr; Back to Upload
+            </button>
+            <span className="muted">Viewing: {docId.slice(0, 8)}...</span>
+          </div>
+          <section className="results-grid">
+            <GraphView
+              nodes={graph.nodes}
+              edges={graph.edges}
+              selectedSlideId={selectedSlideId}
+              selectedNode={selectedNode}
+              onSelectNode={setSelectedNode}
+            />
+            <SummaryPanel
+              summaries={summaries}
+              selectedSlideId={selectedSlideId}
+              onSelectSlide={handleSelectSlide}
+              onDownload={handleDownload}
+            />
+          </section>
+        </>
       ) : null}
 
       {status === "failed" ? (

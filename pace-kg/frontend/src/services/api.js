@@ -45,4 +45,9 @@ export function getExportUrl(docId) {
   return `${API_BASE}/export/${docId}`;
 }
 
+export async function listJobs() {
+  const response = await fetch(`${API_BASE}/jobs`);
+  return readJson(response, "Could not fetch jobs list.");
+}
+
 export { API_BASE };
