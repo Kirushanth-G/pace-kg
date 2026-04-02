@@ -146,7 +146,7 @@ def run_pipeline(doc_id: str, pdf_path: str):
         jobs[doc_id].progress = 0.7
 
         # Step 7
-        runner.step7_store_neo4j(concepts, pruned_triples, expansions)
+        runner.step7_store_neo4j(concepts, pruned_triples, expansions, slides_content)
         jobs[doc_id].current_step = "Step 8: Aggregating Graph"
         jobs[doc_id].progress = 0.8
 
