@@ -636,24 +636,19 @@ Rules:
     def step4_extract_triples(
         self, slides: List[SlideContent], keyphrases: Dict[str, List[Keyphrase]]
     ) -> List[Triple]:
-        """Extract triples using LLM + 4-layer validation."""
+        """Step 4: LLM triple extraction with 4-layer validation."""
         print(f"[Step 4] Extracting triples from {len(slides)} slides")
 
-        # Load models
-        if self.llm_primary is None:
-            self.llm_primary = ChatGroq(
-                model=settings.llm_primary,
-                temperature=0,
-                api_key=settings.groq_api_key,
-            )
+        # Load SBERT once
         if self.sbert is None:
             print("Loading SBERT all-mpnet-base-v2...")
             self.sbert = SentenceTransformer("all-mpnet-base-v2")
 
         all_triples: List[Triple] = []
         prev_keyphrase: Optional[Keyphrase] = None
+        rate_limit_skipped = 0
 
-        for sc in slides:
+        for idx, sc in enumerate(slides, 1):
             kps = keyphrases.get(sc.slide_id, [])
             if len(kps) < 2:
                 continue
@@ -675,7 +670,11 @@ Rules:
             )
 
             # Extract triples from LLM
+            print(f"  Processing slide {idx}/{len(slides)}: {sc.slide_id}")
             triples = self._extract_triples_for_slide(sc, kps, is_llm_slide)
+            if triples is None:  # Rate limit indicator
+                rate_limit_skipped += 1
+                continue
             all_triples.extend(triples)
 
             # Update prev_keyphrase
@@ -685,13 +684,31 @@ Rules:
         # Save output
         data = [asdict(t) for t in all_triples]
         self._save_json(data, "step4_triples")
-        print(f"[Step 4] Extracted {len(all_triples)} triples")
+
+        if rate_limit_skipped > 0:
+            print(
+                f"[Step 4] WARNING: Skipped {rate_limit_skipped} slides due to rate limits"
+            )
+            print(
+                f"[Step 4] Extracted {len(all_triples)} triples from {len(slides) - rate_limit_skipped} slides"
+            )
+            print(
+                f"[Step 4] RECOMMENDATION: Wait ~8 hours for limit reset OR upgrade to Dev Tier ($0.10/million tokens)"
+            )
+        else:
+            print(f"[Step 4] Extracted {len(all_triples)} triples")
+
         return all_triples
 
     def _extract_triples_for_slide(
         self, sc: SlideContent, kps: List[Keyphrase], is_llm_slide: bool
-    ) -> List[Triple]:
-        """Extract and validate triples for a single slide."""
+    ) -> Optional[List[Triple]]:
+        """Extract and validate triples for a single slide.
+
+        Returns:
+            List[Triple]: Extracted triples (may be empty if no valid triples found)
+            None: If rate-limited (signals to caller to skip this slide)
+        """
 
         # Build prompt
         system_prompt = self._get_system_prompt()
@@ -718,6 +735,7 @@ Return triples as JSON array with this format:
 ]"""
 
         # Call LLM (with fallback on 429)
+        triples_raw = []
         try:
             resp = self.llm_primary.invoke(
                 [
@@ -727,15 +745,33 @@ Return triples as JSON array with this format:
             )
             triples_raw = json.loads(resp.content)
         except Exception as e:
-            if "429" in str(e):
+            error_str = str(e)
+            # Check for rate limit error (HTTP 429)
+            if "429" in error_str or "rate_limit" in error_str.lower():
+                print(f"  Primary model (70B) rate limited, trying fallback (8B)...")
                 time.sleep(2)
-                resp = self.llm_fallback.invoke(
-                    [
-                        SystemMessage(content=system_prompt),
-                        HumanMessage(content=user_prompt),
-                    ]
-                )
-                triples_raw = json.loads(resp.content)
+                try:
+                    resp = self.llm_fallback.invoke(
+                        [
+                            SystemMessage(content=system_prompt),
+                            HumanMessage(content=user_prompt),
+                        ]
+                    )
+                    triples_raw = json.loads(resp.content)
+                except Exception as fallback_error:
+                    # If fallback also fails, check if it's also rate limited
+                    fallback_error_str = str(fallback_error)
+                    if (
+                        "429" in fallback_error_str
+                        or "rate_limit" in fallback_error_str.lower()
+                    ):
+                        print(
+                            f"  ⚠️  Both models rate limited for {sc.slide_id}. Skipping slide."
+                        )
+                        return None  # Signal rate limit to caller
+                    else:
+                        print(f"  Fallback model failed: {fallback_error}")
+                        return []
             else:
                 print(f"  LLM extraction failed: {e}")
                 return []
