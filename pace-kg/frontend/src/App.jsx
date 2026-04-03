@@ -62,7 +62,7 @@ function UploadView({
     <section className="upload-shell">
       <div className="hero-copy">
         <p className="eyebrow">PACE-KG</p>
-        <h1>Automatically construct a typed Educational Knowledge Graph from your lecture PDF slides</h1>
+        <h1>Automatically construct a Educational Knowledge Graph from your lecture PDF slides</h1>
         <p>
           Upload a lecture PDF. The pipeline extracts key concepts, constructs typed knowledge graph relations with evidence, and generates per-slide revision summaries.
         </p>
